@@ -1,0 +1,9 @@
+{
+    "access_token": "at", 
+    "user": {
+        "username": "mikeyk", 
+        "full_name": "Mike Krieger!!", 
+        "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_4_75sq_1292324747_debug.jpg", 
+        "id": "4"
+    }
+}
