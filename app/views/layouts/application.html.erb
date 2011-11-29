@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Undersky</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Undersky</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Undersky</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Popular</a></li>
+            <li><a href="#">Feed</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Liked</a></li>
+          </ul>
+          <%= form_tag nil, method: :post do %>
+          <%= text_field_tag :search, '', placeholder: 'Search' %>
+          <% end %>
+          <ul class="nav secondary-nav">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+    <footer class="footer">
+      <div class="container">
+        Created by @mitukiii
+      </div>
+    </footer>
+  </body>
 </html>

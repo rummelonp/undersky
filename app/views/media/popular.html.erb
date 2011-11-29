@@ -1,2 +1,14 @@
-<h1>Media#popular</h1>
-<p>Find me in app/views/media/popular.html.erb</p>
+<div class="container">
+  <div class="page-header">
+    <h1>Popular</h1>
+  </div>
+  <ul class="media-grid">
+    <% @photos.each do |p| %>
+    <li>
+      <a href="#">
+        <%= photo_tag p, :thumbnail %>
+      </a>
+    </li>
+    <% end %>
+  </ul>
+</div>
