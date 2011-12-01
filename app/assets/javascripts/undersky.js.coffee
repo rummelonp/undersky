@@ -43,6 +43,7 @@ class Undersky
         column = column.parent().prev().find('a').first()
       if column.size()
         self.toggle.call(column, e)
+        $w.scrollTop(column.offset().top - 65)
 
     @next: (e) ->
       columns = self.columns()
@@ -53,6 +54,7 @@ class Undersky
         column = columns.first()
       if column.size()
         self.toggle.call(column, e)
+        $w.scrollTop(column.offset().top - 65)
 
     @resize: ->
       $('.modal.media-panel.show').css('height', $w.height() - 75)
