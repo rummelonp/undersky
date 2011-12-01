@@ -36,6 +36,14 @@ module ApplicationHelper
     def link_to_external(text, url, options = {})
       link_to text, url, {rel: 'external nofollow', target: '_blank'}.merge(options)
     end
+
+    def nav_link_tag(text, url)
+      if request.url == url || request.fullpath == url
+        content_tag 'li', link_to(text, url), :class => 'active'
+      else
+        content_tag 'li', link_to(text, url)
+      end
+    end
   end
 
   include AuthorizeHelper

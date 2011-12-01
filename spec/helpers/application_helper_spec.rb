@@ -75,6 +75,25 @@ describe ApplicationHelper do
     it { should == '<a href="http://example.com/" rel="external nofollow" target="_blank">Example</a>' }
   end
 
+  describe :nav_link_tag do
+    before do
+      @request = ActionController::TestRequest.new
+      @request.stub!(:url).and_return('http://example.com/')
+      @request.stub!(:fullpath).and_return('')
+      self.stub!(:request).and_return(@request)
+    end
+
+    context 'current page' do
+      subject { nav_link_tag 'Example', 'http://example.com/' }
+      it { should == '<li class="active"><a href="http://example.com/">Example</a></li>' }
+    end
+
+    context 'not current page' do
+      subject { nav_link_tag 'Example', 'http://example.com/other' }
+      it { should == '<li><a href="http://example.com/other">Example</a></li>' }
+    end
+  end
+
   describe :caption_text do
     subject { caption_text @photo }
     it { should == 'caption text' }
