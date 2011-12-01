@@ -1,0 +1,44 @@
+<div class="modal-container">
+  <% @photos.each do |p| %>
+  <div class="modal media-panel hide" data-id="<%= p.id %>">
+    <div class="modal-header">
+      <div class="username author">
+        <%= link_to p.user.username, "#" %>
+      </div>
+    </div>
+    <div class="modal-body">
+      <%= link_to_external (photo_tag p, :low_resolution), p.link %>
+    </div>
+    <div class="modal-footer">
+      <div class="likes">
+        <%= link_to "#{p.likes[:count]} likes", "#" %>
+      </div>
+      <% if caption_text p %>
+      <div class="caption">
+        <span class="username author">
+          <%= link_to p.user.username, "#" %>
+        </span>
+        <span class="text">
+          <%= caption_text p %>
+        </span>
+      </div>
+      <% end %>
+      <div class="comments">
+        <% if p.comments[:count] > p.comments.data.size %>
+        <%= link_to "view all #{p.comments[:count]} comments", "#" %>
+        <% end %>
+        <% p.comments.data.each do |c| %>
+        <div class="comment">
+          <span class="username">
+            <%= link_to c.from.username, "#" %>
+          </span>
+          <span class="text">
+            <%= c.text %>
+          </span>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
