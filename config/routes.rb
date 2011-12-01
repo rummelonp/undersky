@@ -1,4 +1,12 @@
 Undersky::Application.routes.draw do
+  get "users/feed"
+
+  get "users/self"
+
+  get "users/recent"
+
+  get "users/liked"
+
   controller :authorize do
     get "authorize",    as: :authorize
     get "access_token", as: :access_token
