@@ -7,12 +7,7 @@
       <ul class="media-grid">
         <% @photos.each do |p| %>
         <li>
-          <%= link_to (photo_tag p, :thumbnail),
-              p.link,
-              rel: "bookmark external nofollow",
-              target: "_blank",
-              "data-id" => p.id,
-          %>
+          <%= link_to_external (photo_tag p, :thumbnail), p.link, "data-id" => p.id %>
         </li>
         <% end %>
       </ul>
@@ -30,10 +25,7 @@
       </div>
     </div>
     <div class="modal-body">
-      <%= link_to (photo_tag p, :low_resolution),
-          p.link,
-          rel: "external nofollow",
-          target: "_blank" %>
+      <%= link_to_external (photo_tag p, :low_resolution), p.link %>
     </div>
     <div class="modal-footer">
       <div class="likes">
