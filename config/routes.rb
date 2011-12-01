@@ -1,11 +1,5 @@
 Undersky::Application.routes.draw do
-  get "users/feed"
-
-  get "users/self"
-
-  get "users/recent"
-
-  get "users/liked"
+  root to: "media#popular", as: :index
 
   controller :authorize do
     get "authorize",    as: :authorize
@@ -13,7 +7,10 @@ Undersky::Application.routes.draw do
     get "logout",       as: :logout
   end
 
-  root to: "media#popular", as: :index
+  get "users/feed(/max_id/:max_id)"            => "users#feed",   as: :feed
+  get "users/liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
+  get "users/self"                             => "users#self",   as: :profile
+  get "users/:id(/max_id/:max_id)"             => "users#recent", as: :recent
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
