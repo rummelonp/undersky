@@ -1,7 +1,15 @@
 module ApplicationHelper
   module AuthorizeHelper
     def client
-      @client ||= Instagram.client
+      unless @client
+        if authenticated?
+          @client = Instagram.client access_token: session[:access_token]
+        else
+          @client = Instagram.client
+        end
+      end
+
+      @client
     end
 
     def authenticated?
