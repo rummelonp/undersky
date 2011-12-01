@@ -1,2 +1,14 @@
-<h1>Users#feed</h1>
-<p>Find me in app/views/users/feed.html.erb</p>
+<% content_for :title, "Feed" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <%= render partial: "layouts/media-grid", locals: {photos: @photos} %>
+    </div>
+    <div class="span7">
+    </div>
+  </div>
+</div>
+<%= render partial: "layouts/media-panel", locals: {photos: @photos} %>
