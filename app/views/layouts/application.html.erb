@@ -22,7 +22,11 @@
           <% end %>
           <ul class="nav secondary-nav">
             <li><a href="#">About</a></li>
-            <li><a href="#">Login</a></li>
+            <% if authenticated? %>
+            <li><%= link_to "Logout", :logout %></li>
+            <% else %>
+            <li><%= link_to "Login", :authorize %></li>
+            <% end %>
           </ul>
         </div>
       </div>
