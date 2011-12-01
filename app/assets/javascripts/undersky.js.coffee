@@ -27,7 +27,33 @@ class Undersky
         panels.filter('[data-id=' + id + ']').show()
       column.addClass('focused')
 
+    @action: (e) ->
+      switch e.which
+        when 37, 75 # ←, k
+          self.prev(e)
+        when 39, 74 # →, j
+          self.next(e)
+
+    @prev: (e) ->
+      columns = self.columns()
+      column = columns.filter('.focused')
+      if column.size()
+        column = column.parent().prev().find('a').first()
+      if column.size()
+        self.toggle.call(column, e)
+
+    @next: (e) ->
+      columns = self.columns()
+      column = columns.filter('.focused')
+      if column.size()
+        column = column.parent().next().find('a').first()
+      else
+        column = columns.first()
+      if column.size()
+        self.toggle.call(column, e)
+
     do ->
       $d.delegate '.media-grid a', 'click', self.toggle
+      $d.keydown self.action
 
 new Undersky
