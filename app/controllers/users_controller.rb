@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate
+
   def feed
     @data = client.user_media_feed params
     @photos = @data.data
