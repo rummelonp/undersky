@@ -30,6 +30,10 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :development do
+  gem 'guard-livereload'
+end
+
 group :development, :test do
   gem 'rspec-rails'
 end
