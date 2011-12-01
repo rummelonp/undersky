@@ -1,5 +1,5 @@
 Undersky::Application.routes.draw do
-  get "media/popular"
+  root to: "media#popular", as: :index
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
