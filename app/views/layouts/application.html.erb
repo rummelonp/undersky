@@ -10,12 +10,16 @@
     <header class="topbar">
       <div class="topbar-inner">
         <div class="container">
-          <a class="brand" href="#">Undersky</a>
+          <%= link_to "Undersky", :index, class: "brand" %>
           <ul class="nav">
-            <li class="active"><a href="#">Popular</a></li>
-            <li><a href="#">Feed</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Liked</a></li>
+            <%= nav_link_tag "Popular", url_for(:index) %>
+            <%= nav_link_tag "Feed", url_for(:feed) %>
+            <% if authenticated? %>
+            <%= nav_link_tag "Profile", recent_url(id: session[:user][:id]) %>
+            <% else %>
+            <%= nav_link_tag "Profile", url_for(:profile) %>
+            <% end %>
+            <%= nav_link_tag "Liked", url_for(:liked) %>
           </ul>
           <%= form_tag nil, method: :post do %>
           <%= text_field_tag :search, '', placeholder: 'Search' %>
