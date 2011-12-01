@@ -1,26 +1,36 @@
 module ApplicationHelper
-  def client
-    @client ||= Instagram.client
+  module AuthorizeHelper
+    def client
+      @client ||= Instagram.client
+    end
+
+    def authenticated?
+      session[:access_token].present?
+    end
   end
 
-  def authenticated?
-    session[:access_token].present?
+  module PhotoHelper
+    def photo_tag(photo, size)
+      image = photo.images.send(size.to_sym)
+      image_tag image.url, {
+        alt: caption_text(photo),
+        width: image.width,
+        height: image.height,
+      }
+    end
+
+    def caption_text(photo)
+      photo.caption.text unless photo.caption.blank?
+    end
   end
 
-  def photo_tag(photo, size)
-    image = photo.images.send(size.to_sym)
-    image_tag image.url, {
-      alt: caption_text(photo),
-      width: image.width,
-      height: image.height,
-    }
+  module TagHelper
+    def link_to_external(text, url, options = {})
+      link_to text, url, {rel: 'external nofollow', target: '_blank'}.merge(options)
+    end
   end
 
-  def link_to_external(text, url, options = {})
-    link_to text, url, {rel: 'external nofollow', target: '_blank'}.merge(options)
-  end
-
-  def caption_text(photo)
-    photo.caption.text unless photo.caption.blank?
-  end
+  include AuthorizeHelper
+  include PhotoHelper
+  include TagHelper
 end
