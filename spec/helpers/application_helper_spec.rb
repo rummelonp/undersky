@@ -7,6 +7,28 @@ describe ApplicationHelper do
     it { should be_is_a Instagram::Client }
   end
 
+  describe :authenticated? do
+    context 'session have access token' do
+      before do
+        session[:access_token] = '*** access_token ***'
+      end
+
+      it 'should be true' do
+        authenticated?.should be_true
+      end
+    end
+
+    context 'session not have access token' do
+      before do
+        session[:access_token] = nil
+      end
+
+      it 'should be false' do
+        authenticated?.should be_false
+      end
+    end
+  end
+
   before do
     @photo = Hashie::Mash.new({
       images: {
@@ -46,6 +68,11 @@ describe ApplicationHelper do
       subject { photo_tag @photo, :standard_resolution }
       it { should == '<img alt="caption text" height="612" src="http://example.com/standard_resolution.jpg" width="612" />' }
     end
+  end
+
+  describe :link_to_external do
+    subject { link_to_external 'Example', 'http://example.com/' }
+    it { should == '<a href="http://example.com/" rel="external nofollow" target="_blank">Example</a>' }
   end
 
   describe :caption_text do
