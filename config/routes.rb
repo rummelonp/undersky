@@ -1,9 +1,9 @@
 Undersky::Application.routes.draw do
-  get "authorize/authorize"
-
-  get "authorize/access_token"
-
-  get "authorize/logout"
+  controller :authorize do
+    get "authorize",    as: :authorize
+    get "access_token", as: :access_token
+    get "logout",       as: :logout
+  end
 
   root to: "media#popular", as: :index
 
