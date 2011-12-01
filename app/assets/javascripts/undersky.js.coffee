@@ -4,6 +4,7 @@
 
 class Undersky
   undersky = this
+  $w = $(window)
   $d = $(document)
 
   class MediaGrid
@@ -26,6 +27,7 @@ class Undersky
         column.addClass('actived')
         panels.filter('[data-id=' + id + ']').show()
       column.addClass('focused')
+      self.resize()
 
     @action: (e) ->
       switch e.which
@@ -52,7 +54,11 @@ class Undersky
       if column.size()
         self.toggle.call(column, e)
 
+    @resize: ->
+      $('.modal.media-panel.show').css('height', $w.height() - 75)
+
     do ->
+      $w.resize self.resize
       $d.delegate '.media-grid a', 'click', self.toggle
       $d.keydown self.action
 
