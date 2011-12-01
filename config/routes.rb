@@ -1,4 +1,10 @@
 Undersky::Application.routes.draw do
+  get "authorize/authorize"
+
+  get "authorize/access_token"
+
+  get "authorize/logout"
+
   root to: "media#popular", as: :index
 
   # The priority is based upon order of creation:
