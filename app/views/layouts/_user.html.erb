@@ -13,7 +13,7 @@
   </div>
   <div class="website">
     <% if @user.website.present? %>
-    <%= link_to @user.website, @user.website %>
+    <%= link_to_external @user.website, @user.website %>
     <% end %>
   </div>
   <hr>
