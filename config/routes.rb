@@ -1,4 +1,10 @@
 Undersky::Application.routes.draw do
+  get "likes/likes"
+
+  get "likes/like"
+
+  get "likes/unlike"
+
   root to: "media#popular", as: :index
 
   controller :authorize do
