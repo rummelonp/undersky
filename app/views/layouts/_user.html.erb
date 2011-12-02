@@ -3,10 +3,10 @@
     <%= image_tag @user.profile_picture, size: "75x75" %>
   </div>
   <div class="full-name">
-    <h2><a href="#"><%= @user.full_name %></a></h2>
+    <h2><%= link_to @user.full_name, recent_url(id: @user.id) %></h2>
   </div>
   <div class="username">
-    <a href="#">@<%= @user.username %></a>
+    @<%= link_to @user.username, recent_url(id: @user.id) %>
   </div>
   <div class="bio">
     <%= @user.bio %>
@@ -22,7 +22,7 @@
   <hr>
   <% end %>
   <div class="media">
-    <a href="#">
+    <a href="<%= recent_url(id: @user.id) %>">
       <span class="count"><%= @user.counts.media %></span> media
     </a>
   </div>

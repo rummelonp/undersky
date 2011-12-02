@@ -3,7 +3,7 @@
   <div class="modal media-panel hide" data-id="<%= p.id %>">
     <div class="modal-header">
       <div class="username author">
-        <%= link_to p.user.username, "#" %>
+        <%= link_to p.user.username, recent_url(id: p.user.id) %>
       </div>
     </div>
     <div class="modal-body">
@@ -16,7 +16,7 @@
       <% if caption_text p %>
       <div class="caption">
         <span class="username author">
-          <%= link_to p.user.username, "#" %>
+          <%= link_to p.user.username, recent_url(id: p.user.id) %>
         </span>
         <span class="text">
           <%= caption_text p %>
@@ -30,7 +30,7 @@
         <% p.comments.data.each do |c| %>
         <div class="comment">
           <span class="username">
-            <%= link_to c.from.username, "#" %>
+            <%= link_to c.from.username, recent_url(id: c.from.id) %>
           </span>
           <span class="text">
             <%= c.text %>
