@@ -16,6 +16,16 @@
     top: 65px;
     left: 50%;
     overflow-y: auto;
-    margin: 0 0 0 80px;
+    margin: 0 0 0 99px;
+  }
+}
+
+.user {
+  font-size: 14px;
+  h2 {
+    font-size: 18px
+  }
+  .count {
+    font-weight: bold;
   }
 }

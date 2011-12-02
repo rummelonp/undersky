@@ -39,6 +39,8 @@ describe UsersController do
       @photos = [@photo] * 10
       @data = Hashie::Mash.new(data: @photos)
 
+      @user = user_response
+
       session[:access_token] = '*** access token ***'
     end
 
@@ -46,6 +48,7 @@ describe UsersController do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:user_media_feed).and_return(@data)
+        @client.should_receive(:user).and_return(@user)
         get :feed
       end
 
@@ -69,6 +72,7 @@ describe UsersController do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:user_recent_media).and_return(@photos)
+        @client.should_receive(:user).and_return(@user)
         get :recent, id: 982876
       end
 
@@ -81,6 +85,7 @@ describe UsersController do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:user_liked_media).and_return(@data)
+        @client.should_receive(:user).and_return(@user)
         get :liked
       end
 

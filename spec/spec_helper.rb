@@ -9,6 +9,22 @@ require 'rspec/autorun'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 module SpecHelper
+  def user_response
+    Hashie::Mash.new({
+      id: '1',
+      profile_picture: 'http://example.com/profile_picture.jpg',
+      full_name: 'test user',
+      username: 'test user',
+      bii: 'bio bio bio bio bio',
+      website: 'http://example.com/',
+      counts: {
+        media: 1,
+        follows: 1,
+        followed_by: 1
+      }
+    })
+  end
+
   def photo_response
     Hashie::Mash.new({
       tags: [],

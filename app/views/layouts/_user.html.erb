@@ -1,0 +1,39 @@
+<div class="user">
+  <div class="profile_picture">
+    <%= image_tag @user.profile_picture, size: "75x75" %>
+  </div>
+  <div class="full-name">
+    <h2><a href="#"><%= @user.full_name %></a></h2>
+  </div>
+  <div class="username">
+    <a href="#">@<%= @user.username %></a>
+  </div>
+  <div class="bio">
+    <%= @user.bio %>
+  </div>
+  <div class="website">
+    <% if @user.website.present? %>
+    <%= link_to @user.website, @user.website %>
+    <% end %>
+  </div>
+  <hr>
+  <% unless @user.id == session[:user][:id] %>
+  <a href="#" class="btn primary">follow</a>
+  <hr>
+  <% end %>
+  <div class="media">
+    <a href="#">
+      <span class="count"><%= @user.counts.media %></span> media
+    </a>
+  </div>
+  <div class="follows">
+    <a href="#">
+      <span class="count"><%= @user.counts.follows %></span> follows
+    </a>
+  </div>
+  <div class="followed_by">
+    <a href="#">
+      <span class="count"><%= @user.counts.followed_by %></span> followes
+    </a>
+  </div>
+</div>
