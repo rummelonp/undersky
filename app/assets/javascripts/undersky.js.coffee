@@ -16,18 +16,18 @@ class Undersky
     @toggle: (e) ->
       return if e.hasModifierKey()
       e && e.preventDefault()
+      panels = $('.modal.media-panel')
+      panels.filter('.show').hide()
       columns = self.columns()
       column = $(this)
-      panels = $('.modal.media-panel').hide()
       id = column.attr('data-id')
-      if column.hasClass('actived')
-        columns.removeClass('actived').removeClass('focused')
-      else
-        columns.removeClass('actived').removeClass('focused')
+      actived = column.hasClass('actived')
+      columns.filter('.actived, .focused').removeClass('actived').removeClass('focused')
+      column.addClass('focused')
+      unless actived
         column.addClass('actived')
         panels.filter('[data-id=' + id + ']').show()
-      column.addClass('focused')
-      self.resize()
+        self.resize()
 
     @action: (e) ->
       switch e.which
