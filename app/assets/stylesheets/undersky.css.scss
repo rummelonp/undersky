@@ -1,7 +1,12 @@
 
 // Topbar
-.topbar + .container {
-  padding-top: 50px;
+.topbar {
+  & + .container {
+    padding-top: 50px;
+  }
+  .dropdown-toggle {
+     vertical-align: top;
+  }
 }
 
 // Modals
