@@ -14,6 +14,12 @@ $.extend $.fn,
   hide: ->
     $(this).addClass('hide').removeClass('show')
 
+$.extend $.fn,
+  bindAjaxHandler: (handlers) ->
+    self = $(this)
+    for eventName, handler of handlers
+      self.live 'ajax:' + eventName, handler
+
 # Add methods to Event
 $.extend $.Event.prototype, hasModifierKey: ->
   return this.altKey || this.ctlrKey || this.metaKey || this.shiftKey

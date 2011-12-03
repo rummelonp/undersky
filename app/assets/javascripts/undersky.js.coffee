@@ -100,4 +100,29 @@ class Undersky
       $d.delegate '.media-grid a', 'click', self.toggle
       $d.keydown self.action
 
+  class Likes
+    self = this
+
+    @likesHandler:
+      beforeSend: (e) ->
+        self = $(this)
+        spinner = new Spinner self
+        spinner.show()
+        self.data('spinner', spinner)
+      success: (e, data) ->
+        self = $(this)
+        container = self.parents('.likes').find('.likes-data')
+        spinner = self.data('spinner')
+        spinner.remove()
+        for u in data
+          container.append('<span class="username"><a href="/recent/' + u.id + '">' + u.username + "</a></span>, ")
+      error: (e, data) ->
+        self = $(this)
+        spinner = self.data('spinner')
+        spinner.hide()
+        Growl.show('likes load failed', 'error')
+
+    do ->
+      $('.likes a').bindAjaxHandler self.likesHandler
+
 new Undersky

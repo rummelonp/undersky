@@ -11,7 +11,14 @@
     </div>
     <div class="modal-footer">
       <div class="likes">
-        <%= link_to "#{p.likes[:count]} likes", "#" %>
+        <div class="count"><%= p.likes[:count] %> likes</div>
+        <div class="likes-load">
+          <% if authenticated? %>
+          <%= link_to "view all #{p.likes[:count]} likes", likes_url(id: p.id), "data-remote" => true %>
+          <% end %>
+        </div>
+        <div class="likes-data">
+        </div>
       </div>
       <% if caption_text p %>
       <div class="caption">
