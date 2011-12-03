@@ -11,12 +11,16 @@
     </div>
     <div class="modal-footer">
       <div class="likes">
-        <div class="count"><%= p.likes[:count] %> likes</div>
-        <div class="likes-load">
-          <% if authenticated? %>
-          <%= link_to "view all #{p.likes[:count]} likes", likes_url(id: p.id), "data-remote" => true %>
-          <% end %>
+        <% if p.likes[:count] > 0 %>
+        <div class="count">
+          <%= p.likes[:count] %> likes
         </div>
+        <% end %>
+        <% if authenticated? && p.likes[:count] > 0 %>
+        <div class="likes-load">
+          <%= link_to "view all #{p.likes[:count]} likes", likes_url(id: p.id), "data-remote" => true %>
+        </div>
+        <% end %>
         <div class="likes-data">
         </div>
       </div>
@@ -31,12 +35,16 @@
       </div>
       <% end %>
       <div class="comments">
-        <div class="count"><%= p.comments[:count] %> comments</div>
-        <div class="comments-load">
-          <% if authenticated? && p.comments[:count] > p.comments.data.size %>
-          <%= link_to "view all #{p.comments[:count]} comments", comments_url(id: p.id), "data-remote" => true %>
-          <% end %>
+        <% if p.comments[:count] > 0 %>
+        <div class="count">
+          <%= p.comments[:count] %> comments
         </div>
+        <% end %>
+        <% if authenticated? && p.comments[:count] > p.comments.data.size %>
+        <div class="comments-load">
+          <%= link_to "view all #{p.comments[:count]} comments", comments_url(id: p.id), "data-remote" => true %>
+        </div>
+        <% end %>
         <div class="comments-data">
           <% p.comments.data.each do |c| %>
           <div class="comment">
