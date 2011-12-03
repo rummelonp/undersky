@@ -115,7 +115,7 @@ class Undersky
         spinner = self.data('spinner')
         spinner.remove()
         for u in data
-          container.append('<span class="username"><a href="/recent/' + u.id + '">' + u.username + "</a></span>, ")
+          container.append('<span class="username"><a href="/users/' + u.id + '">' + u.username + "</a></span>, ")
       error: (e, data) ->
         self = $(this)
         spinner = self.data('spinner')
@@ -141,7 +141,7 @@ class Undersky
         spinner = self.data('spinner')
         spinner.remove()
         for c in data
-          container.append('<div class="comment"><a href="/recent/' + c.from.id + '">' + c.from.username + '</a><span class="text">' + c.text + '</span>')
+          container.append('<div class="comment"><a href="/users/' + c.from.id + '">' + c.from.username + '</a><span class="text">' + c.text + '</span>')
       error: (e, data) ->
         self = $(this)
         spinner = self.data('spinner')
