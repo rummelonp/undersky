@@ -7,6 +7,21 @@ class Undersky
   $w = $(window)
   $d = $(document)
 
+  class Growl
+    top = ->
+      $('.alert-message.growl').size() * 34 + 40;
+
+    @show: (text, level) ->
+      level ||= 'info'
+      growl = $('<div class="alert-message growl ' + level + '">' + text + '</div>')
+      growl.css('top', top() + 'px')
+      $(document.body).append(growl)
+      growl.alert().hide().slideDown()
+      setTimeout(->
+        growl.slideUp ->
+          growl.remove()
+      , 3000)
+
   class MediaGrid
     self = this
 

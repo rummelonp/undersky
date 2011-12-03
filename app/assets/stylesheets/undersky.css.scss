@@ -20,6 +20,15 @@
   }
 }
 
+// Alert
+.alert-message {
+  &.growl {
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+}
+
 .user {
   font-size: 14px;
   h2 {
