@@ -22,6 +22,28 @@ class Undersky
           growl.remove()
       , 3000)
 
+  class Spinner
+    constructor: (element) ->
+      @element = element
+      @spinner = $('<div class="spinner"><img src="/assets/spinner.gif"></div>')
+
+    show: ->
+      @spinner.css
+        width: @element.width(),
+        height: @element.height()
+      @spinner.fadeIn()
+      @element.replaceWith(@spinner)
+      @element.fadeOut()
+
+    hide: ->
+      @element.fadeIn()
+      @spinner.replaceWith(@element)
+      @spinner.fadeOut()
+
+    remove: ->
+      @element.fadeOut()
+      @spinner.fadeOut()
+
   class MediaGrid
     self = this
 
