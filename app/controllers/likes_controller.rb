@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_filter :authenticate
+
   def likes
   end
 
