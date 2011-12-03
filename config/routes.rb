@@ -1,4 +1,10 @@
 Undersky::Application.routes.draw do
+  get "comments/comments"
+
+  get "comments/create_comment"
+
+  get "comments/delete_comment"
+
   root to: "media#popular", as: :index
 
   controller :authorize do
