@@ -25,9 +25,24 @@ describe CommentsController do
   end
 
   context "authenticated" do
+    before do
+      @client = Instagram.client
+
+      @comment = comment_response
+      @comments = [@comment] * 10
+
+      session[:access_token] = '*** access token ***'
+    end
+
     describe "GET 'comments'" do
-      it "returns http success" do
-        pending "to be implement after"
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:media_comments).and_return(@users)
+        xhr :get, :comments, id: 9578621
+      end
+
+      it "should be success" do
+        response.should be_success
       end
     end
 

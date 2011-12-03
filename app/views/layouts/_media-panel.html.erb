@@ -31,19 +31,24 @@
       </div>
       <% end %>
       <div class="comments">
-        <% if p.comments[:count] > p.comments.data.size %>
-        <%= link_to "view all #{p.comments[:count]} comments", "#" %>
-        <% end %>
-        <% p.comments.data.each do |c| %>
-        <div class="comment">
-          <span class="username">
-            <%= link_to c.from.username, recent_url(id: c.from.id) %>
-          </span>
-          <span class="text">
-            <%= c.text %>
-          </span>
+        <div class="count"><%= p.comments[:count] %> comments</div>
+        <div class="comments-load">
+          <% if authenticated? && p.comments[:count] > p.comments.data.size %>
+          <%= link_to "view all #{p.comments[:count]} comments", comments_url(id: p.id), "data-remote" => true %>
+          <% end %>
         </div>
-        <% end %>
+        <div class="comments-data">
+          <% p.comments.data.each do |c| %>
+          <div class="comment">
+            <span class="username">
+              <%= link_to c.from.username, recent_url(id: c.from.id) %>
+            </span>
+            <span class="text">
+              <%= c.text %>
+            </span>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

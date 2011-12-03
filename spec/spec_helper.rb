@@ -81,6 +81,19 @@ module SpecHelper
       }
     })
   end
+
+  def comment_response
+    Hashie::Mash.new({
+      id: '1',
+      text: 'comment',
+      from: {
+        id: '1',
+        profile_picture: 'http://example.com/profile_picture.jpg',
+        full_name: 'test user',
+        username: 'test user'
+      }
+    })
+  end
 end
 
 RSpec.configure do |config|

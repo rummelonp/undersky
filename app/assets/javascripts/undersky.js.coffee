@@ -125,4 +125,30 @@ class Undersky
     do ->
       $('.likes a').bindAjaxHandler self.likesHandler
 
+  class Comments
+    self = this
+
+    @commentsHandler:
+      beforeSend: (e) ->
+        self = $(this)
+        spinner = new Spinner self
+        spinner.show()
+        self.data('spinner', spinner)
+      success: (e, data) ->
+        self = $(this)
+        container = self.parents('.comments').find('.comments-data')
+        container.children().remove()
+        spinner = self.data('spinner')
+        spinner.remove()
+        for c in data
+          container.append('<div class="comment"><a href="/recent/' + c.from.id + '">' + c.from.username + '</a><span class="text">' + c.text + '</span>')
+      error: (e, data) ->
+        self = $(this)
+        spinner = self.data('spinner')
+        spinner.hide()
+        Growl.show('comments load failed', 'error')
+
+    do ->
+      $('.comments-load a').bindAjaxHandler self.commentsHandler
+
 new Undersky
