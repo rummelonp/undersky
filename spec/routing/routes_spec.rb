@@ -65,4 +65,19 @@ describe :routes do
     subject { {delete: 'media/9578621/likes'} }
     it { should route_to(controller: 'likes', action: 'unlike', id: '9578621') }
   end
+
+  describe 'GET "media/9578621/comments"' do
+    subject { {get: 'media/9578621/comments'} }
+    it { should route_to(controller: 'comments', action: 'comments', id: '9578621') }
+  end
+
+  describe 'POST "media/9578621/comments"' do
+    subject { {post: 'media/9578621/comments'} }
+    it { should route_to(controller: 'comments', action: 'create_comment', id: '9578621') }
+  end
+
+  describe 'DELETE "media/9578621/comments/9578621"' do
+    subject { {delete: 'media/9578621/comments/9578621'} }
+    it { should route_to(controller: 'comments', action: 'delete_comment', id: '9578621', comment_id: '9578621') }
+  end
 end

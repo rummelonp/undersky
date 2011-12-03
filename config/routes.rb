@@ -1,10 +1,4 @@
 Undersky::Application.routes.draw do
-  get "comments/comments"
-
-  get "comments/create_comment"
-
-  get "comments/delete_comment"
-
   root to: "media#popular", as: :index
 
   controller :authorize do
@@ -21,6 +15,10 @@ Undersky::Application.routes.draw do
   get    "media/:id/likes" => "likes#likes",  as: :likes
   post   "media/:id/likes" => "likes#like",   as: :like
   delete "media/:id/likes" => "likes#unlike", as: :unlike
+
+  get    "media/:id/comments"             => "comments#comments",       as: :comments
+  post   "media/:id/comments"             => "comments#create_comment", as: :create_comment
+  delete "media/:id/comments/:comment_id" => "comments#delete_comment", as: :delete_comment
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
