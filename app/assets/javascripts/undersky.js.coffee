@@ -31,18 +31,17 @@ class Undersky
       @spinner.css
         width: @element.width(),
         height: @element.height()
-      @spinner.fadeIn()
-      @element.replaceWith(@spinner)
-      @element.fadeOut()
+      @element.before(@spinner)
+      @element.hide()
+      @spinner.show()
 
     hide: ->
-      @element.fadeIn()
-      @spinner.replaceWith(@element)
-      @spinner.fadeOut()
+      @spinner.hide()
+      @element.show()
 
     remove: ->
-      @element.fadeOut()
-      @spinner.fadeOut()
+      @element.remove()
+      @spinner.remove()
 
   class MediaGrid
     self = this
