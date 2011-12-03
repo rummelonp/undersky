@@ -10,7 +10,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 module SpecHelper
   def user_response
-    Hashie::Mash.new({
+    @user_response ||= Hashie::Mash.new({
       id: '1',
       profile_picture: 'http://example.com/profile_picture.jpg',
       full_name: 'test user',
@@ -26,7 +26,7 @@ module SpecHelper
   end
 
   def photo_response
-    Hashie::Mash.new({
+    @photo_response ||= Hashie::Mash.new({
       tags: [],
       location: nil,
       comments: {
@@ -83,7 +83,7 @@ module SpecHelper
   end
 
   def comment_response
-    Hashie::Mash.new({
+    @comment_response ||= Hashie::Mash.new({
       id: '1',
       text: 'comment',
       from: {
