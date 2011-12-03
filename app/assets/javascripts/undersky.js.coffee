@@ -123,7 +123,7 @@ class Undersky
         Growl.show('likes load failed', 'error')
 
     do ->
-      $('.likes a').bindAjaxHandler self.likesHandler
+      $('.likes-load a').bindAjaxHandler self.likesHandler
 
   class Comments
     self = this
