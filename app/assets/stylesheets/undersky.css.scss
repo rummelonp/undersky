@@ -30,8 +30,13 @@
     overflow-y: auto;
     margin: 0 0 0 99px;
     z-index: 1000;
+    background-color: whiteSmoke;
     .close {
       margin-top: 0;
+    }
+    .modal-header,
+    .modal-body {
+      background-color: white;
     }
   }
 }
