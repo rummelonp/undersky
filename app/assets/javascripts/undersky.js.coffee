@@ -97,7 +97,7 @@ class Undersky
 
     do ->
       $w.resize self.resize
-      $d.delegate '.media-grid a', 'click', self.toggle
+      $d.delegate '.media-grid.photos a', 'click', self.toggle
       $d.keydown self.action
 
   class Likes
