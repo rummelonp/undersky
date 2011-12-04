@@ -1,0 +1,14 @@
+<ul class="media-grid">
+  <% @users.each do |u| %>
+  <li>
+    <a href="<%= recent_url(id: u.id) %>">
+      <span class="profile_picture">
+      <%= image_tag u.profile_picture, size: "150x150" %>
+      </span>
+      <span class="username">
+        <%= u.username %>
+      </span>
+    </a>
+  </li>
+  <% end %>
+</ul>

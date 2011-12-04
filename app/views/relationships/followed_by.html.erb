@@ -1,2 +1,14 @@
-<h1>Relationships#followed_by</h1>
-<p>Find me in app/views/relationships/followed_by.html.erb</p>
+<% content_for :title, "Followed By" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <%= render partial: "layouts/users", locals: {users: @users} %>
+    </div>
+    <div class="span6">
+      <%= render partial: "layouts/user", locals: {user: @user} %>
+    </div>
+  </div>
+</div>
