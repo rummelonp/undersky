@@ -27,12 +27,12 @@
     </a>
   </div>
   <div class="follows">
-    <a href="#">
+    <a href="<%= follows_url(id: @user.id) %>">
       <span class="count"><%= @user.counts.follows %></span> follows
     </a>
   </div>
   <div class="followed_by">
-    <a href="#">
+    <a href="<%= followed_by_url(id: @user.id) %>">
       <span class="count"><%= @user.counts.followed_by %></span> followes
     </a>
   </div>
