@@ -65,6 +65,13 @@ class Undersky
         panels.filter('[data-id=' + id + ']').show()
         self.resize()
 
+    @close: (e) ->
+      e && e.preventDefault()
+      columns = self.columns()
+      columns.filter('.actived').removeClass('actived')
+      panels = $('.modal.media-panel')
+      panels.filter('.show').hide()
+
     @action: (e) ->
       switch e.which
         when 37, 75 # ←, k
@@ -98,6 +105,7 @@ class Undersky
     do ->
       $w.resize self.resize
       $d.delegate '.media-grid.photos a', 'click', self.toggle
+      $d.delegate '.modal.media-panel .close', 'click', self.close
       $d.keydown self.action
 
   class Likes

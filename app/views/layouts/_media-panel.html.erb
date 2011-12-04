@@ -2,6 +2,7 @@
   <% @photos.each do |p| %>
   <div class="modal media-panel hide" data-id="<%= p.id %>">
     <div class="modal-header">
+      <a href="#" class="close">×</a>
       <div class="username author">
         <%= link_to p.user.username, recent_url(id: p.user.id) %>
       </div>
