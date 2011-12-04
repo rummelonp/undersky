@@ -23,10 +23,14 @@
     </div>
     <div class="outgoing_status <%= @relationship.outgoing_status %>">
       <div class="relationship-button none">
-        <a href="#" class="btn">follow</a>
+        <a href="<%= follow_url(id: @user.id) %>" class="btn" data-remote="true" data-method="post">
+          follow
+        </a>
       </div>
       <div class="relationship-button follows">
-        <a href="#" class="btn primary">following</a>
+        <a href="<%= unfollow_url(id: @user.id) %>" class="btn primary" data-remote="true" data-method="delete">
+          following
+        </a>
       </div>
     </div>
   </div>

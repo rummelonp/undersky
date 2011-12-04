@@ -159,4 +159,29 @@ class Undersky
     do ->
       $('.comments-load a').bindAjaxHandler self.commentsHandler
 
+  class Relationships
+    self = this
+
+    @relationshipsHandler:
+      beforeSend: (e) ->
+        $(this).disableElement()
+      success: (e, data) ->
+        status = $(this).parents('.outgoing_status')
+        status.removeClass().addClass('outgoing_status').addClass(data.outgoing_status)
+      complete: (e, data) ->
+        $(this).enableElement()
+
+    @followHandler:
+      error: (e, data) ->
+        Growl.show('follow request failed', 'error')
+
+    @unfollowHandler:
+      error: (e, data) ->
+        Growl.show('unfollow request failed', 'error')
+
+    do ->
+      $('.relationship-button a').bindAjaxHandler self.relationshipsHandler
+      $('.relationship-button.none a').bindAjaxHandler self.followHandler
+      $('.relationship-button.follows a').bindAjaxHandler self.unfollowHandler
+
 new Undersky

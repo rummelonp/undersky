@@ -3,22 +3,27 @@
 ###
 
 # Saved default show & hide
-$.extend $.fn,
+$.fn.extend
   __show: $.fn.show,
   __hide: $.fn.hide
 
 # Replace show & hide to bootstrap
-$.extend $.fn,
+$.fn.extend
   show: ->
-    $(this).addClass('show').removeClass('hide')
+    this.addClass('show').removeClass('hide')
   hide: ->
-    $(this).addClass('hide').removeClass('show')
-
-$.extend $.fn,
+    this.addClass('hide').removeClass('show')
+  enableElement: ->
+    this.attr('disabled', null)
+    this.unbind('click.railsDisable')
+  disableElement: ->
+    this.attr('disabled', 'disabled')
+    this.bind('click.railsDisable', (e) ->
+      $.rails.stopEverything(e))
   bindAjaxHandler: (handlers) ->
-    self = $(this)
     for eventName, handler of handlers
-      self.live 'ajax:' + eventName, handler
+      this.live 'ajax:' + eventName, handler
+    this
 
 # Add methods to Event
 $.extend $.Event.prototype, hasModifierKey: ->

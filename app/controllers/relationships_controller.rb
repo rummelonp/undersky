@@ -20,9 +20,15 @@ class RelationshipsController < ApplicationController
   end
 
   def follow
+    id = params.delete(:id)
+    data = client.follow_user id
+    render json: data.to_json
   end
 
   def unfollow
+    id = params.delete(:id)
+    data = client.unfollow_user id
+    render json: data.to_json
   end
 
 end

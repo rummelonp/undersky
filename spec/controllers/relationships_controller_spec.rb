@@ -15,6 +15,20 @@ describe RelationshipsController do
         response.should be_redirect
       end
     end
+
+    describe "POST 'follow'" do
+      it "should be redirect" do
+        xhr :post, :follow, id: 982876
+        response.should be_redirect
+      end
+    end
+
+    describe "DELETE 'follow'" do
+      it "should be redirect" do
+        xhr :delete, :unfollow, id: 982876
+        response.should be_redirect
+      end
+    end
   end
 
   context "authenticated" do
@@ -54,6 +68,30 @@ describe RelationshipsController do
       end
 
       it "should be redirect" do
+        response.should be_success
+      end
+    end
+
+    describe "POST 'follow'" do
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:follow_user).and_return(@relationship)
+        xhr :post, :follow, id: 982876
+      end
+
+      it "should be success" do
+        response.should be_success
+      end
+    end
+
+    describe "DELETE 'follow'" do
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:unfollow_user).and_return(@relationship)
+        xhr :delete, :unfollow, id: 982876
+      end
+
+      it "should be success" do
         response.should be_success
       end
     end
