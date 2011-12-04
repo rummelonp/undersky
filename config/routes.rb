@@ -1,6 +1,4 @@
 Undersky::Application.routes.draw do
-  get "search/search"
-
   root to: "media#popular", as: :index
 
   controller :authorize do
@@ -8,6 +6,8 @@ Undersky::Application.routes.draw do
     get "access_token", as: :access_token
     get "logout",       as: :logout
   end
+
+  get "search(/:name)" => "search#search", as: :search
 
   get "users/feed(/max_id/:max_id)"            => "users#feed",   as: :feed
   get "users/liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked

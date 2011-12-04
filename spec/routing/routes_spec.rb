@@ -21,6 +21,16 @@ describe :routes do
     it { should route_to(controller: 'authorize', action: 'logout') }
   end
 
+  describe 'GET "search"' do
+    subject { {get: '/search'} }
+    subject { should route_to(controller: 'search', action: 'search') }
+  end
+
+  describe 'GET "search"' do
+    subject { {get: '/search/query'} }
+    subject { should route_to(controller: 'search', action: 'search', name: 'query') }
+  end
+
   describe 'GET "users/feed"' do
     subject { {get: '/users/feed'} }
     it { should route_to(controller: 'users', action: 'feed') }
