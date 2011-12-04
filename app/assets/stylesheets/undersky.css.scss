@@ -34,6 +34,15 @@
     .close {
       margin-top: 0;
     }
+    .likes {
+      .likes-button {
+        display: none;
+      }
+      &.unlike .likes-button.like,
+      &.like   .likes-button.unlike {
+        display: block;
+      }
+    }
     .modal-header,
     .modal-body {
       background-color: white;

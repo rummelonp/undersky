@@ -10,6 +10,23 @@
     <div class="modal-body">
       <%= link_to_external (photo_tag p, :low_resolution), p.link %>
     </div>
+    <% if authenticated? %>
+    <div class="modal-footer">
+      <div class="likes <%= p.user_has_liked ? 'like' : 'unlike' %>">
+        <div class="pull-left likes-button like">
+          <a href="<%= like_url(id: p.id) %>" class="btn small" data-remote="true" data-method="post">like</a>
+        </div>
+        <div class="pull-left likes-button unlike">
+          <a href="<%= unlike_url(id: p.id) %>" class="btn small primary" data-remote="true" data-method="delete">liked</a>
+        </div>
+      </div>
+      <div class="comments">
+        <div class="pull-left comment-button" >
+          <a href="#" class="btn small">comment</a>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <% if caption_text p %>
     <div class="modal-footer">
       <div class="caption">
