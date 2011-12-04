@@ -15,6 +15,9 @@ Undersky::Application.routes.draw do
   get "users/:id/follows"     => "relationships#follows",     as: :follows
   get "users/:id/followed_by" => "relationships#followed_by", as: :followed_by
 
+  post   "users/:id/follow" => "relationships#follow",   as: :follow
+  delete "users/:id/follow" => "relationships#unfollow", as: :unfollow
+
   get    "media/:id/likes" => "likes#likes",  as: :likes
   post   "media/:id/likes" => "likes#like",   as: :like
   delete "media/:id/likes" => "likes#unlike", as: :unlike

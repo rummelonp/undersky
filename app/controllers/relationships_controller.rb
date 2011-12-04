@@ -19,4 +19,10 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def follow
+  end
+
+  def unfollow
+  end
+
 end
