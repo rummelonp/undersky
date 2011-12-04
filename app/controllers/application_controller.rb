@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     unless authenticated?
-      redirect_to authorize_url(redirect_url: request.fullpath)
+      if request.xhr?
+        render text: 'is not authenticated', status: 403
+      else
+        redirect_to authorize_url(redirect_url: request.fullpath)
+      end
     end
   end
 end

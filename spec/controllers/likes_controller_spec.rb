@@ -3,23 +3,23 @@ require 'spec_helper'
 describe LikesController do
   context "not authenticated" do
     describe "GET 'likes'" do
-      it 'should be redirect' do
+      it 'should be status 403' do
         xhr :get, :likes, id: 9578621
-        response.should be_redirect
+        response.status == 403
       end
     end
 
     describe "POST 'likes'" do
-      it 'should be redirect' do
+      it 'should be status 403' do
         xhr :post, :like, id: 9578621
-        response.should be_redirect
+        response.status == 403
       end
     end
 
     describe "DELETE 'likes'" do
-      it 'should be redirect' do
+      it 'should be status 403' do
         xhr :delete, :unlike, id: 9578621
-        response.should be_redirect
+        response.status == 403
       end
     end
   end
