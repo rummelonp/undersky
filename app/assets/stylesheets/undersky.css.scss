@@ -9,6 +9,15 @@
   }
 }
 
+// Media Grid
+.media-grid {
+  a {
+    &.focused {
+      border-color: #f89406;
+    }
+  }
+}
+
 // Modals
 .media-panel {
   &.modal {
