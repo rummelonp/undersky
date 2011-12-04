@@ -94,6 +94,13 @@ module SpecHelper
       }
     })
   end
+
+  def relationship_response
+    @relationship_response ||= Hashie::Mash.new({
+      outgoing_status: 'none',
+      incoming_status: 'none'
+    })
+  end
 end
 
 RSpec.configure do |config|

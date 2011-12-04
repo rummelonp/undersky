@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     id = params.delete :id
     @photos = client.user_recent_media id, params
     @user = client.user id
+    unless id == session[:user][:id]
+      @relationship = client.user_relationship id
+    end
   end
 
   def liked

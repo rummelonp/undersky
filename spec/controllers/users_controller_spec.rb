@@ -41,6 +41,9 @@ describe UsersController do
 
       @user = user_response
 
+      @relationship = relationship_response
+
+      session[:user] = {id: 982876}
       session[:access_token] = '*** access token ***'
     end
 
@@ -59,7 +62,6 @@ describe UsersController do
 
     describe "GET 'self'" do
       before do
-        session[:user] = {id: 982876}
         get :self
       end
 
@@ -73,6 +75,7 @@ describe UsersController do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:user_recent_media).and_return(@photos)
         @client.should_receive(:user).and_return(@user)
+        @client.should_receive(:user_relationship).and_return(@relationship)
         get :recent, id: 982876
       end
 

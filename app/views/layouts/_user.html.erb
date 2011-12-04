@@ -17,8 +17,19 @@
     <% end %>
   </div>
   <hr>
-  <% unless @user.id == session[:user][:id] %>
-  <a href="#" class="btn primary">follow</a>
+  <% if @relationship %>
+  <div class="relationship">
+    <div class="incoming_status <%= @relationship.incoming_status %>">
+    </div>
+    <div class="outgoing_status <%= @relationship.outgoing_status %>">
+      <div class="relationship-button none">
+        <a href="#" class="btn">follow</a>
+      </div>
+      <div class="relationship-button follows">
+        <a href="#" class="btn primary">following</a>
+      </div>
+    </div>
+  </div>
   <hr>
   <% end %>
   <div class="media">

@@ -51,10 +51,22 @@
   }
 }
 
+// Undersky
 .user {
   font-size: 14px;
   h2 {
     font-size: 18px
+  }
+  .relationship {
+    .outgoing_status {
+      .relationship-button {
+        display: none;
+      }
+      &.none    .relationship-button.none,
+      &.follows .relationship-button.follows {
+        display: block;
+      }
+    }
   }
   .count {
     font-weight: bold;

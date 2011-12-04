@@ -24,6 +24,9 @@ describe RelationshipsController do
       @user = user_response
       @users = [@user] * 100
 
+      @relationship = relationship_response
+
+      session[:user] = {id: 9578621}
       session[:access_token] = '*** access token ***'
     end
 
@@ -32,6 +35,7 @@ describe RelationshipsController do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:user_follows).and_return(@users)
         @client.should_receive(:user).and_return(@user)
+        @client.should_receive(:user_relationship).and_return(@relationship)
         get :follows, id: 982876
       end
 
@@ -45,6 +49,7 @@ describe RelationshipsController do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:user_followed_by).and_return(@users)
         @client.should_receive(:user).and_return(@user)
+        @client.should_receive(:user_relationship).and_return(@relationship)
         get :followed_by, id: 982876
       end
 
