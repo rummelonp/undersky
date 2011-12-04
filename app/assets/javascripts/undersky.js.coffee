@@ -43,6 +43,21 @@ class Undersky
       @element.remove()
       @spinner.remove()
 
+  class Search
+    self = this
+
+    @submit: (e) ->
+      e && e.preventDefault()
+      form = $(this);
+      name = form.find('[name="name"]').attr('value')
+      url = '/search'
+      if name
+        url += '/' + name
+      location.href = url
+
+    do ->
+      $('form[action="/search"]').live 'submit', self.submit
+
   class MediaGrid
     self = this
 

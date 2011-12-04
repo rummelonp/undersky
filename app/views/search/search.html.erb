@@ -1,2 +1,25 @@
-<h1>Search#search</h1>
-<p>Find me in app/views/search/search.html.erb</p>
+<% content_for :title, "Search" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <%= form_tag :search, method: :get do %>
+  <%= text_field_tag :name, params[:name] %>
+  <%= submit_tag "Search", class: "btn primary" %>
+  <% end %>
+  <% if @tags && @users %>
+  <hr />
+  <div class="row">
+    <div class="span9">
+      <h2>User search result</h2>
+      <hr />
+      <%= render partial: "layouts/media-grid-users", locals: {users: @users} %>
+    </div>
+    <div class="span6">
+      <h2>Tag search result</h2>
+      <hr />
+      <%= render partial: "layouts/tags", locals: {tags: @tags} %>
+    </div>
+  </div>
+  <% end %>
+</div>

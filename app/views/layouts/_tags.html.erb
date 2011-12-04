@@ -1,0 +1,12 @@
+<table>
+  <% @tags.each do |t| %>
+  <tr>
+    <td class="name">
+      <%= link_to "#{t.name}", "#" %>
+    </td>
+    <td class="media_count">
+      <%= t.media_count %> media
+    </td>
+  </tr>
+  <% end %>
+</table>

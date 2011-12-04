@@ -101,6 +101,13 @@ module SpecHelper
       incoming_status: 'none'
     })
   end
+
+  def tag_response
+    @tag_response ||= Hashie::Mash.new({
+      name: 'tag',
+      media_count: 1
+    })
+  end
 end
 
 RSpec.configure do |config|
