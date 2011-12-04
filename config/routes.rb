@@ -1,4 +1,8 @@
 Undersky::Application.routes.draw do
+  get "relationships/follows"
+
+  get "relationships/followed_by"
+
   root to: "media#popular", as: :index
 
   controller :authorize do
