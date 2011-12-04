@@ -1,4 +1,6 @@
 Undersky::Application.routes.draw do
+  get "search/search"
+
   root to: "media#popular", as: :index
 
   controller :authorize do
