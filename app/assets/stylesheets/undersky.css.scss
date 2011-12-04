@@ -7,6 +7,9 @@
   .dropdown-toggle {
      vertical-align: top;
   }
+  .dropdown-menu {
+    z-index: 9000;
+  }
 }
 
 // Media Grid
@@ -26,6 +29,7 @@
     left: 50%;
     overflow-y: auto;
     margin: 0 0 0 99px;
+    z-index: 1000;
     .close {
       margin-top: 0;
     }
@@ -38,6 +42,7 @@
     position: fixed;
     left: 0;
     right: 0;
+    z-index: 8000;
   }
 }
 
