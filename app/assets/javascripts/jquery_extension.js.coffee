@@ -13,6 +13,8 @@ $.fn.extend
     this.addClass('show').removeClass('hide')
   hide: ->
     this.addClass('hide').removeClass('show')
+  isInput: ->
+    this.is('input') || this.is('textarea') || this.is('select')
   enableElement: ->
     this.attr('disabled', null)
     this.unbind('click.railsDisable')

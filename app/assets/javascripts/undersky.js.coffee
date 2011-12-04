@@ -73,6 +73,7 @@ class Undersky
       panels.filter('.show').hide()
 
     @action: (e) ->
+      return if $(e.target).isInput()
       switch e.which
         when 37, 75 # ←, k
           self.prev(e)
