@@ -72,8 +72,8 @@
       .relationship-button {
         display: none;
       }
-      &.none    .relationship-button.none,
-      &.follows .relationship-button.follows {
+      &.none    .relationship-button.follow,
+      &.follows .relationship-button.unfollow {
         display: block;
       }
     }

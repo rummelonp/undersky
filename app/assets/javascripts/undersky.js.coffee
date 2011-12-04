@@ -205,7 +205,7 @@ class Undersky
 
     do ->
       $('.relationship-button a').bindAjaxHandler self.relationshipsHandler
-      $('.relationship-button.none a').bindAjaxHandler self.followHandler
-      $('.relationship-button.follows a').bindAjaxHandler self.unfollowHandler
+      $('.relationship-button.follow a').bindAjaxHandler self.followHandler
+      $('.relationship-button.unfollow a').bindAjaxHandler self.unfollowHandler
 
 new Undersky
