@@ -53,7 +53,7 @@ describe RelationshipsController do
         get :follows, id: 982876
       end
 
-      it "should be redirect" do
+      it "should be success" do
         response.should be_success
       end
     end
@@ -67,7 +67,7 @@ describe RelationshipsController do
         get :followed_by, id: 982876
       end
 
-      it "should be redirect" do
+      it "should be success" do
         response.should be_success
       end
     end
