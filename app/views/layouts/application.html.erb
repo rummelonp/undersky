@@ -21,8 +21,8 @@
             <% end %>
             <%= nav_link_tag "Liked", url_for(:liked) %>
           </ul>
-          <%= form_tag nil, method: :post do %>
-          <%= text_field_tag :search, '', placeholder: 'Search' %>
+          <%= form_tag :search, method: :get do %>
+          <%= text_field_tag :name, '', placeholder: 'Search' %>
           <% end %>
           <ul class="nav secondary-nav">
             <% if authenticated? %>
