@@ -51,6 +51,16 @@ describe :routes do
     it { should route_to(controller: 'users', action: 'liked') }
   end
 
+  describe 'GET "users/982876/follows"' do
+    subject { {get: '/users/982876/follows'} }
+    it { should route_to(controller: 'relationships', action: 'follows', id: '982876') }
+  end
+
+  describe 'GET "users/982876/followed_by"' do
+    subject { {get: '/users/982876/followed_by'} }
+    it { should route_to(controller: 'relationships', action: 'followed_by', id: '982876') }
+  end
+
   describe 'GET "media/9578621/likes"' do
     subject { {get: 'media/9578621/likes'} }
     it { should route_to(controller: 'likes', action: 'likes', id: '9578621') }

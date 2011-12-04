@@ -1,8 +1,4 @@
 Undersky::Application.routes.draw do
-  get "relationships/follows"
-
-  get "relationships/followed_by"
-
   root to: "media#popular", as: :index
 
   controller :authorize do
@@ -15,6 +11,9 @@ Undersky::Application.routes.draw do
   get "users/liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
   get "users/self"                             => "users#self",   as: :profile
   get "users/:id(/max_id/:max_id)"             => "users#recent", as: :recent
+
+  get "users/:id/follows"     => "relationships#follows",     as: :follows
+  get "users/:id/followed_by" => "relationships#followed_by", as: :followed_by
 
   get    "media/:id/likes" => "likes#likes",  as: :likes
   post   "media/:id/likes" => "likes#like",   as: :like
