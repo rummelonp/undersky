@@ -74,7 +74,7 @@ class Undersky
       id = column.attr('data-id')
       actived = column.hasClass('actived')
       columns.filter('.actived, .focused').removeClass('actived').removeClass('focused')
-      column.addClass('focused')
+      column.addClass('focused').focus()
       unless actived
         column.addClass('actived')
         panels.filter('[data-id=' + id + ']').show()
