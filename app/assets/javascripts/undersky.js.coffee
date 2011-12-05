@@ -150,8 +150,32 @@ class Undersky
         spinner.hide()
         Growl.show('likes load failed', 'error')
 
+    @likeHandler:
+      beforeSend: (e) ->
+        $(this).disableElement()
+      success: (e, data) ->
+        status = $(this).parents('.likes')
+        status.removeClass('unlike').addClass('like')
+      complete: (e, data) ->
+        $(this).enableElement()
+      error: (e, data) ->
+        Growl.show('like failed', 'error')
+
+    @unlikeHandler:
+      beforeSend: (e) ->
+        $(this).disableElement()
+      success: (e, data) ->
+        status = $(this).parents('.likes')
+        status.removeClass('like').addClass('unlike')
+      complete: (e, data) ->
+        $(this).enableElement()
+      error: (e, data) ->
+        Growl.show('unlike failed', 'error')
+
     do ->
       $('.likes-load a').bindAjaxHandler self.likesHandler
+      $('.likes .likes-button.like a').bindAjaxHandler self.likeHandler
+      $('.likes .likes-button.unlike a').bindAjaxHandler self.unlikeHandler
 
   class Comments
     self = this

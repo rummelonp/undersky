@@ -46,15 +46,27 @@ describe LikesController do
       end
     end
 
-    describe "GET 'like'" do
-      it "returns http success" do
-        pending "to be implement after"
+    describe "POST 'like'" do
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:like_media)
+        xhr :post, :like, id: 9578621
+      end
+
+      it "should be success" do
+        response.should be_success
       end
     end
 
     describe "GET 'unlike'" do
-      it "returns http success" do
-        pending "to be implement after"
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:unlike_media)
+        xhr :delete, :unlike, id: 9578621
+      end
+
+      it "should be success" do
+        response.should be_success
       end
     end
   end

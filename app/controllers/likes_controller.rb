@@ -7,9 +7,13 @@ class LikesController < ApplicationController
   end
 
   def like
+    client.like_media params[:id]
+    render text: ''
   end
 
   def unlike
+    client.unlike_media params[:id]
+    render text: ''
   end
 
 end
