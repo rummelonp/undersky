@@ -80,13 +80,13 @@
   h2 {
     font-size: 18px
   }
-  .relationship {
+  .relationships {
     .outgoing_status {
-      .relationship-button {
+      .relationships-button {
         display: none;
       }
-      &.none    .relationship-button.follow,
-      &.follows .relationship-button.unfollow {
+      &.none    .relationships-button.follow,
+      &.follows .relationships-button.unfollow {
         display: block;
       }
     }

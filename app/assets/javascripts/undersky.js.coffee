@@ -150,32 +150,31 @@ class Undersky
         spinner.hide()
         Growl.show('likes load failed', 'error')
 
-    @likeHandler:
+    @likesStatusHandler:
       beforeSend: (e) ->
         $(this).disableElement()
+      complete: (e, data) ->
+        $(this).enableElement()
+
+    @likeHandler:
       success: (e, data) ->
         status = $(this).parents('.likes')
         status.removeClass('unlike').addClass('like')
-      complete: (e, data) ->
-        $(this).enableElement()
       error: (e, data) ->
         Growl.show('like failed', 'error')
 
     @unlikeHandler:
-      beforeSend: (e) ->
-        $(this).disableElement()
       success: (e, data) ->
         status = $(this).parents('.likes')
         status.removeClass('like').addClass('unlike')
-      complete: (e, data) ->
-        $(this).enableElement()
       error: (e, data) ->
         Growl.show('unlike failed', 'error')
 
     do ->
-      $('.likes-load a').bindAjaxHandler self.likesHandler
-      $('.likes .likes-button.like a').bindAjaxHandler self.likeHandler
-      $('.likes .likes-button.unlike a').bindAjaxHandler self.unlikeHandler
+      $('.likes-load-link a').bindAjaxHandler self.likesHandler
+      $('.likes-button a').bindAjaxHandler self.likesStatusHandler
+      $('.likes-button.like a').bindAjaxHandler self.likeHandler
+      $('.likes-button.unlike a').bindAjaxHandler self.unlikeHandler
 
   class Comments
     self = this
@@ -205,12 +204,12 @@ class Undersky
         Growl.show('comments load failed', 'error')
 
     do ->
-      $('.comments-load a').bindAjaxHandler self.commentsHandler
+      $('.comments-load-link a').bindAjaxHandler self.commentsHandler
 
   class Relationships
     self = this
 
-    @relationshipsHandler:
+    @outgoingStatusHandler:
       beforeSend: (e) ->
         $(this).disableElement()
       success: (e, data) ->
@@ -228,8 +227,8 @@ class Undersky
         Growl.show('unfollow request failed', 'error')
 
     do ->
-      $('.relationship-button a').bindAjaxHandler self.relationshipsHandler
-      $('.relationship-button.follow a').bindAjaxHandler self.followHandler
-      $('.relationship-button.unfollow a').bindAjaxHandler self.unfollowHandler
+      $('.relationships-button a').bindAjaxHandler self.outgoingStatusHandler
+      $('.relationships-button.follow a').bindAjaxHandler self.followHandler
+      $('.relationships-button.unfollow a').bindAjaxHandler self.unfollowHandler
 
 new Undersky

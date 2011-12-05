@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="comments">
-        <div class="pull-left comment-button" >
+        <div class="pull-left comments-button comment">
           <a href="#" class="btn small">comment</a>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <div class="modal-footer">
       <div class="comments">
         <% if authenticated? && p.comments[:count] > p.comments.data.size %>
-        <div class="comments-load">
+        <div class="comments-load-link comments">
           <%= link_to "view all #{p.comments[:count]} comments", comments_url(id: p.id), "data-remote" => true %>
         </div>
         <% else %>
@@ -70,7 +70,7 @@
     <div class="modal-footer">
       <div class="likes">
         <% if authenticated? %>
-        <div class="likes-load">
+        <div class="likes-load-link likes">
           <%= link_to "view all #{p.likes[:count]} likes", likes_url(id: p.id), "data-remote" => true %>
         </div>
         <% else %>
