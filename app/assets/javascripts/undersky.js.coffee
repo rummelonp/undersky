@@ -195,6 +195,7 @@ class Undersky
         for c in data
           comment = $('<div class="comment"></div>')
           comment.append('<span class="username"><a href="/users/' + c.from.id + '">' + c.from.username + '</a></span>');
+          comment.append(' ')
           comment.append('<span class="text">' + c.text + '</span>')
           container.append(comment)
       error: (e, data) ->
