@@ -136,6 +136,7 @@ class Undersky
       success: (e, data) ->
         self = $(this)
         container = self.parents('.likes').find('.likes-data')
+        container.children().remove()
         spinner = self.data('spinner')
         spinner.remove()
         container.before('<div class="count">' + data.length + ' likes</div>')

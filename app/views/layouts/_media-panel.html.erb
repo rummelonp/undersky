@@ -69,7 +69,7 @@
     <% if p.likes[:count] > 0 %>
     <div class="modal-footer">
       <div class="likes">
-        <% if authenticated? %>
+        <% if authenticated? && p.likes[:count] > p.likes.data.size %>
         <div class="likes-load-link likes">
           <%= link_to "view all #{p.likes[:count]} likes", likes_url(id: p.id), "data-remote" => true %>
         </div>
@@ -79,6 +79,12 @@
         </div>
         <% end %>
         <div class="likes-data">
+          <% p.likes.data.each do |l| %>
+          <span class="username">
+            <%= link_to l.username, recent_url(id: l.id) %>, 
+          </span>
+          <% end %>
+          </span>
         </div>
       </div>
     </div>
