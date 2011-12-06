@@ -256,11 +256,24 @@ class Undersky
         e && e.preventDefault()
         $(this).parents('.modal.create-comment').modal(show: false)
 
+      @handler:
+        beforeSend: (e) ->
+          self = $(this)
+          self.find('input, textarea').each(-> $(this).disableElement())
+        success: (e, data) ->
+          $(this).parents('.modal.create-comment').modal(show: false)
+        error: (e, ddata) ->
+          Growl.show('comment request failed', 'error')
+        complete: (e, data) ->
+          self = $(this)
+          self.find('input, textarea').each(-> $(this).enableElement())
+
       do ->
         $d.delegate '.comments-button.create-comment a', 'click', self.show
         $d.delegate '.modal.create-comment .username a', 'click', self.reply
         $d.delegate '.modal.create-comment [name="text"]', 'keyup change', self.validate
         $d.delegate '.modal.create-comment [name="cancel"]', 'click', self.hide
+        $('.modal.create-comment form').bindAjaxHandler self.handler
 
   class Relationships
     self = this

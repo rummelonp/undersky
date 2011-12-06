@@ -46,9 +46,15 @@ describe CommentsController do
       end
     end
 
-    describe "GET 'create_comment'" do
-      it "returns http success" do
-        pending "to be implement after"
+    describe "POST 'create_comment'" do
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:create_media_comment)
+        xhr :post, :create_comment, id: 9578621
+      end
+
+      it "should be success" do
+        response.should be_success
       end
     end
 
