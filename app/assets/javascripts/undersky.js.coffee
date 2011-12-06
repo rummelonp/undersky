@@ -194,7 +194,7 @@ class Undersky
         container.before('<div class="count">' + data.length + ' comments</div>')
         for c in data
           comment = $('<div class="comment"></div>')
-          comment.append('<a href="/users/' + c.from.id + '">' + c.from.username + '</a>');
+          comment.append('<span class="username"><a href="/users/' + c.from.id + '">' + c.from.username + '</a></span>');
           comment.append('<span class="text">' + c.text + '</span>')
           container.append(comment)
       error: (e, data) ->
