@@ -206,6 +206,62 @@ class Undersky
     do ->
       $('.comments-load-link a').bindAjaxHandler self.commentsHandler
 
+    class CreateComment
+      self = this
+
+      @show: (e) ->
+        e && e.preventDefault()
+        self = $(this)
+        panel = self.parents('.modal.media-panel')
+        caption_data = panel.find('.caption')
+        comments_data = panel.find('.comments-data')
+        container = $('<div class="modal create-comment"></div>')
+        form = $('<form action="' + self.attr('href') + '" method="post" data-remote="true"></form>')
+        header = $('<div class="modal-header">comment</div>')
+        body = $('<div class="modal-body"><textarea name="text" rows="4" cols="50" required="required"></textarea></div>')
+        footer = $('<div class="modal-footer"></div>')
+        footer.append('<div class="pull-left"><input class="btn primary" name="commit" type="submit" value="comment" disabled="disabled" /></div>')
+        footer.append('<div class="pull-left"><input class="btn" name="cancel" type="reset" value="cancel" /></div>')
+        form.append(header, body, footer)
+        if caption_data.size() > 0
+          caption = $('<div class="modal-footer"></div>')
+          caption.append(caption_data.clone())
+          form.append(caption)
+        if comments_data.size() > 0
+          comments = $('<div class="modal-footer"></div>')
+          comments.append(comments_data.clone())
+          form.append(comments)
+        container.append(form)
+        container.modal(show: true)
+        container.bind('hidden', -> container.remove())
+        container.find('textarea').focus()
+
+      @reply: (e) ->
+        e && e.preventDefault()
+        self = $(this)
+        username = '@' + $(this).text() + ' ';
+        textarea = self.parents('.modal.create-comment').find('textarea')
+        textarea.focus()
+        textarea.val(username + textarea.val().replace(username, ''))
+
+      @validate: (e) ->
+        self = $(this)
+        commit = $(this).parents('.modal.create-comment').find('[name="commit"]')
+        if self.val().length > 0
+          commit.enableElement()
+        else
+          commit.disableElement()
+
+      @hide: (e) ->
+        e && e.preventDefault()
+        $(this).parents('.modal.create-comment').modal(show: false)
+
+      do ->
+        $d.delegate '.comments-button.create-comment a', 'click', self.show
+        $d.delegate '.modal.create-comment .username a', 'click', self.reply
+        $d.delegate '.modal.create-comment [name="text"]', 'keyup change', self.validate
+        $d.delegate '.modal.create-comment [name="cancel"]', 'click', self.hide
+
   class Relationships
     self = this
 

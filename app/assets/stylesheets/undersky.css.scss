@@ -26,15 +26,22 @@
 }
 
 // Modals
-.media-panel {
-  &.modal {
+.modal {
+  &.media-panel,
+  &.create-comment {
+    background-color: whiteSmoke;
+    .modal-header,
+    .modal-body {
+      background-color: white;
+    }
+  }
+  &.media-panel {
     width: 340px;
     top: 65px;
     left: 50%;
     overflow-y: auto;
     margin: 0 0 0 99px;
     z-index: 1000;
-    background-color: whiteSmoke;
     .close {
       margin-top: 0;
     }
@@ -47,9 +54,10 @@
         display: block;
       }
     }
-    .modal-header,
-    .modal-body {
-      background-color: white;
+  }
+  &.create-comment {
+    form textarea {
+      width: 520px;
     }
   }
 }
