@@ -141,10 +141,10 @@ class Undersky
         spinner.remove()
         container.before('<div class="likes-count"><span class="count">' + data.length + '</span> likes</div>')
         for u in data
-          username = $('<span class="username"></span>')
+          username = $('<span class="username" data-username="' + u.username + '"></span>')
           username.append('<a href="/users/' + u.id + '">' + u.username + '</a>');
+          username.append(', ')
           container.append(username)
-          container.append(', ')
       error: (e, data) ->
         self = $(this)
         spinner = self.data('spinner')
@@ -159,15 +159,28 @@ class Undersky
 
     @likeHandler:
       success: (e, data) ->
+        self = $(this)
+        user = $d.data('user')
         status = $(this).parents('.likes')
         status.removeClass('unlike').addClass('like')
+        panel = self.parents('.modal.media-panel')
+        panel.find('.likes-count .count').incText()
+        username = $('<span class="username" data-username="' + user.username + '"></span>')
+        username.append('<a href="/users/' + user.id + '">' + user.username + '</a>');
+        username.append(', ')
+        panel.find('.likes-data').append(username)
       error: (e, data) ->
         Growl.show('like failed', 'error')
 
     @unlikeHandler:
       success: (e, data) ->
-        status = $(this).parents('.likes')
+        self = $(this)
+        user = $d.data('user')
+        status = self.parents('.likes')
         status.removeClass('like').addClass('unlike')
+        panel = self.parents('.modal.media-panel')
+        panel.find('.likes-count .count').decText()
+        panel.find('.likes-data .username[data-username="' + user.username + '"]').remove()
       error: (e, data) ->
         Growl.show('unlike failed', 'error')
 

@@ -13,6 +13,12 @@ $.fn.extend
     this.addClass('show').removeClass('hide')
   hide: ->
     this.addClass('hide').removeClass('show')
+  intText: ->
+    parseInt(this.text())
+  incText: ->
+    this.text(this.intText() + 1)
+  decText: ->
+    this.text(this.intText() - 1)
   isInput: ->
     this.is('input') || this.is('textarea') || this.is('select')
   enableElement: ->
