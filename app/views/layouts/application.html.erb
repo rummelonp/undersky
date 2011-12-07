@@ -5,6 +5,13 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript">
+      <% if authenticated? %>
+      $(document).data('user', <%= raw session[:user].to_json %>);
+      <% else %>
+      $(document).data('user', {});
+      <% end %>
+    </script>
   </head>
   <body>
     <header class="topbar" data-dropdown="dropdown">
