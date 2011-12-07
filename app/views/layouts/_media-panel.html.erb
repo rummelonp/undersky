@@ -1,18 +1,18 @@
 <div class="modal-container">
   <% @photos.each do |p| %>
   <div class="modal media-panel hide" data-id="<%= p.id %>">
-    <div class="modal-header">
+    <div class="modal-header user">
       <a href="#" class="close">×</a>
       <div class="username author">
         <%= link_to p.user.username, recent_url(id: p.user.id) %>
       </div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body photo">
       <%= link_to_external (photo_tag p, :low_resolution), p.link %>
     </div>
     <% if authenticated? %>
-    <div class="modal-footer">
-      <div class="likes <%= p.user_has_liked ? 'like' : 'unlike' %>">
+    <div class="modal-footer status">
+      <div class="likes-status <%= p.user_has_liked ? 'like' : 'unlike' %>">
         <div class="pull-left likes-button like">
           <a href="<%= like_url(id: p.id) %>" class="btn small" data-remote="true" data-method="post">like</a>
         </div>
@@ -20,7 +20,7 @@
           <a href="<%= unlike_url(id: p.id) %>" class="btn small primary" data-remote="true" data-method="delete">liked</a>
         </div>
       </div>
-      <div class="comments">
+      <div class="comments-status">
         <div class="pull-left comments-button create-comment">
           <a href="<%= create_comment_url(id: p.id) %>" class="btn small">comment</a>
         </div>
@@ -28,68 +28,61 @@
     </div>
     <% end %>
     <% if caption_text p %>
-    <div class="modal-footer">
-      <div class="caption">
-        <span class="username author">
-          <%= link_to p.user.username, recent_url(id: p.user.id) %>
-        </span>
-        <span class="text">
-          <%= caption_text p %>
-        </span>
-      </div>
+    <div class="modal-footer caption">
+      <span class="username author">
+        <%= link_to p.user.username, recent_url(id: p.user.id) %>
+      </span>
+      <span class="text">
+        <%= caption_text p %>
+      </span>
     </div>
     <% end %>
     <% if p.comments[:count] > 0 %>
-    <div class="modal-footer">
-      <div class="comments">
-        <% if authenticated? && p.comments[:count] > p.comments.data.size %>
-        <div class="comments-count comments-load-link">
-          <a href="<%= comments_url(id: p.id) %>" data-remote="true">
-            view all <span class="count"><%= p.comments[:count] %></span> comments
-          </a>
-        </div>
-        <% else %>
-        <div class="comments-count">
-          <span class="count"><%= p.comments[:count] %></span> comments
+    <div class="modal-footer comments">
+      <% if authenticated? && p.comments[:count] > p.comments.data.size %>
+      <div class="comments-count comments-load-link">
+        <a href="<%= comments_url(id: p.id) %>" data-remote="true">
+          view all <span class="count"><%= p.comments[:count] %></span> comments
+        </a>
+      </div>
+      <% else %>
+      <div class="comments-count">
+        <span class="count"><%= p.comments[:count] %></span> comments
+      </div>
+      <% end %>
+      <div class="comments-data">
+        <% p.comments.data.each do |c| %>
+        <div class="comment">
+          <span class="username" data-username="<%= c.from.username %>">
+            <%= link_to c.from.username, recent_url(id: c.from.id) %>
+          </span>
+          <span class="text">
+            <%= c.text %>
+          </span>
         </div>
         <% end %>
-        <div class="comments-data">
-          <% p.comments.data.each do |c| %>
-          <div class="comment">
-            <span class="username" data-username="<%= c.from.username %>">
-              <%= link_to c.from.username, recent_url(id: c.from.id) %>
-            </span>
-            <span class="text">
-              <%= c.text %>
-            </span>
-          </div>
-          <% end %>
-        </div>
       </div>
     </div>
     <% end %>
     <% if p.likes[:count] > 0 %>
-    <div class="modal-footer">
-      <div class="likes">
-        <% if authenticated? && p.likes[:count] > p.likes.data.size %>
-        <div class="likes-count likes-load-link">
-          <a href="<%= likes_url(id: p.id) %>" data-remote="true">
-            view all <span class="count"><%= p.likes[:count] %></span> likes
-          </a>
-        </div>
-        <% else %>
-        <div class="likes-count">
-          <span class="count"><%= p.likes[:count] %></span> likes
-        </div>
+    <div class="modal-footer likes">
+      <% if authenticated? && p.likes[:count] > p.likes.data.size %>
+      <div class="likes-count likes-load-link">
+        <a href="<%= likes_url(id: p.id) %>" data-remote="true">
+          view all <span class="count"><%= p.likes[:count] %></span> likes
+        </a>
+      </div>
+      <% else %>
+      <div class="likes-count">
+        <span class="count"><%= p.likes[:count] %></span> likes
+      </div>
+      <% end %>
+      <div class="likes-data">
+        <% p.likes.data.each do |l| %>
+        <span class="data-container" data-username="<%= l.username %>">
+          <span class="username"><%= link_to l.username, recent_url(id: l.id) %></span>, 
+        </span>
         <% end %>
-        <div class="likes-data">
-          <% p.likes.data.each do |l| %>
-          <span class="username" data-username="<%= l.username %>">
-            <%= link_to l.username, recent_url(id: l.id) %>, 
-          </span>
-          <% end %>
-          </span>
-        </div>
       </div>
     </div>
     <% end %>

@@ -14,7 +14,7 @@
     </script>
   </head>
   <body>
-    <header class="topbar" data-dropdown="dropdown">
+    <div class="header topbar" data-dropdown="dropdown">
       <div class="topbar-inner">
         <div class="container">
           <%= link_to "Undersky", :index, class: "brand" %>
@@ -52,7 +52,9 @@
           </ul>
         </div>
       </div>
-    </header>
-    <%= yield %>
+    </div>
+    <div class="page">
+      <%= yield %>
+    </div>
   </body>
 </html>

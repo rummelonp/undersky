@@ -1,7 +1,7 @@
 
 // Topbar
 .topbar {
-  & + .container {
+  & + .page {
     padding-top: 50px;
   }
   .dropdown-toggle {
@@ -45,7 +45,7 @@
     .close {
       margin-top: 0;
     }
-    .likes {
+    .likes-status {
       .likes-button {
         display: none;
       }
@@ -83,13 +83,16 @@
 }
 
 // Undersky
+.content {
+  min-height: 1px;
+}
 .user {
   font-size: 14px;
   h2 {
     font-size: 18px
   }
-  .relationships {
-    .outgoing_status {
+  .relationships-status {
+    .outgoing-status {
       .relationships-button {
         display: none;
       }

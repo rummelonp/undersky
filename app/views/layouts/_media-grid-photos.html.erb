@@ -1,6 +1,6 @@
 <ul class="media-grid photos">
   <% @photos.each do |p| %>
-  <li>
+  <li class="photo">
     <%= link_to_external (photo_tag p, :thumbnail), p.link, "data-id" => p.id %>
   </li>
   <% end %>

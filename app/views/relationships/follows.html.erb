@@ -3,11 +3,11 @@
   <div class="page-header">
     <h1><%= yield :title %></h1>
   </div>
-  <div class="row">
-    <div class="span9">
+  <div class="page-body row">
+    <div class="content span9">
       <%= render partial: "layouts/media-grid-users", locals: {users: @users} %>
     </div>
-    <div class="span6">
+    <div class="content span6">
       <%= render partial: "layouts/user", locals: {user: @user, relationship: @relationship} %>
     </div>
   </div>

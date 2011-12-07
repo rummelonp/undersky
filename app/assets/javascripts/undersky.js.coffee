@@ -49,7 +49,7 @@ class Undersky
     @submit: (e) ->
       e && e.preventDefault()
       form = $(this);
-      name = form.find('[name="name"]').attr('value')
+      name = form.find('[name="name"]').val()
       url = '/search'
       if name
         url += '/' + name
@@ -62,7 +62,7 @@ class Undersky
     self = this
 
     @columns: ->
-      $('.media-grid a')
+      $('.media-grid.photos a')
 
     @toggle: (e) ->
       return if e.hasModifierKey()
@@ -71,13 +71,13 @@ class Undersky
       panels.filter('.show').hide()
       columns = self.columns()
       column = $(this)
-      id = column.attr('data-id')
+      id = column.data('id')
       actived = column.hasClass('actived')
       columns.filter('.actived, .focused').removeClass('actived').removeClass('focused')
       column.addClass('focused').focus()
       unless actived
         column.addClass('actived')
-        panels.filter('[data-id=' + id + ']').show()
+        panels.filter('[data-id="' + id + '"]').show()
         self.resize()
 
     @close: (e) ->
@@ -141,8 +141,8 @@ class Undersky
         spinner.remove()
         container.before('<div class="likes-count"><span class="count">' + data.length + '</span> likes</div>')
         for u in data
-          username = $('<span class="username" data-username="' + u.username + '"></span>')
-          username.append('<a href="/users/' + u.id + '">' + u.username + '</a>');
+          username = $('<span class="data-container" data-username="' + u.username + '"></span>')
+          username.append('<span class="username"><a href="/users/' + u.id + '">' + u.username + '</a></span>');
           username.append(', ')
           container.append(username)
       error: (e, data) ->
@@ -161,12 +161,12 @@ class Undersky
       success: (e, data) ->
         self = $(this)
         user = $d.data('user')
-        status = $(this).parents('.likes')
+        status = $(this).parents('.likes-status')
         status.removeClass('unlike').addClass('like')
         panel = self.parents('.modal.media-panel')
         panel.find('.likes-count .count').incText()
-        username = $('<span class="username" data-username="' + user.username + '"></span>')
-        username.append('<a href="/users/' + user.id + '">' + user.username + '</a>');
+        username = $('<span class="data-container" data-username="' + user.username + '"></span>')
+        username.append('<span class="username"><a href="/users/' + user.id + '">' + user.username + '</a></span>');
         username.append(', ')
         panel.find('.likes-data').append(username)
       error: (e, data) ->
@@ -176,11 +176,11 @@ class Undersky
       success: (e, data) ->
         self = $(this)
         user = $d.data('user')
-        status = self.parents('.likes')
+        status = self.parents('.likes-status')
         status.removeClass('like').addClass('unlike')
         panel = self.parents('.modal.media-panel')
         panel.find('.likes-count .count').decText()
-        panel.find('.likes-data .username[data-username="' + user.username + '"]').remove()
+        panel.find('.likes-data [data-username="' + user.username + '"]').remove()
       error: (e, data) ->
         Growl.show('unlike failed', 'error')
 
@@ -208,7 +208,9 @@ class Undersky
         container.before('<div class="comments-count"><span class="count">' + data.length + '</span> comments</div>')
         for c in data
           comment = $('<div class="comment"></div>')
-          comment.append('<span class="username"><a href="/users/' + c.from.id + '">' + c.from.username + '</a></span>');
+          username = $('<span class="username" data-username="' + c.from.username + '"></span>')
+          username.append('<a href="/users/' + c.from.id + '">' + c.from.username + '</a>')
+          comment.append(username)
           comment.append(' ')
           comment.append('<span class="text">' + c.text + '</span>')
           container.append(comment)
@@ -228,8 +230,8 @@ class Undersky
         e && e.preventDefault()
         self = $(this)
         panel = self.parents('.modal.media-panel')
-        caption_data = panel.find('.caption')
-        comments_data = panel.find('.comments-data')
+        caption_data = panel.find('.caption').children()
+        comments_data = panel.find('.comments-data').children()
         container = $('<div class="modal create-comment"></div>')
         form = $('<form action="' + self.attr('href') + '" method="post" data-remote="true"></form>')
         header = $('<div class="modal-header">comment</div>')
@@ -239,11 +241,11 @@ class Undersky
         footer.append('<div class="pull-left"><input class="btn" name="cancel" type="reset" value="cancel" /></div>')
         form.append(header, body, footer)
         if caption_data.size() > 0
-          caption = $('<div class="modal-footer"></div>')
+          caption = $('<div class="modal-footer caption"></div>')
           caption.append(caption_data.clone())
           form.append(caption)
         if comments_data.size() > 0
-          comments = $('<div class="modal-footer"></div>')
+          comments = $('<div class="modal-footer comments"></div>')
           comments.append(comments_data.clone())
           form.append(comments)
         container.append(form)
@@ -297,8 +299,8 @@ class Undersky
       beforeSend: (e) ->
         $(this).disableElement()
       success: (e, data) ->
-        status = $(this).parents('.outgoing_status')
-        status.removeClass().addClass('outgoing_status').addClass(data.outgoing_status)
+        status = $(this).parents('.outgoing-status')
+        status.removeClass().addClass('outgoing-status').addClass(data.outgoing_status)
       complete: (e, data) ->
         $(this).enableElement()
 

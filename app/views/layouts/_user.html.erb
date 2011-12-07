@@ -18,10 +18,10 @@
   </div>
   <hr />
   <% if @relationship %>
-  <div class="relationships">
-    <div class="incoming_status <%= @relationship.incoming_status %>">
+  <div class="relationships-status">
+    <div class="incoming-status <%= @relationship.incoming_status %>">
     </div>
-    <div class="outgoing_status <%= @relationship.outgoing_status %>">
+    <div class="outgoing-status <%= @relationship.outgoing_status %>">
       <div class="relationships-button follow">
         <a href="<%= follow_url(id: @user.id) %>" class="btn" data-remote="true" data-method="post">
           follow
