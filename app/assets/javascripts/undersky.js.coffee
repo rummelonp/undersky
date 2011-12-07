@@ -139,7 +139,7 @@ class Undersky
         container.children().remove()
         spinner = self.data('spinner')
         spinner.remove()
-        container.before('<div class="count">' + data.length + ' likes</div>')
+        container.before('<div class="likes-count"><span class="count">' + data.length + '</span> likes</div>')
         for u in data
           username = $('<span class="username"></span>')
           username.append('<a href="/users/' + u.id + '">' + u.username + '</a>');
@@ -192,7 +192,7 @@ class Undersky
         container.children().remove()
         spinner = self.data('spinner')
         spinner.remove()
-        container.before('<div class="count">' + data.length + ' comments</div>')
+        container.before('<div class="comments-count"><span class="count">' + data.length + '</span> comments</div>')
         for c in data
           comment = $('<div class="comment"></div>')
           comment.append('<span class="username"><a href="/users/' + c.from.id + '">' + c.from.username + '</a></span>');
