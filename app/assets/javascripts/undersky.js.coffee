@@ -232,7 +232,7 @@ class Undersky
         panel = self.parents('.modal.media-panel')
         caption_data = panel.find('.caption').children()
         comments_data = panel.find('.comments-data').children()
-        container = $('<div class="modal create-comment"></div>')
+        container = $('<div class="modal create-comment" data-id="' + panel.data('id') + '"></div>')
         form = $('<form action="' + self.attr('href') + '" method="post" data-remote="true"></form>')
         header = $('<div class="modal-header">comment</div>')
         body = $('<div class="modal-body"><textarea name="text" rows="4" cols="50" required="required"></textarea></div>')
@@ -278,7 +278,35 @@ class Undersky
           self = $(this)
           self.find('input, textarea').each(-> $(this).disableElement())
         success: (e, data) ->
-          $(this).parents('.modal.create-comment').modal(show: false)
+          self = $(this)
+          data.from ||= $d.data('user')
+          panel = do ->
+            container = self.parents('.modal.create-comment')
+            container.modal(show: false)
+            $('[data-id="' + container.data('id') + '"]')
+          return if panel.size() == 0
+          container = panel.find('.comments-data')
+          if container.size() == 0
+            comments = $('<div class="modal-footer comments"></div>')
+            count = $('<div class="comments-count"></div>')
+            count.append('<span class="count">1</span> comments</span>')
+            container = $('<div class="comments-data"></div>')
+            container.append(comment)
+            comments.append(count, container)
+            caption = panel.find('.caption')
+            if caption.size() > 0
+              caption.after(comments)
+            else
+              panel.find('.status').after(comments)
+          else
+            panel.find('.comments-count .count').incText()
+          comment = $('<div class="comment"></div>')
+          username = $('<span class="username" data-username="' + data.from.username + '"></span>')
+          username.append('<a href="/users/' + data.from.id + '">' + data.from.username + '</a>')
+          comment.append(username)
+          comment.append(' ')
+          comment.append('<span class="text">' + data.text + '</span>')
+          container.append(comment)
         error: (e, ddata) ->
           Growl.show('comment request failed', 'error')
         complete: (e, data) ->
