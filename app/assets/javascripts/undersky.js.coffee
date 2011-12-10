@@ -280,6 +280,7 @@ class Undersky
         if comments_data.size() > 0
           comments = $('<div class="modal-footer comments"></div>')
           comments.append(comments_data.clone())
+          comments.find('.comments-button.delete-comment').remove()
           form.append(comments)
         container.append(form)
         container.modal(show: true)
