@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
   def recent
     id = params.delete :id
-    @photos = client.user_recent_media id, params
+    @data = client.user_recent_media id, params
+    @photos = @data.data
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id

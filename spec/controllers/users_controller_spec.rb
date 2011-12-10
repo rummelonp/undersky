@@ -73,7 +73,7 @@ describe UsersController do
     describe "GET 'recent'" do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
-        @client.should_receive(:user_recent_media).and_return(@photos)
+        @client.should_receive(:user_recent_media).and_return(@data)
         @client.should_receive(:user).and_return(@user)
         @client.should_receive(:user_relationship).and_return(@relationship)
         get :recent, id: 982876

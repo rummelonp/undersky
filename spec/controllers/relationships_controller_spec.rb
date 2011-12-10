@@ -37,6 +37,7 @@ describe RelationshipsController do
 
       @user = user_response
       @users = [@user] * 100
+      @data = Hashie::Mash.new(data: @users)
 
       @relationship = relationship_response
 
@@ -47,7 +48,7 @@ describe RelationshipsController do
     describe "GET 'follows'" do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
-        @client.should_receive(:user_follows).and_return(@users)
+        @client.should_receive(:user_follows).and_return(@data)
         @client.should_receive(:user).and_return(@user)
         @client.should_receive(:user_relationship).and_return(@relationship)
         get :follows, id: 982876
@@ -61,7 +62,7 @@ describe RelationshipsController do
     describe "GET 'followed_by'" do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
-        @client.should_receive(:user_followed_by).and_return(@users)
+        @client.should_receive(:user_followed_by).and_return(@data)
         @client.should_receive(:user).and_return(@user)
         @client.should_receive(:user_relationship).and_return(@relationship)
         get :followed_by, id: 982876

@@ -3,7 +3,8 @@ class RelationshipsController < ApplicationController
 
   def follows
     id = params.delete(:id)
-    @users = client.user_follows id, params.merge(count: 100)
+    @data = client.user_follows id, params.merge(count: 100)
+    @users = @data.data
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
@@ -12,7 +13,8 @@ class RelationshipsController < ApplicationController
 
   def followed_by
     id = params.delete(:id)
-    @users = client.user_followed_by id, params.merge(count: 100)
+    @data = client.user_followed_by id, params.merge(count: 100)
+    @users = @data.data
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
