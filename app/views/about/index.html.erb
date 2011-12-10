@@ -1,2 +1,57 @@
-<h1>About#index</h1>
-<p>Find me in app/views/about/index.html.erb</p>
+<% content_for :title, "About" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="page-body">
+    <div class="row">
+      <div class="span5">
+        <h2>About Undersky</h2>
+      </div>
+      <div class="span10">
+        <h3>Instagram viewer for web browser</h3>
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span5">
+        <h2>Keyboard shoutcuts</h2>
+      </div>
+      <div class="span10">
+        <h3>Navigation</h3>
+        <ul class="unstyled">
+          <li><strong>j/→:</strong> next item</li>
+          <li><strong>k/←:</strong> previous item</li>
+        </ul>
+        <h3>Acting on item</h3>
+        <ul class="unstyled">
+          <li><strong>l:</strong> like / unlike item</li>
+          <li><strong>c:</strong> comment to item</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span5">
+        <h2>Developer</h2>
+      </div>
+      <div class="span10">
+        <h3>Created & designd by</h3>
+        <dl>
+          <dt>Kazuya Takeshima</dt>
+          <dd>
+            <string>Mail:</string>
+            <a href="mailto:mail@mitukiii.jp" rel="external nofollow" target="_blank">mail@mitukiii.jp</a>
+          </dd>
+          <dd>
+            <string>Instagram:</string>
+            <a href="/users/982876" rel="external nofollow" target="_blank">@mitukiii</a>
+          </dd>
+          <dd>
+            <string>Twitter:</string>
+            <a href="http://twitter.com/mitukiii" rel="external nofollow" target="_blank">@mitukiii</a>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
