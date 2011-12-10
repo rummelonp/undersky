@@ -63,7 +63,7 @@ module Instagram
         options = args.last.is_a?(Hash) ? args.pop : {}
         id = args.first || "self"
         response = get("users/#{id}/follows", options)
-        response["data"]
+        response
       end
     end
 
@@ -92,7 +92,7 @@ module Instagram
       options = args.last.is_a?(Hash) ? args.pop : {}
       id = args.first || "self"
       response = get("users/#{id}/followed-by", options)
-      response["data"]
+      response
     end
 
     # Returns a list of users whom a given user is followed by
@@ -160,7 +160,7 @@ module Instagram
       options = args.last.is_a?(Hash) ? args.pop : {}
       id = args.first || "self"
       response = get("users/#{id}/media/recent", options)
-      response["data"]
+      response
     end
 
     # Returns a list of media items liked by the current user

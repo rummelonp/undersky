@@ -91,8 +91,8 @@ describe Instagram::Client do
 
           it "should return a list of users whom a given user follows" do
             follows = @client.user_follows(4)
-            follows.should be_a Array
-            follows.first.username.should == "heartsf"
+            follows.should be_a Hash
+            follows.data.first.username.should == "heartsf"
           end
         end
 
@@ -132,8 +132,8 @@ describe Instagram::Client do
 
           it "should return a list of users whom a given user is followed by" do
             followed_by = @client.user_followed_by(4)
-            followed_by.should be_a Array
-            followed_by.first.username.should == "bojieyang"
+            followed_by.should be_a Hash
+            followed_by.data.first.username.should == "bojieyang"
           end
         end
 
@@ -205,8 +205,8 @@ describe Instagram::Client do
 
           it "should return a list of recent media items for the given user" do
             recent_media = @client.user_recent_media(4)
-            recent_media.should be_a Array
-            recent_media.first.user.username.should == "shayne"
+            recent_media.should be_a Hash
+            recent_media.data.first.user.username.should == "shayne"
           end
         end
 
