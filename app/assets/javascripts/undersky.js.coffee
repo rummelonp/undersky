@@ -88,6 +88,7 @@ class Undersky
       panels.filter('.show').hide()
 
     @action: (e) ->
+      return if e.hasModifierKey()
       return if $(e.target).isInput()
       switch e.which
         when 37, 75 # ←, k
@@ -185,6 +186,7 @@ class Undersky
         Growl.show('unlike failed', 'error')
 
     @action: (e) ->
+      return if e.hasModifierKey()
       return if $(e.target).isInput()
       return if e.which != 76 # l
       panel = $('.modal.media-panel.show')
@@ -345,6 +347,7 @@ class Undersky
           self.find('input, textarea').each(-> $(this).enableElement())
 
       @action: (e) ->
+        return if e.hasModifierKey()
         return if $(e.target).isInput()
         return if e.which != 67 # c
         panel = $('.modal.media-panel.show')
