@@ -241,6 +241,9 @@ class Undersky
 
       @show: (e) ->
         e && e.preventDefault()
+        container = $('.modal.create-comment')
+        if container.size() > 0
+          return container.find('textarea').focus()
         self = $(this)
         panel = self.parents('.modal.media-panel')
         caption_data = panel.find('.caption').children()
@@ -326,12 +329,21 @@ class Undersky
           self = $(this)
           self.find('input, textarea').each(-> $(this).enableElement())
 
+      @action: (e) ->
+        return if $(e.target).isInput()
+        return if e.which != 67 # c
+        panel = $('.modal.media-panel.show')
+        return if panel.size() == 0
+        e && e.preventDefault()
+        panel.find('.comments-button.create-comment a').click()
+
       do ->
         $d.delegate '.comments-button.create-comment a', 'click', self.show
         $d.delegate '.modal.create-comment .username a', 'click', self.reply
         $d.delegate '.modal.create-comment [name="text"]', 'keyup change', self.validate
         $d.delegate '.modal.create-comment [name="cancel"]', 'click', self.hide
         $('.modal.create-comment form').bindAjaxHandler self.handler
+        $d.keydown self.action
 
   class Relationships
     self = this
