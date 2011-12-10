@@ -1,19 +1,19 @@
 <div class="user">
   <div class="profile_picture">
-    <%= link_to_external (image_tag @user.profile_picture, size: "75x75"), @user.profile_picture %>
+    <%= link_to_external (image_tag user.profile_picture, size: "75x75"), user.profile_picture %>
   </div>
   <div class="full-name">
-    <h2><%= link_to @user.full_name, recent_url(id: @user.id) %></h2>
+    <h2><%= link_to user.full_name, recent_url(id: user.id) %></h2>
   </div>
   <div class="username">
-    @<%= link_to @user.username, recent_url(id: @user.id) %>
+    @<%= link_to user.username, recent_url(id: user.id) %>
   </div>
   <div class="bio">
-    <%= @user.bio %>
+    <%= user.bio %>
   </div>
   <div class="website">
-    <% if @user.website.present? %>
-    <%= link_to_external @user.website, @user.website %>
+    <% if user.website.present? %>
+    <%= link_to_external user.website, user.website %>
     <% end %>
   </div>
   <hr />
@@ -23,12 +23,12 @@
     </div>
     <div class="outgoing-status <%= @relationship.outgoing_status %>">
       <div class="relationships-button follow">
-        <a href="<%= follow_url(id: @user.id) %>" class="btn" data-remote="true" data-method="post">
+        <a href="<%= follow_url(id: user.id) %>" class="btn" data-remote="true" data-method="post">
           follow
         </a>
       </div>
       <div class="relationships-button unfollow">
-        <a href="<%= unfollow_url(id: @user.id) %>" class="btn primary" data-remote="true" data-method="delete">
+        <a href="<%= unfollow_url(id: user.id) %>" class="btn primary" data-remote="true" data-method="delete">
           following
         </a>
       </div>
@@ -37,18 +37,18 @@
   <hr />
   <% end %>
   <div class="media">
-    <a href="<%= recent_url(id: @user.id) %>">
-      <span class="count"><%= @user.counts.media %></span> media
+    <a href="<%= recent_url(id: user.id) %>">
+      <span class="count"><%= user.counts.media %></span> media
     </a>
   </div>
   <div class="follows">
-    <a href="<%= follows_url(id: @user.id) %>">
-      <span class="count"><%= @user.counts.follows %></span> follows
+    <a href="<%= follows_url(id: user.id) %>">
+      <span class="count"><%= user.counts.follows %></span> follows
     </a>
   </div>
   <div class="followed_by">
-    <a href="<%= followed_by_url(id: @user.id) %>">
-      <span class="count"><%= @user.counts.followed_by %></span> followes
+    <a href="<%= followed_by_url(id: user.id) %>">
+      <span class="count"><%= user.counts.followed_by %></span> followes
     </a>
   </div>
 </div>
