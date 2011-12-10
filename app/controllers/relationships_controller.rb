@@ -3,8 +3,8 @@ class RelationshipsController < ApplicationController
 
   def follows
     id = params.delete(:id)
-    @data = client.user_follows id, params.merge(count: 100)
-    @users = @data.data
+    response = client.user_follows id, params.merge(count: 100)
+    @users = response.data
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
@@ -13,8 +13,8 @@ class RelationshipsController < ApplicationController
 
   def followed_by
     id = params.delete(:id)
-    @data = client.user_followed_by id, params.merge(count: 100)
-    @users = @data.data
+    response = client.user_followed_by id, params.merge(count: 100)
+    @users = response.data
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
@@ -23,14 +23,14 @@ class RelationshipsController < ApplicationController
 
   def follow
     id = params.delete(:id)
-    data = client.follow_user id
-    render json: data.to_json
+    response = client.follow_user id
+    render json: response.to_json
   end
 
   def unfollow
     id = params.delete(:id)
-    data = client.unfollow_user id
-    render json: data.to_json
+    response = client.unfollow_user id
+    render json: response.to_json
   end
 
 end
