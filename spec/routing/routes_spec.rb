@@ -6,6 +6,11 @@ describe :routes do
     it { should route_to(controller: 'media', action: 'popular') }
   end
 
+  describe 'GET "about"' do
+    subject { {get: '/about'} }
+    it { should route_to(controller: 'about', action: 'index') }
+  end
+
   describe 'GET "authorize"' do
     subject { {get: '/authorize'} }
     it { should route_to(controller: 'authorize', action: 'authorize') }

@@ -1,7 +1,7 @@
 Undersky::Application.routes.draw do
-  get "about/index"
-
   root to: "media#popular", as: :index
+
+  get "about" => "about#index", as: :about
 
   controller :authorize do
     get "authorize",    as: :authorize
