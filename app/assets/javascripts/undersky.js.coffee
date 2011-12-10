@@ -184,11 +184,24 @@ class Undersky
       error: (e, data) ->
         Growl.show('unlike failed', 'error')
 
+    @action: (e) ->
+      return if $(e.target).isInput()
+      return if e.which != 76 # l
+      panel = $('.modal.media-panel.show')
+      return if panel.size() == 0
+      e && e.preventDefault()
+      likes_status = panel.find('.likes-status')
+      if likes_status.hasClass('like')
+        likes_status.find('.likes-button.unlike a').click()
+      else
+        likes_status.find('.likes-button.like a').click()
+
     do ->
       $('.likes-load-link a').bindAjaxHandler self.likesHandler
       $('.likes-button a').bindAjaxHandler self.likesStatusHandler
       $('.likes-button.like a').bindAjaxHandler self.likeHandler
       $('.likes-button.unlike a').bindAjaxHandler self.unlikeHandler
+      $d.keydown self.action
 
   class Comments
     self = this
