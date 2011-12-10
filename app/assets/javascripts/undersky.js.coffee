@@ -345,4 +345,23 @@ class Undersky
       $('.relationships-button.follow a').bindAjaxHandler self.followHandler
       $('.relationships-button.unfollow a').bindAjaxHandler self.unfollowHandler
 
+  class Page
+    self = this
+
+    @nextPageHandler:
+      beforeSend: (e) ->
+        $(this).disableElement()
+      success: (e, data) ->
+        self = $(this)
+        data = $(data)
+        $('.media-grid').append(data.find('.media-grid > *'))
+        $('.modal-container').append(data.find('.modal-container > *'))
+        self.replaceWith(data.find('.page-button.next-page a'))
+      error: (e, data) ->
+        $(this).enableElement()
+        Growl.show('next page request failed', 'error')
+
+    do ->
+      $('.page-button.next-page a').bindAjaxHandler self.nextPageHandler
+
 new Undersky

@@ -6,6 +6,7 @@
   <div class="page-body row">
     <div class="content span9">
       <%= render partial: "layouts/media-grid-photos", locals: {photos: @photos} %>
+      <%= render partial: "layouts/page-status", locals: {pagination: @pagination, key: "max_id"} %>
     </div>
     <div class="dashboard span6">
       <%= render partial: "layouts/user", locals: {user: @user} %>

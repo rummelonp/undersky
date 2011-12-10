@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def feed
     response = client.user_media_feed params
     @photos = response.data
+    @pagination = response.pagination
     @user = client.user
   end
 
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
     id = params.delete :id
     response = client.user_recent_media id, params
     @photos = response.data
+    @pagination = response.pagination
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
@@ -24,6 +26,7 @@ class UsersController < ApplicationController
   def liked
     response = client.user_liked_media params
     @photos = response.data
+    @pagination = response.pagination
     @user = client.user
   end
 

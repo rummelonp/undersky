@@ -85,6 +85,13 @@
 // Undersky
 .content {
   min-height: 1px;
+  .page-status {
+    padding: 0 0 18px;
+    .page-button a {
+      display: block;
+      text-align: center;
+    }
+  }
 }
 .user {
   font-size: 14px;

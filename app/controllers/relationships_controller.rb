@@ -5,6 +5,7 @@ class RelationshipsController < ApplicationController
     id = params.delete(:id)
     response = client.user_follows id, params.merge(count: 100)
     @users = response.data
+    @pagination = response.pagination
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
@@ -15,6 +16,7 @@ class RelationshipsController < ApplicationController
     id = params.delete(:id)
     response = client.user_followed_by id, params.merge(count: 100)
     @users = response.data
+    @pagination = response.pagination
     @user = client.user id
     unless id == session[:user][:id]
       @relationship = client.user_relationship id
