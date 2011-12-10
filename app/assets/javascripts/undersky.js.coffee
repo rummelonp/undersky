@@ -233,8 +233,23 @@ class Undersky
         spinner.hide()
         Growl.show('comments load failed', 'error')
 
+    @deleteCommentHandler:
+      beforeSend: (e) ->
+        $(this).__hide()
+      success: (e, data) ->
+        self = $(this)
+        panel = self.parents('.modal.media-panel')
+        if panel.find('.comments-count .count').decText().intText() == 0
+          panel.find('.comments').remove()
+        else
+          self.parents('.comment').remove()
+      error: (e, data) ->
+        $(this).__show()
+        Growl.show('delete comment failed', 'error')
+
     do ->
       $('.comments-load-link a').bindAjaxHandler self.commentsHandler
+      $('.comments-button.delete-comment a').bindAjaxHandler self.deleteCommentHandler
 
     class CreateComment
       self = this

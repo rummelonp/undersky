@@ -12,6 +12,8 @@ class CommentsController < ApplicationController
   end
 
   def delete_comment
+    client.delete_media_comment params[:id], params[:comment_id]
+    render text: ''
   end
 
 end

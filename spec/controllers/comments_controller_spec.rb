@@ -59,8 +59,14 @@ describe CommentsController do
     end
 
     describe "GET 'delete_comment'" do
-      it "returns http success" do
-        pending "to be implement after"
+      before do
+        Instagram::Client.should_receive(:new).and_return(@client)
+        @client.should_receive(:delete_media_comment)
+        xhr :delete, :delete_comment, id: 9578621, comment_id: 1
+      end
+
+      it "should be success" do
+        response.should be_success
       end
     end
   end
