@@ -1,6 +1,4 @@
 Undersky::Application.routes.draw do
-  get "tags/recent"
-
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
@@ -12,6 +10,8 @@ Undersky::Application.routes.draw do
   end
 
   get "search(/:name)" => "search#search", as: :search
+
+  get "tags/:name" => "tags#recent", as: :tags
 
   get "users/feed(/max_id/:max_id)"            => "users#feed",   as: :feed
   get "users/liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked

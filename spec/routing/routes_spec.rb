@@ -36,6 +36,11 @@ describe :routes do
     subject { should route_to(controller: 'search', action: 'search', name: 'query') }
   end
 
+  describe 'GET "tags"' do
+    subject { {get: '/tags/query'} }
+    subject { should route_to(controller: 'tags', action: 'recent', name: 'query') }
+  end
+
   describe 'GET "users/feed"' do
     subject { {get: '/users/feed'} }
     it { should route_to(controller: 'users', action: 'feed') }
