@@ -1,2 +1,26 @@
-<h1>Tags#recent</h1>
-<p>Find me in app/views/tags/recent.html.erb</p>
+<% content_for :title, "Tags" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="page-body row">
+    <div class="content span9">
+      <%= render partial: "layouts/media-grid-photos", locals: {photos: @photos} %>
+      <%= render partial: "layouts/page-status", locals: {pagination: @pagination, key: "max_id"} %>
+    </div>
+    <div class="dashboard span6">
+      <div class="tag">
+        <div class="name">
+          <h2><%= link_to @tag.name, tags_url(name: @tag.name) %></h2>
+        </div>
+        <hr />
+        <div class="media_count">
+          <a href="<%= tags_url(name: @tag.name) %>">
+            <span class="count"><%= @tag.media_count %></span> media
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: "layouts/media-panel", locals: {photos: @photos} %>
