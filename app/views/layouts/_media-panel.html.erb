@@ -55,22 +55,7 @@
       <% end %>
       <div class="comments-data">
         <% p.comments.data.each do |c| %>
-        <div class="comment">
-          <span class="username" data-username="<%= c.from.username %>">
-            <%= link_to c.from.username, recent_url(id: c.from.id) %>
-          </span>
-          <span class="text">
-            <%= emoji_tag tags_tag c.text %>
-          </span>
-          <span class="created_time">
-            <%= Time.at(c.created_time.to_i).to_pretty %>
-          </span>
-          <% if authenticated? && (mine?(c.from.id) || mine?(p.user.id)) %>
-          <span class="comments-button delete-comment">
-            <a href="<%= delete_comment_url(id: c.from.id, comment_id: c.id) %>" class="delete" data-remote="true" data-method="delete" data-confirm="Are you sure want to delete this comment?">×</a>
-          </span>
-          <% end %>
-        </div>
+        <%= render partial: "layouts/comment", locals: {photo: p, comment: c} %>
         <% end %>
       </div>
     </div>
