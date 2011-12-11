@@ -1,4 +1,6 @@
 Undersky::Application.routes.draw do
+  get "tags/recent"
+
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
