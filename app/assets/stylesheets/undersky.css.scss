@@ -116,3 +116,12 @@
     font-weight: bold;
   }
 }
+.delete {
+  color: gray;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,1);
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+}
