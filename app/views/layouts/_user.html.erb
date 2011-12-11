@@ -2,9 +2,11 @@
   <div class="profile_picture">
     <%= link_to_external (image_tag user.profile_picture, size: "75x75"), user.profile_picture %>
   </div>
+  <% if user.full_name.present? %>
   <div class="full-name">
     <h2><%= link_to emoji_tag(user.full_name), recent_url(id: user.id) %></h2>
   </div>
+  <% end %>
   <div class="username">
     @<%= link_to user.username, recent_url(id: user.id) %>
   </div>
