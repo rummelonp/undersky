@@ -7,7 +7,7 @@ class RelationshipsController < ApplicationController
     @users = response.data
     @pagination = response.pagination
     @user = client.user id
-    unless id == session[:user][:id]
+    unless mine? id
       @relationship = client.user_relationship id
     end
   end
@@ -18,7 +18,7 @@ class RelationshipsController < ApplicationController
     @users = response.data
     @pagination = response.pagination
     @user = client.user id
-    unless id == session[:user][:id]
+    unless mine? id
       @relationship = client.user_relationship id
     end
   end

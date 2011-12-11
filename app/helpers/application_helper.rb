@@ -15,6 +15,10 @@ module ApplicationHelper
     def authenticated?
       session[:access_token].present?
     end
+
+    def mine?(id)
+      session[:user] && session[:user][:id] == id
+    end
   end
 
   module PhotoHelper

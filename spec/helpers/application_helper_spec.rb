@@ -29,6 +29,28 @@ describe ApplicationHelper do
     end
   end
 
+  describe :mine? do
+    context 'is mine id' do
+      before do
+        session[:user] = {id: 1}
+    end
+
+      it 'should be true' do
+        mine?(1).should be_true
+      end
+    end
+
+    context 'is not mine id' do
+      before do
+        session[:user] = {id: 1}
+      end
+
+      it 'should be false' do
+        mine?(2).should be_false
+      end
+    end
+  end
+
   before do
     @photo = Hashie::Mash.new({
       images: {

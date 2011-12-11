@@ -65,7 +65,7 @@
           <span class="created_time">
             <%= Time.at(c.created_time.to_i).to_pretty %>
           </span>
-          <% if authenticated? && (c.from.id == session[:user][:id] || p.user.id == session[:user][:id]) %>
+          <% if authenticated? && (mine?(c.from.id) || mine?(p.user.id)) %>
           <span class="comments-button delete-comment">
             <a href="<%= delete_comment_url(id: c.from.id, comment_id: c.id) %>" class="delete" data-remote="true" data-method="delete" data-confirm="Are you sure want to delete this comment?">×</a>
           </span>
