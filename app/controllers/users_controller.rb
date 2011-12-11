@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate
 
   def feed
-    response = client.user_media_feed params
+    response = client.user_media_feed params.merge(count: 100)
     @photos = response.data
     @pagination = response.pagination
     @user = client.user
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def recent
     id = params.delete :id
-    response = client.user_recent_media id, params
+    response = client.user_recent_media id, params.merge(count: 100)
     @photos = response.data
     @pagination = response.pagination
     @user = client.user id
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def liked
-    response = client.user_liked_media params
+    response = client.user_liked_media params.merge(count: 100)
     @photos = response.data
     @pagination = response.pagination
     @user = client.user
