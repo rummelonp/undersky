@@ -40,6 +40,21 @@ module ApplicationHelper
       end
     end
 
+    def emoji_tag(text)
+      return nil if text.blank?
+      result = ''
+      space = raw '&nbsp;'
+      text.each_char do |c|
+        if c >= "\uE001" && c <= "\uE537"
+          unicode = format('%x', c.unpack('U').first)
+          result += content_tag(:span, space, :class => "emoji emoji_#{unicode}")
+        else
+          result += c
+        end
+      end
+      raw result
+    end
+
     def caption_text(photo)
       photo.caption.text unless photo.caption.blank?
     end

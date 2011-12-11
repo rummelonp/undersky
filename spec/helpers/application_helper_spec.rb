@@ -128,6 +128,11 @@ describe ApplicationHelper do
     end
   end
 
+  describe :emoji_tag do
+    subject { emoji_tag "\uE001" }
+    it { should == '<span class="emoji emoji_e001">&nbsp;</span>' }
+  end
+
   describe :caption_text do
     subject { caption_text @photo }
     it { should == 'caption text' }
