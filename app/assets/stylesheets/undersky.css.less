@@ -1,3 +1,12 @@
+// Bootstrap
+@import "twitter/bootstrap";
+
+// Baseline grid
+@basefont:          13px;
+@baseline:          18px;
+
+// Griditude
+@gridColumns:       15;
 
 // Topbar
 .topbar {
@@ -17,10 +26,10 @@
   a {
     &:focus {
       outline: 0;
-      border-color: #0069d6;
+      border-color: @linkColor;
     }
     &.focused {
-      border-color: #f89406;
+      border-color: @orange;
     }
   }
 }
@@ -32,7 +41,7 @@
     background-color: whiteSmoke;
     .modal-header,
     .modal-body {
-      background-color: white;
+      background-color: @white;
     }
   }
   &.media-panel {
@@ -53,9 +62,6 @@
       &.like   .likes-button.unlike {
         display: block;
       }
-    }
-    .created_time {
-      color: gray;
     }
   }
   &.create-comment {
@@ -118,6 +124,9 @@
   .count {
     font-weight: bold;
   }
+}
+.created-time {
+  color: @gray;
 }
 .delete {
   color: gray;

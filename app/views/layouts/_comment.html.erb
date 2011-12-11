@@ -5,7 +5,7 @@
   <span class="text">
     <%= emoji_tag tags_tag comment.text %>
   </span>
-  <span class="created_time">
+  <span class="created-time">
     <%= Time.at(comment.created_time.to_i).to_pretty %>
   </span>
   <% if authenticated? && (mine?(comment.from.id) || (photo && mine?(photo.user.id))) %>
