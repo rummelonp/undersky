@@ -35,6 +35,9 @@
       <span class="text">
         <%= caption_text p %>
       </span>
+      <span class="created_time">
+        <%= pretty_time p %>
+      </span>
     </div>
     <% end %>
     <% if p.comments[:count] > 0 %>
@@ -58,6 +61,9 @@
           </span>
           <span class="text">
             <%= c.text %>
+          </span>
+          <span class="created_time">
+            <%= pretty_time c %>
           </span>
           <% if authenticated? && (c.from.id == session[:user][:id] || p.user.id == session[:user][:id]) %>
           <span class="comments-button delete-comment">

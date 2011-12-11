@@ -54,6 +54,9 @@
         display: block;
       }
     }
+    .created_time {
+      color: gray;
+    }
   }
   &.create-comment {
     form textarea {
