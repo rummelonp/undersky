@@ -1,4 +1,4 @@
-<% content_for :title, "Tags" %>
+<% content_for :title, "##{@tag.name}" %>
 <div class="container">
   <div class="page-header">
     <h1><%= yield :title %></h1>
@@ -11,12 +11,12 @@
     <div class="dashboard span6">
       <div class="tag">
         <div class="name">
-          <h2><%= link_to @tag.name, tags_url(name: @tag.name) %></h2>
+          <h2><%= link_to "##{@tag.name}", tags_url(name: @tag.name) %></h2>
         </div>
         <hr />
         <div class="media_count">
           <a href="<%= tags_url(name: @tag.name) %>">
-            <span class="count"><%= @tag.media_count %></span> media
+            <span class="count"><%= @tag.media_count %></span> photos
           </a>
         </div>
       </div>

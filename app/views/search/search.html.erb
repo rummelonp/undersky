@@ -1,4 +1,8 @@
+<% if params[:name]  %>
+<% content_for :title, "Search: #{params[:name]}" %>
+<% else %>
 <% content_for :title, "Search" %>
+<% end %>
 <div class="container">
   <div class="page-header">
     <h1><%= yield :title %></h1>
