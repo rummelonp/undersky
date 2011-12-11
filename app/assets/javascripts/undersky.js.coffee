@@ -216,19 +216,9 @@ class Undersky
         self.data('spinner', spinner)
       success: (e, data) ->
         self = $(this)
-        container = self.parents('.comments').find('.comments-data')
+        container = self.parents('.comments')
         container.children().remove()
-        spinner = self.data('spinner')
-        spinner.remove()
-        container.before('<div class="comments-count"><span class="count">' + data.length + '</span> comments</div>')
-        for c in data
-          comment = $('<div class="comment"></div>')
-          username = $('<span class="username" data-username="' + c.from.username + '"></span>')
-          username.append('<a href="/users/' + c.from.id + '">' + c.from.username + '</a>')
-          comment.append(username)
-          comment.append(' ')
-          comment.append('<span class="text">' + c.text + '</span>')
-          container.append(comment)
+        container.append(data)
       error: (e, data) ->
         self = $(this)
         spinner = self.data('spinner')
@@ -313,7 +303,6 @@ class Undersky
           self.find('input, textarea').each(-> $(this).disableElement())
         success: (e, data) ->
           self = $(this)
-          data.from ||= $d.data('user')
           panel = do ->
             container = self.parents('.modal.create-comment')
             container.modal(show: false)
@@ -325,7 +314,6 @@ class Undersky
             count = $('<div class="comments-count"></div>')
             count.append('<span class="count">1</span> comments</span>')
             container = $('<div class="comments-data"></div>')
-            container.append(comment)
             comments.append(count, container)
             caption = panel.find('.caption')
             if caption.size() > 0
@@ -334,19 +322,7 @@ class Undersky
               panel.find('.status').after(comments)
           else
             panel.find('.comments-count .count').incText()
-          comment = $('<div class="comment"></div>')
-          username = $('<span class="username" data-username="' + data.from.username + '"></span>')
-          username.append('<a href="/users/' + data.from.id + '">' + data.from.username + '</a>')
-          comment.append(username)
-          comment.append(' ')
-          comment.append('<span class="text">' + data.text + '</span>')
-          comment.append(' ')
-          comment.append('<span class="created_time">just now</span>')
-          comment.append(' ')
-          button = $('<span class="comments-button delete-comment">')
-          button.append('<a href="/media/' + panel.data('id') + '/comments/' + data.id + '" class="delete" data-remote="true" data-method="delete" data-confirm="Are you sure want to delete this comment?">×</a>')
-          comment.append(button)
-          container.append(comment)
+          container.append(data)
         error: (e, ddata) ->
           Growl.show('comment request failed', 'error')
         complete: (e, data) ->

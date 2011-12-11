@@ -8,7 +8,7 @@
   <span class="created_time">
     <%= Time.at(comment.created_time.to_i).to_pretty %>
   </span>
-  <% if authenticated? && (mine?(comment.from.id) || mine?(photo.user.id)) %>
+  <% if authenticated? && (mine?(comment.from.id) || (photo && mine?(photo.user.id))) %>
   <span class="comments-button delete-comment">
     <a href="<%= delete_comment_url(id: comment.from.id, comment_id: comment.id) %>" class="delete" data-remote="true" data-method="delete" data-confirm="Are you sure want to delete this comment?">×</a>
   </span>

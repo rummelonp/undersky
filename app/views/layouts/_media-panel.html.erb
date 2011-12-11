@@ -22,7 +22,7 @@
       </div>
       <div class="comments-status">
         <div class="pull-left comments-button create-comment">
-          <a href="<%= create_comment_url(id: p.id) %>" class="btn small">comment</a>
+          <a href="<%= create_comment_url(id: p.id, format: :html) %>" class="btn small">comment</a>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="modal-footer comments">
       <% if authenticated? && p.comments[:count] > p.comments.data.size %>
       <div class="comments-count comments-load-link">
-        <a href="<%= comments_url(id: p.id) %>" data-remote="true">
+        <a href="<%= comments_url(id: p.id, format: :html) %>" data-remote="true">
           view all <span class="count"><%= p.comments[:count] %></span> comments
         </a>
       </div>

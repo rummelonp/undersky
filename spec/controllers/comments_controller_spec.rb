@@ -49,7 +49,7 @@ describe CommentsController do
     describe "POST 'create_comment'" do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
-        @client.should_receive(:create_media_comment)
+        @client.should_receive(:create_media_comment).and_return(@comment)
         xhr :post, :create_comment, id: 9578621
       end
 
