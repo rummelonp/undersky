@@ -31,6 +31,15 @@ module ApplicationHelper
       }
     end
 
+    def tags_tag(text)
+      return nil if text.blank?
+      text.gsub(/\#([a-zA-Z0-9_]*)/) do
+        tag = $1
+        return nil if tag.blank?
+        content_tag :a, "##{tag}", href: tags_url(name: tag)
+      end
+    end
+
     def caption_text(photo)
       photo.caption.text unless photo.caption.blank?
     end

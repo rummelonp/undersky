@@ -116,6 +116,18 @@ describe ApplicationHelper do
     end
   end
 
+  describe :tags_tag do
+    context 'have tag' do
+      subject { tags_tag 'text #tag1 #tag2' }
+      it { should == 'text <a href="http://test.host/tags/tag1">#tag1</a> <a href="http://test.host/tags/tag2">#tag2</a>' }
+    end
+
+    context 'not have tag' do
+      subject { tags_tag 'text text text' }
+      it { should == 'text text text' }
+    end
+  end
+
   describe :caption_text do
     subject { caption_text @photo }
     it { should == 'caption text' }
