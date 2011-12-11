@@ -31,8 +31,8 @@ module ApplicationHelper
       photo.caption.text unless photo.caption.blank?
     end
 
-    def pretty_time(time)
-      i = (Time.now - time.created_time.to_i).to_i
+    def pretty_time(photo)
+      i = (Time.now - photo.created_time.to_i).to_i
       case i
       when 0
         'just now'
@@ -43,7 +43,7 @@ module ApplicationHelper
       when 3541..82800
         ((i + 99) / 3600).to_i.to_s + 'h'
       when 82801..518400
-        ((i + 800) / (60 * 60 * 24)).to_i.to_s + 's'
+        ((i + 800) / (60 * 60 * 24)).to_i.to_s + 'd'
       else
         ((i + 180000) / (60 * 60 * 24 * 7)).to_i.to_s + 'w'
       end
