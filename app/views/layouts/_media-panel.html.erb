@@ -33,7 +33,7 @@
         <%= link_to p.user.username, recent_url(id: p.user.id) %>
       </span>
       <span class="text">
-        <%= caption_text p %>
+        <%= emoji_tag tags_tag caption_text p %>
       </span>
       <span class="created_time">
         <%= Time.at(p.created_time.to_i).to_pretty %>
@@ -60,7 +60,7 @@
             <%= link_to c.from.username, recent_url(id: c.from.id) %>
           </span>
           <span class="text">
-            <%= c.text %>
+            <%= emoji_tag tags_tag c.text %>
           </span>
           <span class="created_time">
             <%= Time.at(c.created_time.to_i).to_pretty %>

@@ -9,7 +9,7 @@
     @<%= link_to user.username, recent_url(id: user.id) %>
   </div>
   <div class="bio">
-    <%= user.bio %>
+    <%= emoji_tag tags_tag user.bio %>
   </div>
   <div class="website">
     <% if user.website.present? %>
