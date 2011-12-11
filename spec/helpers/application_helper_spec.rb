@@ -98,40 +98,4 @@ describe ApplicationHelper do
     subject { caption_text @photo }
     it { should == 'caption text' }
   end
-
-  describe :pretty_time do
-    before do
-      Time.stub!(:now).and_return(0)
-    end
-
-    it 'should == "just now"' do
-      photo = Hashie::Mash.new(created_time: 0)
-      pretty_time(photo).should == 'just now'
-    end
-
-    it 'should == "1s"' do
-      photo = Hashie::Mash.new(created_time: -1)
-      pretty_time(photo).should == '1s'
-    end
-
-    it 'should == "1m"' do
-      photo = Hashie::Mash.new(created_time: - 60)
-      pretty_time(photo).should == '1m'
-    end
-
-    it 'should == "1h"' do
-      photo = Hashie::Mash.new(created_time: - 60 * 60)
-      pretty_time(photo).should == '1h'
-    end
-
-    it 'should == "1d"' do
-      photo = Hashie::Mash.new(created_time: - 60 * 60 * 24)
-      pretty_time(photo).should == '1d'
-    end
-
-    it 'should == "1w"' do
-      photo = Hashie::Mash.new(created_time: - 60 * 60 * 24 * 7)
-      pretty_time(photo).should == '1w'
-    end
-  end
 end
