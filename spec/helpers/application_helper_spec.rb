@@ -77,21 +77,6 @@ describe ApplicationHelper do
     })
   end
 
-  describe :photo_tag do
-    context :low_resolution do
-      subject { photo_tag @photo, :low_resolution }
-      it { should == '<img alt="caption text" height="306" src="http://example.com/low_resolution.jpg" width="306" />' }
-    end
-    context :thumbnail do
-      subject { photo_tag @photo, :thumbnail }
-      it { should == '<img alt="caption text" height="150" src="http://example.com/thumbnail.jpg" width="150" />' }
-    end
-    context :standard_resolution do
-      subject { photo_tag @photo, :standard_resolution }
-      it { should == '<img alt="caption text" height="612" src="http://example.com/standard_resolution.jpg" width="612" />' }
-    end
-  end
-
   describe :link_to_external do
     subject { link_to_external 'Example', 'http://example.com/' }
     it { should == '<a href="http://example.com/" rel="external nofollow" target="_blank">Example</a>' }
@@ -116,6 +101,26 @@ describe ApplicationHelper do
     end
   end
 
+  describe :caption_text do
+    subject { caption_text @photo }
+    it { should == 'caption text' }
+  end
+
+  describe :photo_tag do
+    context :low_resolution do
+      subject { photo_tag @photo, :low_resolution }
+      it { should == '<img alt="caption text" height="306" src="http://example.com/low_resolution.jpg" width="306" />' }
+    end
+    context :thumbnail do
+      subject { photo_tag @photo, :thumbnail }
+      it { should == '<img alt="caption text" height="150" src="http://example.com/thumbnail.jpg" width="150" />' }
+    end
+    context :standard_resolution do
+      subject { photo_tag @photo, :standard_resolution }
+      it { should == '<img alt="caption text" height="612" src="http://example.com/standard_resolution.jpg" width="612" />' }
+    end
+  end
+
   describe :tags_tag do
     context 'have tag' do
       subject { tags_tag 'text #tag1 #tag2' }
@@ -131,10 +136,5 @@ describe ApplicationHelper do
   describe :emoji_tag do
     subject { emoji_tag "\uE001" }
     it { should == '<span class="emoji emoji_e001">&nbsp;</span>' }
-  end
-
-  describe :caption_text do
-    subject { caption_text @photo }
-    it { should == 'caption text' }
   end
 end
