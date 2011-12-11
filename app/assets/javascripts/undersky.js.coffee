@@ -340,6 +340,12 @@ class Undersky
           comment.append(username)
           comment.append(' ')
           comment.append('<span class="text">' + data.text + '</span>')
+          comment.append(' ')
+          comment.append('<span class="created_time">just now</span>')
+          comment.append(' ')
+          button = $('<span class="comments-button delete-comment">')
+          button.append('<a href="/media/' + panel.data('id') + '/comments/' + data.id + '" class="delete" data-remote="true" data-method="delete" data-confirm="Are you sure want to delete this comment?">×</a>')
+          comment.append(button)
           container.append(comment)
         error: (e, ddata) ->
           Growl.show('comment request failed', 'error')
