@@ -1,4 +1,10 @@
 Undersky::Application.routes.draw do
+  get "error/client"
+
+  get "error/not_found"
+
+  get "error/server"
+
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
