@@ -24,7 +24,7 @@ class AuthorizeController < ApplicationController
     unless session[:redirect_url].blank?
       redirect_to session.delete(:redirect_url)
     else
-      redirect_to :index
+      redirect_to :feed
     end
   end
 
