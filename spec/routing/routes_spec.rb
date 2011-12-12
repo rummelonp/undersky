@@ -135,4 +135,9 @@ describe :routes do
     subject { {delete: 'media/9578621/comments/9578621'} }
     it { should route_to(controller: 'comments', action: 'delete_comment', id: '9578621', comment_id: '9578621') }
   end
+
+  describe 'GET "test"' do
+    subject { {get: 'test'} }
+    it { should route_to(controller: 'error', action: 'not_found', a: 'test') }
+  end
 end
