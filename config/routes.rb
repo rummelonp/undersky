@@ -1,4 +1,10 @@
 Undersky::Application.routes.draw do
+  get "users/search"         => redirect("/search")
+  get "users/search(/:name)" => redirect("/search/%{name}")
+  get "tags/search"          => redirect("/search")
+  get "tags/search/:name"    => redirect("/search/%{name}")
+  get "tags/recent/:name"    => redirect("/tags/%{name}")
+
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
