@@ -17,16 +17,16 @@ describe RelationshipsController do
     end
 
     describe "POST 'follow'" do
-      it "should be status 403" do
+      it "should be status 400" do
         xhr :post, :follow, id: 982876
-        response.status == 403
+        response.status == 400
       end
     end
 
     describe "DELETE 'follow'" do
-      it "should be status 403" do
+      it "should be status 400" do
         xhr :delete, :unfollow, id: 982876
-        response.status == 403
+        response.status == 400
       end
     end
   end

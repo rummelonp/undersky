@@ -3,23 +3,23 @@ require 'spec_helper'
 describe CommentsController do
   context "not authenticated" do
     describe "GET 'comments'" do
-      it 'should be status 403' do
+      it 'should be status 400' do
         xhr :get, :comments, id: 9578621
-        response.status == 403
+        response.status == 400
       end
     end
 
     describe "POST 'comments'" do
-      it 'should be status 403' do
+      it 'should be status 400' do
         xhr :post, :create_comment, id: 9578621, text: 'comment'
-        response.status == 403
+        response.status == 400
       end
     end
 
     describe "DELETE 'comments'" do
-      it 'should be status 403' do
+      it 'should be status 400' do
         xhr :delete, :delete_comment, id: 9578621, comment_id: '9578621'
-        response.status == 403
+        response.status == 400
       end
     end
   end

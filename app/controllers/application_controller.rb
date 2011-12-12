@@ -13,16 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from Instagram::Error do |e|
-    logger.info e
-    if request.xhr?
-      render text: e.message, status: 400
-    else
-      @notice = e.message
-      render template: 'error/client', status: 400
-    end
-  end
-
   rescue_from StandardError do |e|
     case e
     when Instagram::Error
@@ -34,9 +24,15 @@ class ApplicationController < ActionController::Base
       status = 500
       template = 'error/server'
     end
-    @message = e.message.split(':')[-2..-1].join(':')
+    # Remove Instagram API URI from error messages
+    messages = e.message.split(':')
+    if messages.size >= 3
+      @message = messages[-2..-1].join(':')
+    else
+      @message = e.message
+    end
     if request.xhr?
-      render text: message, status: status
+      render text: @message, status: status
     else
       render template: template, status: status
     end
