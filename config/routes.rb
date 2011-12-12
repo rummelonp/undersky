@@ -1,10 +1,4 @@
 Undersky::Application.routes.draw do
-  get "error/client"
-
-  get "error/not_found"
-
-  get "error/server"
-
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
@@ -37,6 +31,8 @@ Undersky::Application.routes.draw do
   get    "media/:id/comments"             => "comments#comments",       as: :comments
   post   "media/:id/comments"             => "comments#create_comment", as: :create_comment
   delete "media/:id/comments/:comment_id" => "comments#delete_comment", as: :delete_comment
+
+  match "*a" => "error#not_found", as: :not_found
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
