@@ -1,2 +1,9 @@
-<h1>Error#client</h1>
-<p>Find me in app/views/error/client.html.erb</p>
+<% content_for :title, "Bad Request" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="page-body">
+    <p><%= @message %></p>
+  </div>
+</div>

@@ -1,2 +1,11 @@
-<h1>Error#server</h1>
-<p>Find me in app/views/error/server.html.erb</p>
+<% content_for :title, "Internal Server Error" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="page-body">
+    <h2>We're sorry, but something went wrong.</h2>
+    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
+    <p><%= @message %></p>
+  </div>
+</div>
