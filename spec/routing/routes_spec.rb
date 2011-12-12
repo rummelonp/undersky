@@ -28,17 +28,17 @@ describe :routes do
 
   describe 'GET "search"' do
     subject { {get: '/search'} }
-    subject { should route_to(controller: 'search', action: 'search') }
+    it { should route_to(controller: 'search', action: 'search') }
   end
 
-  describe 'GET "search"' do
+  describe 'GET "search/query"' do
     subject { {get: '/search/query'} }
-    subject { should route_to(controller: 'search', action: 'search', name: 'query') }
+    it { should route_to(controller: 'search', action: 'search', name: 'query') }
   end
 
-  describe 'GET "tags"' do
+  describe 'GET "tags/query"' do
     subject { {get: '/tags/query'} }
-    subject { should route_to(controller: 'tags', action: 'recent', name: 'query') }
+    it { should route_to(controller: 'tags', action: 'recent', name: 'query') }
   end
 
   describe 'GET "users/feed"' do
