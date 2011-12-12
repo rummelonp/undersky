@@ -17,15 +17,15 @@ Undersky::Application.routes.draw do
 
   get "search(/:name)" => "search#search", as: :search
 
-  get "tags/:name" => "tags#recent", as: :tags
+  get "tags/:name(/max_id/:max_id)" => "tags#recent", as: :tags
 
   get "users/feed(/max_id/:max_id)"            => "users#feed",   as: :feed
   get "users/liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
   get "users/self"                             => "users#self",   as: :profile
   get "users/:id(/max_id/:max_id)"             => "users#recent", as: :recent
 
-  get "users/:id/follows"     => "relationships#follows",     as: :follows
-  get "users/:id/followed_by" => "relationships#followed_by", as: :followed_by
+  get "users/:id/follows(/cursor/:cursor)"     => "relationships#follows",     as: :follows
+  get "users/:id/followed_by(/cursor/:cursor)" => "relationships#followed_by", as: :followed_by
 
   post   "users/:id/follow" => "relationships#follow",   as: :follow
   delete "users/:id/follow" => "relationships#unfollow", as: :unfollow

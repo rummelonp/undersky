@@ -41,6 +41,11 @@ describe :routes do
     it { should route_to(controller: 'tags', action: 'recent', name: 'query') }
   end
 
+  describe 'GET "tags/query/max_id/9578621"' do
+    subject { {get: '/tags/query/max_id/9578621'} }
+    it { should route_to(controller: 'tags', action: 'recent', name: 'query', max_id: '9578621') }
+  end
+
   describe 'GET "users/feed"' do
     subject { {get: '/users/feed'} }
     it { should route_to(controller: 'users', action: 'feed') }
@@ -76,9 +81,19 @@ describe :routes do
     it { should route_to(controller: 'relationships', action: 'follows', id: '982876') }
   end
 
+  describe 'GET "users/982876/follows/cursor/9495024"' do
+    subject { {get: '/users/982876/follows/cursor/9495024'} }
+    it { should route_to(controller: 'relationships', action: 'follows', id: '982876', cursor: '9495024') }
+  end
+
   describe 'GET "users/982876/followed_by"' do
     subject { {get: '/users/982876/followed_by'} }
     it { should route_to(controller: 'relationships', action: 'followed_by', id: '982876') }
+  end
+
+  describe 'GET "users/982876/followed_by/cursor/9495024"' do
+    subject { {get: '/users/982876/followed_by/cursor/9495024'} }
+    it { should route_to(controller: 'relationships', action: 'followed_by', id: '982876', cursor: '9495024') }
   end
 
   describe 'POST "users/982876/follow"' do
