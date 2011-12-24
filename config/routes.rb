@@ -1,10 +1,4 @@
 Undersky::Application.routes.draw do
-  get "users/search"         => redirect("/search")
-  get "users/search(/:name)" => redirect("/search/%{name}")
-  get "tags/search"          => redirect("/search")
-  get "tags/search/:name"    => redirect("/search/%{name}")
-  get "tags/recent/:name"    => redirect("/tags/%{name}")
-
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
@@ -37,6 +31,12 @@ Undersky::Application.routes.draw do
   get    "media/:id/comments"             => "comments#comments",       as: :comments
   post   "media/:id/comments"             => "comments#create_comment", as: :create_comment
   delete "media/:id/comments/:comment_id" => "comments#delete_comment", as: :delete_comment
+
+  get "users/search"         => redirect("/search")
+  get "users/search(/:name)" => redirect("/search/%{name}")
+  get "tags/search"          => redirect("/search")
+  get "tags/search/:name"    => redirect("/search/%{name}")
+  get "tags/recent/:name"    => redirect("/tags/%{name}")
 
   match "*a" => "error#not_found", as: :not_found
 
