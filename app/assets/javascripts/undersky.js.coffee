@@ -79,6 +79,8 @@ class Undersky
         column.addClass('actived')
         panels.filter('[data-id="' + id + '"]').show()
         self.resize()
+        if columns.size() - columns.index(column) < 10
+          $('.page-button.next-page a').click()
 
     @close: (e) ->
       e && e.preventDefault()
