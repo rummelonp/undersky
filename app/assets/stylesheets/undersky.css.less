@@ -79,7 +79,10 @@
     .text {
       float: left;
       width: 85%;
-      margin-bottom: 10px;
+    }
+    .comments-data .comment {
+      .clearfix();
+      margin-top: 10px;
     }
     .likes-data .group {
       position: relative;
@@ -98,8 +101,11 @@
   }
 
   &.create-comment {
-    form textarea {
-      width: 520px;
+    form {
+      line-height: 18px;
+      textarea {
+        width: 520px;
+      }
     }
     .profile-picture {
       display: none;
