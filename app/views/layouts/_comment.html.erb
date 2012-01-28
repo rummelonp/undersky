@@ -4,7 +4,7 @@
     <%= link_to comment.from.username, recent_url(id: comment.from.id) %>
   </span>
   <span class="text">
-    <%= emoji_tag tags_tag comment.text %>
+    <%= emoji_tag tags_tag comment.text.strip %>
     <span class="created-time">
       <%= Time.at(comment.created_time.to_i).to_pretty %>
     </span>

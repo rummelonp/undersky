@@ -37,7 +37,7 @@ module ApplicationHelper
 
   module PhotoHelper
     def caption_text(photo)
-      photo.caption.text unless photo.caption.blank?
+      photo.caption.text.strip unless photo.caption.blank?
     end
 
     def photo_tag(photo, size)
