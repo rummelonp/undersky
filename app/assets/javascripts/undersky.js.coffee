@@ -168,9 +168,10 @@ class Undersky
         status.removeClass('unlike').addClass('like')
         panel = self.parents('.modal.media-panel')
         panel.find('.likes-count .count').incText()
-        username = $('<span class="data-container" data-username="' + user.username + '"></span>')
+        username = $('<div class="group" data-username="' + user.username + '"></div>')
+        username.append('<img src="' + user.profile_picture + '" class="profile-picture" />')
+        username.append('<span class="data-container" ></span>')
         username.append('<span class="username"><a href="/users/' + user.id + '">' + user.username + '</a></span>');
-        username.append(', ')
         panel.find('.likes-data').append(username)
       error: (e, data) ->
         Growl.show('like failed', 'error')
