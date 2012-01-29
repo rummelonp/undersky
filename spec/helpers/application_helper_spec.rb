@@ -124,7 +124,7 @@ describe ApplicationHelper do
   describe :tags_tag do
     context 'have tag' do
       subject { tags_tag 'text #tag1 #tag2' }
-      it { should == 'text <a href="http://test.host/tags/tag1">#tag1</a> <a href="http://test.host/tags/tag2">#tag2</a>' }
+      it { should == 'text <a class="tag" href="http://test.host/tags/tag1">#tag1</a> <a class="tag" href="http://test.host/tags/tag2">#tag2</a>' }
     end
 
     context 'not have tag' do

@@ -54,7 +54,7 @@ module ApplicationHelper
       text.gsub(/\#([a-zA-Z0-9_]*)/) do
         tag = $1
         return nil if tag.blank?
-        content_tag :a, "##{tag}", href: tags_url(name: tag)
+        content_tag :a, "##{tag}", 'class' => 'tag', href: tags_url(name: tag)
       end
     end
 
