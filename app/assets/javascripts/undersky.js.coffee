@@ -79,8 +79,6 @@ class Undersky
         column.addClass('actived')
         panels.filter('[data-id="' + id + '"]').show()
         self.resize()
-        if columns.size() - columns.index(column) < 10
-          $('.page-button.next-page a').click()
 
     @close: (e) ->
       e && e.preventDefault()
@@ -377,6 +375,10 @@ class Undersky
   class Page
     self = this
 
+    @loadNextPage: (e) ->
+      if $d.height() - ($d.scrollTop() + $w.height()) < 500
+        $('.page-button.next-page a').click()
+
     @nextPageHandler:
       beforeSend: (e) ->
         $(this).disableElement()
@@ -392,5 +394,6 @@ class Undersky
 
     do ->
       $('.page-button.next-page a').bindAjaxHandler self.nextPageHandler
+      $w.scroll self.loadNextPage
 
 new Undersky
