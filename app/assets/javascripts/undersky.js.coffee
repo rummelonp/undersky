@@ -9,7 +9,13 @@ class Undersky
 
   class Growl
     top = ->
-      $('.alert-message.growl').size() * 34 + 40;
+      offset = 40
+      $('.alert-message.growl').each ->
+        growl = $(this)
+        bottom = growl.offset().top + 34
+        if bottom > offset
+          offset = bottom
+      offset
 
     @show: (text, level) ->
       level ||= 'info'
