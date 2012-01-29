@@ -49,6 +49,7 @@
     width: 340px;
     top: 65px;
     left: 50%;
+    max-height: 100%;
     overflow-y: auto;
     margin: 0 0 0 99px;
     z-index: 1000;
@@ -101,11 +102,16 @@
   }
 
   &.create-comment {
+    max-height: 100%;
     form {
       line-height: 18px;
       textarea {
         width: 520px;
       }
+    }
+    .comments {
+      max-height: 250px;
+      overflow-y: auto;
     }
     .profile-picture {
       display: none;
