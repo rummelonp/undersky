@@ -286,6 +286,15 @@ class Undersky
         textarea.focus()
         textarea.val(username + textarea.val().replace(username, ''))
 
+
+      @tag: (e) ->
+        e && e.preventDefault()
+        self = $(this)
+        tag = ' ' + $(this).text();
+        textarea = self.parents('.modal.create-comment').find('textarea')
+        textarea.focus()
+        textarea.val(textarea.val().replace(tag, '') + tag)
+
       @validate: (e) ->
         self = $(this)
         commit = $(this).parents('.modal.create-comment').find('[name="commit"]')
@@ -342,6 +351,7 @@ class Undersky
       do ->
         $d.delegate '.comments-button.create-comment a', 'click', self.show
         $d.delegate '.modal.create-comment .username a', 'click', self.reply
+        $d.delegate '.modal.create-comment a.tag', 'click', self.tag
         $d.delegate '.modal.create-comment [name="text"]', 'keyup change', self.validate
         $d.delegate '.modal.create-comment [name="cancel"]', 'click', self.hide
         $('.modal.create-comment form').bindAjaxHandler self.handler
