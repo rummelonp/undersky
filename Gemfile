@@ -6,12 +6,12 @@ gem 'rails', '3.2.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'instagram', path: 'vendor/gems/instagram-0.8'
-gem 'twitter-bootstrap-rails', '2.0'
+gem 'twitter-bootstrap-rails', '1.4.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.2.4'
+  gem 'less-rails', '~> 2.1.3'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '~> 1.2.2'
 end
