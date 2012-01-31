@@ -101,6 +101,10 @@ class Undersky
           self.prev(e)
         when 39, 74 # →, j
           self.next(e)
+        when 80 # p
+          self.up(e)
+        when 78 # n
+          self.down(e)
 
     @prev: (e) ->
       columns = self.columns()
@@ -121,6 +125,16 @@ class Undersky
       if column.size()
         self.toggle.call(column, e)
         $w.scrollTop(column.offset().top - 65)
+
+    @up: (e) ->
+      e && e.preventDefault()
+      panel = $('.modal.media-panel.show')
+      panel.scrollTop(panel.scrollTop() - 100)
+
+    @down: (e) ->
+      e && e.preventDefault()
+      panel = $('.modal.media-panel.show')
+      panel.scrollTop(panel.scrollTop() + 100)
 
     @resize: ->
       $('.modal.media-panel.show').css('height', $w.height() - 75)
