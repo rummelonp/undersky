@@ -67,7 +67,7 @@ module ApplicationHelper
           unicode = format('%x', c.unpack('U').first)
           result += content_tag(:span, space, :class => "emoji emoji_#{unicode}")
         else
-          result += c
+          result += html_escape c
         end
       end
       raw result
