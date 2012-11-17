@@ -3,7 +3,7 @@ class RelationshipsController < ApplicationController
 
   def follows
     id = params.delete(:id)
-    response = client.user_follows id, params.merge(count: 100)
+    response = client.user_follows id, params
     @users = response.data
     @pagination = response.pagination
     @user = client.user id
@@ -14,7 +14,7 @@ class RelationshipsController < ApplicationController
 
   def followed_by
     id = params.delete(:id)
-    response = client.user_followed_by id, params.merge(count: 100)
+    response = client.user_followed_by id, params
     @users = response.data
     @pagination = response.pagination
     @user = client.user id
