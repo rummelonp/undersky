@@ -4,7 +4,7 @@
     <div class="modal-header user">
       <a href="#" class="close">×</a>
       <div class="username author">
-        <%= link_to p.user.username, recent_url(id: p.user.id) %>
+        <%= link_to p.user.username, recent_url(id: p.user.username) %>
       </div>
     </div>
     <div class="modal-body photo">
@@ -31,7 +31,7 @@
     <div class="modal-footer caption">
       <%= image_tag p.user.profile_picture, class: "profile-picture" %>
       <div class="username author">
-        <%= link_to p.user.username, recent_url(id: p.user.id) %>
+        <%= link_to p.user.username, recent_url(id: p.user.username) %>
       </div>
       <span class="text">
         <%= emoji_tag tags_tag caption_text p %>
@@ -78,7 +78,7 @@
         <% p.likes.data.each do |l| %>
         <span class="data-container" data-username="<%= l.username %>">
           <div class="group">
-          <%= link_to recent_url(id: l.id) do %>
+          <%= link_to recent_url(id: l.username) do %>
             <%= image_tag l.profile_picture, class: "profile-picture"%>
             <span class="username"><%= l.username %></span> 
           <% end %>

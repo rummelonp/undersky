@@ -61,14 +61,14 @@ describe :routes do
     it { should route_to(controller: 'users', action: 'self') }
   end
 
-  describe 'GET "users/982876"' do
-    subject { {get: '/users/982876'} }
-    it { should route_to(controller: 'users', action: 'recent', id: '982876') }
+  describe 'GET "users/mitukiii"' do
+    subject { {get: '/users/mitukiii'} }
+    it { should route_to(controller: 'users', action: 'recent', id: 'mitukiii') }
   end
 
-  describe 'GET "users/982876/max_id/9578621"' do
-    subject { {get: '/users/982876/max_id/9578621'} }
-    it { should route_to(controller: 'users', action: 'recent', id: '982876', max_id: '9578621') }
+  describe 'GET "users/mitukiii/max_id/9578621"' do
+    subject { {get: '/users/mitukiii/max_id/9578621'} }
+    it { should route_to(controller: 'users', action: 'recent', id: 'mitukiii', max_id: '9578621') }
   end
 
   describe 'GET "users/liked"' do
@@ -76,34 +76,34 @@ describe :routes do
     it { should route_to(controller: 'users', action: 'liked') }
   end
 
-  describe 'GET "users/982876/follows"' do
-    subject { {get: '/users/982876/follows'} }
-    it { should route_to(controller: 'relationships', action: 'follows', id: '982876') }
+  describe 'GET "users/mitukiii/follows"' do
+    subject { {get: '/users/mitukiii/follows'} }
+    it { should route_to(controller: 'relationships', action: 'follows', id: 'mitukiii') }
   end
 
-  describe 'GET "users/982876/follows/cursor/9495024"' do
-    subject { {get: '/users/982876/follows/cursor/9495024'} }
-    it { should route_to(controller: 'relationships', action: 'follows', id: '982876', cursor: '9495024') }
+  describe 'GET "users/mitukiii/follows/cursor/9495024"' do
+    subject { {get: '/users/mitukiii/follows/cursor/9495024'} }
+    it { should route_to(controller: 'relationships', action: 'follows', id: 'mitukiii', cursor: '9495024') }
   end
 
-  describe 'GET "users/982876/followed_by"' do
-    subject { {get: '/users/982876/followed_by'} }
-    it { should route_to(controller: 'relationships', action: 'followed_by', id: '982876') }
+  describe 'GET "users/mitukiii/followed_by"' do
+    subject { {get: '/users/mitukiii/followed_by'} }
+    it { should route_to(controller: 'relationships', action: 'followed_by', id: 'mitukiii') }
   end
 
-  describe 'GET "users/982876/followed_by/cursor/9495024"' do
-    subject { {get: '/users/982876/followed_by/cursor/9495024'} }
-    it { should route_to(controller: 'relationships', action: 'followed_by', id: '982876', cursor: '9495024') }
+  describe 'GET "users/mitukiii/followed_by/cursor/9495024"' do
+    subject { {get: '/users/mitukiii/followed_by/cursor/9495024'} }
+    it { should route_to(controller: 'relationships', action: 'followed_by', id: 'mitukiii', cursor: '9495024') }
   end
 
-  describe 'POST "users/982876/follow"' do
-    subject { {post: '/users/982876/follow'} }
-    it { should route_to(controller: 'relationships', action: 'follow', id: '982876') }
+  describe 'POST "users/mitukiii/follow"' do
+    subject { {post: '/users/mitukiii/follow'} }
+    it { should route_to(controller: 'relationships', action: 'follow', id: 'mitukiii') }
   end
 
-  describe 'DELETE "users/982876/follow"' do
-    subject { {delete: '/users/982876/follow'} }
-    it { should route_to(controller: 'relationships', action: 'unfollow', id: '982876') }
+  describe 'DELETE "users/mitukiii/follow"' do
+    subject { {delete: '/users/mitukiii/follow'} }
+    it { should route_to(controller: 'relationships', action: 'unfollow', id: 'mitukiii') }
   end
 
   describe 'GET "media/9578621/likes"' do

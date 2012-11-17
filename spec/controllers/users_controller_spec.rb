@@ -18,7 +18,7 @@ describe UsersController do
 
     describe "GET 'recent'" do
       it 'should be redirect' do
-        get :recent, id: 982876
+        get :recent, id: 'mitukiii'
         response.should be_redirect
       end
     end
@@ -43,7 +43,7 @@ describe UsersController do
 
       @relationship = relationship_response
 
-      session[:user] = {id: 982876}
+      session[:user] = {id: 'mitukiii'}
       session[:access_token] = '*** access token ***'
     end
 
@@ -76,7 +76,7 @@ describe UsersController do
         @client.should_receive(:user_recent_media).and_return(@data)
         @client.should_receive(:user).and_return(@user)
         @client.should_receive(:user_relationship).and_return(@relationship)
-        get :recent, id: 982876
+        get :recent, id: 'mitukiii'
       end
 
       it 'should be success' do

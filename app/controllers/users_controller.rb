@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate
+  before_filter :username_to_id, only: [:recent]
 
   def feed
     response = client.user_media_feed params

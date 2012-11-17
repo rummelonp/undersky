@@ -22,7 +22,7 @@
             <%= nav_link_tag "Popular", url_for(:index) %>
             <%= nav_link_tag "Feed", url_for(:feed) %>
             <% if authenticated? %>
-            <%= nav_link_tag "Profile", recent_url(id: session[:user][:id]) %>
+            <%= nav_link_tag "Profile", recent_url(id: session[:user][:username]) %>
             <% else %>
             <%= nav_link_tag "Profile", url_for(:profile) %>
             <% end %>

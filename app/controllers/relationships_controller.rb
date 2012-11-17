@@ -1,5 +1,6 @@
 class RelationshipsController < ApplicationController
   before_filter :authenticate
+  before_filter :username_to_id
 
   def follows
     id = params.delete(:id)

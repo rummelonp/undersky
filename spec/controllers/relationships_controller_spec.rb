@@ -4,28 +4,28 @@ describe RelationshipsController do
   context "not authenticated" do
     describe "GET 'follows'" do
       it "should be redirect" do
-        get :follows, id: 982876
+        get :follows, id: 'mitukiii'
         response.should be_redirect
       end
     end
 
     describe "GET 'followed_by'" do
       it "should be redirect" do
-        get :followed_by, id: 982876
+        get :followed_by, id: 'mitukiii'
         response.should be_redirect
       end
     end
 
     describe "POST 'follow'" do
       it "should be status 400" do
-        xhr :post, :follow, id: 982876
+        xhr :post, :follow, id: 'mitukiii'
         response.status == 400
       end
     end
 
     describe "DELETE 'follow'" do
       it "should be status 400" do
-        xhr :delete, :unfollow, id: 982876
+        xhr :delete, :unfollow, id: 'mitukiii'
         response.status == 400
       end
     end
@@ -51,7 +51,7 @@ describe RelationshipsController do
         @client.should_receive(:user_follows).and_return(@data)
         @client.should_receive(:user).and_return(@user)
         @client.should_receive(:user_relationship).and_return(@relationship)
-        get :follows, id: 982876
+        get :follows, id: 'mitukiii'
       end
 
       it "should be success" do
@@ -65,7 +65,7 @@ describe RelationshipsController do
         @client.should_receive(:user_followed_by).and_return(@data)
         @client.should_receive(:user).and_return(@user)
         @client.should_receive(:user_relationship).and_return(@relationship)
-        get :followed_by, id: 982876
+        get :followed_by, id: 'mitukiii'
       end
 
       it "should be success" do
@@ -77,7 +77,7 @@ describe RelationshipsController do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:follow_user).and_return(@relationship)
-        xhr :post, :follow, id: 982876
+        xhr :post, :follow, id: 'mitukiii'
       end
 
       it "should be success" do
@@ -89,7 +89,7 @@ describe RelationshipsController do
       before do
         Instagram::Client.should_receive(:new).and_return(@client)
         @client.should_receive(:unfollow_user).and_return(@relationship)
-        xhr :delete, :unfollow, id: 982876
+        xhr :delete, :unfollow, id: 'mitukiii'
       end
 
       it "should be success" do
