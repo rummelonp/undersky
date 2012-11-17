@@ -136,7 +136,7 @@ describe ApplicationHelper do
 
     context 'sanitize script tag' do
       subject { tags_tag('"\'><script src="//example.com/xss.js">') }
-      it { should == '&quot;\'&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
+      it { should == '&quot;&#x27;&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
     end
   end
 
@@ -147,7 +147,7 @@ describe ApplicationHelper do
 
     context 'sanitize script tag' do
       subject { emoji_tag('"\'><script src="//example.com/xss.js">') }
-      it { should == '&quot;\'&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
+      it { should == '&quot;&#x27;&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
     end
   end
 
@@ -166,7 +166,7 @@ describe ApplicationHelper do
 
     context 'sanitize script tag' do
       subject { tags_tag(emoji_tag('"\'><script src="//example.com/xss.js">')) }
-      it { should == '&quot;\'&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
+      it { should == '&quot;&#x27;&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
     end
   end
 end
