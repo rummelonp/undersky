@@ -12,7 +12,10 @@ group :assets do
 end
 
 group :development do
+  gem 'growl'
   gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'pry-rails'
 end
 
 group :development, :test do
