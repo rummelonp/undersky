@@ -4,6 +4,7 @@ gem 'rails', '3.2.9'
 gem 'instagram', path: 'vendor/gems/instagram-0.8'
 gem 'twitter-bootstrap-rails', '1.4.3'
 gem 'jquery-rails', '2.0.3'
+gem 'redis-rails', '~> 3.2.3'
 
 group :assets do
   gem 'less-rails', '~> 2.1.8'
