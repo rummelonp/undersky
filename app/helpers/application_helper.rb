@@ -51,26 +51,28 @@ module ApplicationHelper
 
     def tags_tag(text)
       return nil if text.blank?
-      text.gsub(/\#([a-zA-Z0-9_]*)/) do
-        tag = $1
-        return nil if tag.blank?
-        content_tag :a, "##{tag}", 'class' => 'tag', href: tags_url(name: tag)
-      end
+      tag_pattern = /(#[a-zA-Z0-9_]*)/
+      text.split(tag_pattern).map { |c|
+        if c =~ tag_pattern
+          tag = c.sub('#', '')
+          c = content_tag :a, "##{tag}", 'class' => 'tag', href: tags_url(name: tag)
+        else
+          ERB::Util.html_escape c
+        end
+      }.join.html_safe
     end
 
     def emoji_tag(text)
       return nil if text.blank?
-      result = ''
-      space = raw '&nbsp;'
-      text.each_char do |c|
+      space = '&nbsp;'.html_safe
+      text.each_char.map { |c|
         if c >= "\uE001" && c <= "\uE537"
           unicode = format('%x', c.unpack('U').first)
-          result += content_tag(:span, space, :class => "emoji emoji_#{unicode}")
+          content_tag(:span, space, :class => "emoji emoji_#{unicode}")
         else
-          result += html_escape c
+          ERB::Util.html_escape c
         end
-      end
-      raw result
+      }.join.html_safe
     end
   end
 

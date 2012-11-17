@@ -125,16 +125,48 @@ describe ApplicationHelper do
     context 'have tag' do
       subject { tags_tag 'text #tag1 #tag2' }
       it { should == 'text <a class="tag" href="http://test.host/tags/tag1">#tag1</a> <a class="tag" href="http://test.host/tags/tag2">#tag2</a>' }
+      it { should be_html_safe }
     end
 
     context 'not have tag' do
       subject { tags_tag 'text text text' }
       it { should == 'text text text' }
+      it { should be_html_safe }
+    end
+
+    context 'sanitize script tag' do
+      subject { tags_tag('"\'><script src="//example.com/xss.js">') }
+      it { should == '&quot;\'&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
     end
   end
 
   describe :emoji_tag do
     subject { emoji_tag "\uE001" }
     it { should == '<span class="emoji emoji_e001">&nbsp;</span>' }
+    it { should be_html_safe }
+
+    context 'sanitize script tag' do
+      subject { emoji_tag('"\'><script src="//example.com/xss.js">') }
+      it { should == '&quot;\'&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
+    end
+  end
+
+  describe 'nest tag helper' do
+    context 'emoji_tag(tags_tag(text))' do
+      subject { emoji_tag(tags_tag("\uE001 \uE002 #tag1 #tag2")) }
+      it { should == '<span class="emoji emoji_e001">&nbsp;</span> <span class="emoji emoji_e002">&nbsp;</span> <a class="tag" href="http://test.host/tags/tag1">#tag1</a> <a class="tag" href="http://test.host/tags/tag2">#tag2</a>' }
+      it { should be_html_safe }
+    end
+
+    context 'tags_tag(emoji_tag(text))' do
+      subject { tags_tag(emoji_tag("\uE001 \uE002 #tag1 #tag2")) }
+      it { should == '<span class="emoji emoji_e001">&nbsp;</span> <span class="emoji emoji_e002">&nbsp;</span> <a class="tag" href="http://test.host/tags/tag1">#tag1</a> <a class="tag" href="http://test.host/tags/tag2">#tag2</a>' }
+      it { should be_html_safe }
+    end
+
+    context 'sanitize script tag' do
+      subject { tags_tag(emoji_tag('"\'><script src="//example.com/xss.js">')) }
+      it { should == '&quot;\'&gt;&lt;script src=&quot;//example.com/xss.js&quot;&gt;' }
+    end
   end
 end
