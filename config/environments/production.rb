@@ -37,7 +37,7 @@ Undersky::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  config.cache_store = :redis_store
+  config.cache_store = :redis_store, {:namespace => 'undersky'}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
