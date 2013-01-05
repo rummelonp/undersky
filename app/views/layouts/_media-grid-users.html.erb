@@ -1,6 +1,6 @@
-<ul class="media-grid users">
+<ul class="media-grid users thumbnails">
   <% users.each do |u| %>
-  <li class="user">
+  <li class="user thumbnail">
     <a href="<%= recent_url(id: u.username) %>">
       <span class="profile_picture">
       <%= image_tag u.profile_picture, size: "150x150" %>

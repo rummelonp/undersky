@@ -14,12 +14,12 @@
   <% if @tags && @users %>
   <hr />
   <div class="page-body row">
-    <div class="content span9">
+    <div class="content span7">
       <h2>User search result</h2>
       <hr />
       <%= render partial: "layouts/media-grid-users", locals: {users: @users} %>
     </div>
-    <div class="content span6">
+    <div class="content span5">
       <h2>Tag search result</h2>
       <hr />
       <%= render partial: "layouts/tags", locals: {tags: @tags} %>
