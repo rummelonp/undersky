@@ -15,8 +15,8 @@
     </script>
   </head>
   <body>
-    <div class="header topbar" data-dropdown="dropdown">
-      <div class="topbar-inner">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
         <div class="container">
           <%= link_to "Undersky", :index, class: "brand" %>
           <ul class="nav">
@@ -29,13 +29,13 @@
             <% end %>
             <%= nav_link_tag "Liked", url_for(:liked) %>
           </ul>
-          <%= form_tag :search, method: :get do %>
+          <%= form_tag :search, method: :get, class: 'navbar-search' do %>
           <%= text_field_tag :name, '', placeholder: 'Search' %>
           <% end %>
-          <ul class="nav secondary-nav">
+          <ul class="nav pull-right">
             <% if authenticated? %>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= image_tag(session[:user][:profile_picture], size: "14x14") %>
                 <%= session[:user][:username] %>
               </a>
@@ -48,8 +48,8 @@
             <li><%= link_to "Login", :authorize %></li>
             <% end %>
           </ul>
-          <ul class="nav secondary-nav">
-            <li><%= link_to "About", :about %></li>
+          <ul class="nav pull-right">
+            <li><%= nav_link_tag "About", url_for(:about) %></li>
           </ul>
         </div>
       </div>
