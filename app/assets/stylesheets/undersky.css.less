@@ -32,23 +32,38 @@ body {
 
 // Modals
 .modal {
-  &.media-panel,
-  &.create-comment {
+  // Modal Mixins
+  .modal-base() {
     background-color: whiteSmoke;
     .modal-header,
     .modal-body {
       background-color: @white;
     }
+    .modal-footer {
+      text-align: left;
+    }
   }
 
+  // Media Panel Modal
   &.media-panel {
-    width: 340px;
+    .modal-base();
+    width: 360px;
     top: 65px;
     left: 50%;
     max-height: 100%;
     overflow-y: auto;
-    margin: 0 0 0 99px;
+    margin: 0 0 0 110px;
     z-index: 1000;
+    .modal-header.user {
+      height: 40px;
+      padding-top: 6px;
+      padding-bottom: 7px;
+    }
+    .modal-body.photo {
+      img {
+        padding: 0 10px;
+      }
+    }
     .close {
       margin-top: 0;
     }
@@ -70,6 +85,7 @@ body {
     .profile-picture {
       float: left;
       .square(30px);
+      margin-top: 5px;
       margin-right: 8px;
       .border-radius(4px);
     }
@@ -82,7 +98,6 @@ body {
       margin-top: 10px;
     }
     .likes-data .group {
-      position: relative;
       float: left;
       width: 50px;
       line-height: 16px;
@@ -97,7 +112,9 @@ body {
     }
   }
 
+  // Create Comment Modal
   &.create-comment {
+    .modal-base();
     max-height: 100%;
     form {
       line-height: 18px;

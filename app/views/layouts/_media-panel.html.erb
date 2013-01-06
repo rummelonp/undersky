@@ -3,9 +3,15 @@
   <div class="modal media-panel hide" data-id="<%= p.id %>">
     <div class="modal-header user">
       <a href="#" class="close">×</a>
+      <%= image_tag p.user.profile_picture, class: "profile-picture" %>
       <div class="username author">
         <%= link_to p.user.username, recent_url(id: p.user.username) %>
       </div>
+      <% if p.location && p.location.name.present? %>
+      <span class="location">
+        <%= p.location.name %>
+      </span>
+      <% end %>
     </div>
     <div class="modal-body photo">
       <%= link_to_external (photo_tag p, :low_resolution), p.link %>
@@ -14,20 +20,19 @@
     <div class="modal-footer status">
       <div class="likes-status <%= p.user_has_liked ? 'like' : 'unlike' %>">
         <div class="pull-left likes-button like">
-          <a href="<%= like_url(id: p.id) %>" class="btn small" data-remote="true" data-method="post">like</a>
+          <a href="<%= like_url(id: p.id) %>" class="btn btn-small" data-remote="true" data-method="post">like</a>
         </div>
         <div class="pull-left likes-button unlike">
-          <a href="<%= unlike_url(id: p.id) %>" class="btn small primary" data-remote="true" data-method="delete">liked</a>
+          <a href="<%= unlike_url(id: p.id) %>" class="btn btn-small btn-primary" data-remote="true" data-method="delete">liked</a>
         </div>
       </div>
       <div class="comments-status">
         <div class="pull-left comments-button create-comment">
-          <a href="<%= create_comment_url(id: p.id, format: :html) %>" class="btn small">comment</a>
+          <a href="<%= create_comment_url(id: p.id, format: :html) %>" class="btn btn-small">comment</a>
         </div>
       </div>
     </div>
     <% end %>
-    <% if caption_text p %>
     <div class="modal-footer caption">
       <%= image_tag p.user.profile_picture, class: "profile-picture" %>
       <div class="username author">
@@ -40,7 +45,6 @@
         </span>
       </span>
     </div>
-    <% end %>
     <% if p.comments[:count] > 0 %>
     <div class="modal-footer comments">
       <% if authenticated? && p.comments[:count] > p.comments.data.size %>
