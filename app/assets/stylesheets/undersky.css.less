@@ -176,12 +176,24 @@ body {
     font-size: 18px
   }
   .relationships-status {
+    .clearfix();
     .outgoing-status {
+      float: left;
+      margin-right: 15px;
       .relationships-button {
         display: none;
       }
       &.none    .relationships-button.follow,
       &.follows .relationships-button.unfollow {
+        display: block;
+      }
+    }
+    .incoming-status {
+      padding: 3px 0 0;
+      .relationships-text {
+        display: none;
+      }
+      &.followed_by .relationships-text.followed_by {
         display: block;
       }
     }
