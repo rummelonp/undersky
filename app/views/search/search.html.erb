@@ -7,9 +7,9 @@
   <div class="page-header">
     <h1><%= yield :title %></h1>
   </div>
-  <%= form_tag :search, method: :get do %>
+  <%= form_tag :search, method: :get, class: "form-search" do %>
   <%= text_field_tag :name, params[:name] %>
-  <%= submit_tag "Search", class: "btn primary" %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
   <% if @tags && @users %>
   <hr />
