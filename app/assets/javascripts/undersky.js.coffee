@@ -48,7 +48,7 @@ class Undersky
       location.href = url
 
     do ->
-      $('form[action="/search"]').live 'submit', self.submit
+      $d.on 'submit', 'form[action="/search"]', self.submit
 
   class MediaGrid
     self = this
