@@ -1,0 +1,8 @@
+<span class="like data-container" data-username="<%= like.username %>">
+  <div class="group">
+    <%= link_to recent_url(id: like.username) do %>
+      <%= image_tag like.profile_picture, class: "profile-picture"%>
+      <span class="username"><%= like.username %></span>
+    <% end %>
+  </div>
+</span>

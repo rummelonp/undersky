@@ -145,16 +145,9 @@ class Undersky
         self.data('spinner', spinner)
       success: (e, data) ->
         self = $(this)
-        container = self.parents('.likes').find('.likes-data')
+        container = self.parents('.likes')
         container.children().remove()
-        spinner = self.data('spinner')
-        spinner.remove()
-        container.before('<div class="likes-count"><span class="count">' + data.length + '</span> likes</div>')
-        for u in data
-          username = $('<span class="data-container" data-username="' + u.username + '"></span>')
-          username.append('<span class="username"><a href="/users/' + u.id + '">' + u.username + '</a></span>');
-          username.append(', ')
-          container.append(username)
+        container.append(data)
       error: (e, data) ->
         self = $(this)
         spinner = self.data('spinner')

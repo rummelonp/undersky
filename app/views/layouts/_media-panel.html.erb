@@ -69,7 +69,7 @@
         <div class="modal-footer likes">
           <% if authenticated? && p.likes[:count] > p.likes.data.size %>
             <div class="likes-count likes-load-link">
-              <a href="<%= likes_url(id: p.id) %>" data-remote="true">
+              <a href="<%= likes_url(id: p.id, format: :html) %>" data-remote="true">
                 view all <span class="count"><%= p.likes[:count] %></span> likes
               </a>
             </div>
@@ -80,14 +80,7 @@
           <% end %>
           <div class="likes-data">
             <% p.likes.data.each do |l| %>
-              <span class="data-container" data-username="<%= l.username %>">
-                <div class="group">
-                  <%= link_to recent_url(id: l.username) do %>
-                    <%= image_tag l.profile_picture, class: "profile-picture"%>
-                    <span class="username"><%= l.username %></span> 
-                  <% end %>
-                </div>
-              </span>
+              <%= render partial: "layouts/like", locals: {like: l} %>
             <% end %>
           </div>
         </div>

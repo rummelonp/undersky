@@ -1,0 +1,8 @@
+<div class="likes-count">
+  <span class="count"><%= @likes.size %></span> likes
+</div>
+<div class="likes-data">
+  <% @likes.each do |l| %>
+    <%= render partial: "layouts/like", locals: {like: l} %>
+  <% end %>
+</div>
