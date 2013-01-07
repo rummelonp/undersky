@@ -52,6 +52,9 @@ class Undersky
 
   class MediaGrid
     self = this
+    column_offset = 140
+    panel_offset = 75
+    scroll_amount = 200
 
     @columns: ->
       $('.media-grid.photos a')
@@ -99,7 +102,7 @@ class Undersky
         column = column.parent().prev().find('a').first()
       if column.size()
         self.toggle.call(column, e)
-        $w.scrollTop(column.offset().top - 65)
+        $w.scrollTop(column.offset().top - column_offset)
 
     @next: (e) ->
       columns = self.columns()
@@ -110,26 +113,26 @@ class Undersky
         column = columns.first()
       if column.size()
         self.toggle.call(column, e)
-        $w.scrollTop(column.offset().top - 65)
+        $w.scrollTop(column.offset().top - column_offset)
 
     @up: (e) ->
       e && e.preventDefault()
       panel = $('.modal.media-panel.show')
-      panel.scrollTop(panel.scrollTop() - 100)
+      panel.scrollTop(panel.scrollTop() - scroll_amount)
 
     @down: (e) ->
       e && e.preventDefault()
       panel = $('.modal.media-panel.show')
-      panel.scrollTop(panel.scrollTop() + 100)
+      panel.scrollTop(panel.scrollTop() + scroll_amount)
 
     @resize: ->
-      $('.modal.media-panel.show').css('height', $w.height() - 75)
+      $('.modal.media-panel.show').css('height', $w.height() - panel_offset)
 
     do ->
-      $w.resize self.resize
-      $d.delegate '.media-grid.photos a', 'click', self.toggle
-      $d.delegate '.modal.media-panel .close', 'click', self.close
+      $d.on 'click', '.media-grid.photos a', self.toggle
+      $d.on 'click', '.modal.media-panel .close', self.close
       $d.keydown self.action
+      $w.resize self.resize
 
   class Likes
     self = this
