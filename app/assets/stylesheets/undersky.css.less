@@ -6,6 +6,11 @@ body {
   padding-top: 40px;
 }
 
+// Content
+.content {
+  min-height: 1px;
+}
+
 // Grid System
 .span4-5 {
   width: 340px;
@@ -132,6 +137,15 @@ body {
   }
 }
 
+// Page Status
+.page-status {
+  padding: 0 0 18px;
+  .page-button a {
+    display: block;
+    text-align: center;
+  }
+}
+
 // Spinner
 .spinner {
   img {
@@ -142,24 +156,7 @@ body {
   }
 }
 
-// Tags Table
-.tags {
-  td {
-    width: 50%;
-  }
-}
-
-// Undersky
-.content {
-  min-height: 1px;
-  .page-status {
-    padding: 0 0 18px;
-    .page-button a {
-      display: block;
-      text-align: center;
-    }
-  }
-}
+// User Dashboard
 .user {
   font-size: 14px;
   h2 {
@@ -188,16 +185,27 @@ body {
       }
     }
   }
-}
-.user,
-.tag {
   .count {
     font-weight: bold;
   }
 }
+
+// Tags Seaech List
+.tags {
+  td {
+    width: 50%;
+  }
+  .count {
+    font-weight: bold;
+  }
+}
+
+// Created Time
 .created-time {
   color: @gray;
 }
+
+// Delete Button
 .delete {
   color: gray;
   font-weight: bold;
