@@ -59,9 +59,7 @@
             </div>
           <% end %>
           <div class="comments-data">
-            <% p.comments.data.each do |c| %>
-              <%= render partial: "layouts/comment", locals: {photo: p, comment: c} %>
-            <% end %>
+            <%= render partial: "layouts/comment", collection: p.comments.data, locals: {photo: p} %>
           </div>
         </div>
       <% end %>
@@ -79,9 +77,7 @@
             </div>
           <% end %>
           <div class="likes-data">
-            <% p.likes.data.each do |l| %>
-              <%= render partial: "layouts/like", locals: {like: l} %>
-            <% end %>
+            <%= render partial: "layouts/like", collection: p.likes.data %>
           </div>
         </div>
       <% end %>
