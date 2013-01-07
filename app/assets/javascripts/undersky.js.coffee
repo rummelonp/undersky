@@ -3,7 +3,6 @@
 ###
 
 class Undersky
-  undersky = this
   $w = $(window)
   $d = $(document)
 
@@ -412,5 +411,3 @@ class Undersky
     do ->
       $('.page-button.next-page a').bindAjaxHandler self.nextPageHandler
       $w.scroll self.loadNextPage
-
-new Undersky
