@@ -30,7 +30,7 @@
             <%= nav_link_tag "Liked", url_for(:liked) %>
           </ul>
           <%= form_tag :search, method: :get, class: 'navbar-search' do %>
-          <%= text_field_tag :name, '', placeholder: 'Search' %>
+          <%= text_field_tag :name, '', class: "search-query", placeholder: 'Search' %>
           <% end %>
           <ul class="nav pull-right">
             <% if authenticated? %>
