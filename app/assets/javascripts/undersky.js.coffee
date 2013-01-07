@@ -8,25 +8,12 @@ class Undersky
   $d = $(document)
 
   class Growl
-    top = ->
-      offset = 40
-      $('.alert-message.growl').each ->
-        growl = $(this)
-        bottom = growl.offset().top + 34
-        if bottom > offset
-          offset = bottom
-      offset
-
     @show: (text, level) ->
-      level ||= 'info'
-      growl = $('<div class="alert-message growl ' + level + '">' + text + '</div>')
-      growl.css('top', top() + 'px')
-      $(document.body).append(growl)
-      growl.alert().hide().slideDown()
-      setTimeout(->
-        growl.slideUp ->
-          growl.remove()
-      , 3000)
+      $.bootstrapGrowl text,
+        type: level
+        offset:
+          from: 'top'
+          amount: 60
 
   class Spinner
     constructor: (element) ->

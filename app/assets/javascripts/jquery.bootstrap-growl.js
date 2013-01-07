@@ -1,14 +1,13 @@
 /* https://github.com/ifightcrime/bootstrap-growl */
 
-
 (function($) {
   $.bootstrapGrowl = function(message, options) {
 
-    var options = $.extend({}, $.bootstrapGrowl.default_options, options);
+    options = $.extend({}, $.bootstrapGrowl.default_options, options);
 
     var $alert = $('<div>');
 
-    $alert.attr('class', 'bootstrap-growl alert');
+    $alert.attr('class', 'bootstrap-growl alert hide');
 
     if (options.type) {
         $alert.addClass('alert-' + options.type);
@@ -35,8 +34,7 @@
     css = {
       'position': 'absolute',
       'margin': 0,
-      'z-index': '9999',
-      'display': 'none'
+      'z-index': '9999'
     };
     css[options.offset.from] = offsetAmount + 'px';
     $alert.css(css);
