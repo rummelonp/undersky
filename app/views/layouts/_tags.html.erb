@@ -1,16 +1,16 @@
 <div class="tags">
   <table>
     <% tags.each do |t| %>
-    <tr class="tag">
-      <td class="name">
-        <%= link_to "##{t.name}", tags_url(name: t.name) %>
-      </td>
-      <td class="media_count">
-        <a href="<%= tags_url(name: t.name) %>">
-          <span class="count"><%= t.media_count %></span> photos
-        </a>
-      </td>
-    </tr>
+      <tr class="tag">
+        <td class="name">
+          <%= link_to "##{t.name}", tags_url(name: t.name) %>
+        </td>
+        <td class="media_count">
+          <a href="<%= tags_url(name: t.name) %>">
+            <span class="count"><%= t.media_count %></span> photos
+          </a>
+        </td>
+      </tr>
     <% end %>
   </table>
 </div>

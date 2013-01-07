@@ -3,6 +3,6 @@
 </div>
 <div class="comments-data">
   <% @comments.each do |c| %>
-  <%= render partial: "layouts/comment", locals: {photo: nil, comment: c} %>
+    <%= render partial: "layouts/comment", locals: {photo: nil, comment: c} %>
   <% end %>
 </div>

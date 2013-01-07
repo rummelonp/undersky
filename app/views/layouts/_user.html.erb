@@ -3,9 +3,9 @@
     <%= link_to_external (image_tag user.profile_picture, size: "150x150"), user.profile_picture %>
   </div>
   <% if user.full_name.present? %>
-  <div class="full-name">
-    <h2><%= link_to emoji_tag(user.full_name), recent_url(id: user.username) %></h2>
-  </div>
+    <div class="full-name">
+      <h2><%= link_to emoji_tag(user.full_name), recent_url(id: user.username) %></h2>
+    </div>
   <% end %>
   <div class="username">
     @<%= link_to user.username, recent_url(id: user.username) %>
@@ -15,31 +15,31 @@
   </div>
   <div class="website">
     <% if user.website.present? %>
-    <%= link_to_external user.website, user.website %>
+      <%= link_to_external user.website, user.website %>
     <% end %>
   </div>
   <hr />
   <% if @relationship %>
-  <div class="relationships-status">
-    <div class="outgoing-status <%= @relationship.outgoing_status %>">
-      <div class="relationships-button follow">
-        <a href="<%= follow_url(id: user.username) %>" class="btn btn-primary" data-remote="true" data-method="post">
-          Follow
-        </a>
+    <div class="relationships-status">
+      <div class="outgoing-status <%= @relationship.outgoing_status %>">
+        <div class="relationships-button follow">
+          <a href="<%= follow_url(id: user.username) %>" class="btn btn-primary" data-remote="true" data-method="post">
+            Follow
+          </a>
+        </div>
+        <div class="relationships-button unfollow">
+          <a href="<%= unfollow_url(id: user.username) %>" class="btn btn-success" data-remote="true" data-method="delete">
+            Following
+          </a>
+        </div>
       </div>
-      <div class="relationships-button unfollow">
-        <a href="<%= unfollow_url(id: user.username) %>" class="btn btn-success" data-remote="true" data-method="delete">
-          Following
-        </a>
+      <div class="incoming-status <%= @relationship.incoming_status %>">
+        <div class="relationships-text followed_by">
+          <span class="label">Follows You</span>
+        </div>
       </div>
     </div>
-    <div class="incoming-status <%= @relationship.incoming_status %>">
-      <div class="relationships-text followed_by">
-        <span class="label">Follows You</span>
-      </div>
-    </div>
-  </div>
-  <hr />
+    <hr />
   <% end %>
   <div class="media">
     <a href="<%= recent_url(id: user.username) %>">
