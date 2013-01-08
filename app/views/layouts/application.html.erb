@@ -20,7 +20,6 @@
         <div class="container">
           <%= link_to "Undersky", :index, class: "brand" %>
           <ul class="nav">
-            <%= nav_link_tag "Popular", url_for(:index) %>
             <%= nav_link_tag "Feed", url_for(:feed) %>
             <% if authenticated? %>
               <%= nav_link_tag "Profile", recent_url(id: session[:user][:username]) %>
@@ -28,6 +27,7 @@
               <%= nav_link_tag "Profile", url_for(:profile) %>
             <% end %>
             <%= nav_link_tag "Liked", url_for(:liked) %>
+            <%= nav_link_tag "Popular", url_for(:index) %>
           </ul>
           <%= form_tag :search, method: :get, class: 'navbar-search' do %>
           <%= text_field_tag :name, '', class: "search-query", placeholder: 'Search' %>
