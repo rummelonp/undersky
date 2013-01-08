@@ -11,7 +11,11 @@ class LikesController < ApplicationController
 
   def like
     client.like_media params[:id]
-    render text: ''
+    @like = session[:user]
+    respond_to do |format|
+      format.json { render json: @like.to_json }
+      format.html { render layout: false }
+    end
   end
 
   def unlike

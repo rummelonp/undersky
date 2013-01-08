@@ -20,7 +20,7 @@
         <div class="modal-footer status">
           <div class="likes-status <%= p.user_has_liked ? 'like' : 'unlike' %>">
             <div class="pull-left likes-button like">
-              <a href="<%= like_url(id: p.id) %>" class="btn btn-small" data-remote="true" data-method="post">like</a>
+              <a href="<%= like_url(id: p.id, format: :html) %>" class="btn btn-small" data-remote="true" data-method="post">like</a>
             </div>
             <div class="pull-left likes-button unlike">
               <a href="<%= unlike_url(id: p.id) %>" class="btn btn-small btn-primary" data-remote="true" data-method="delete">liked</a>
