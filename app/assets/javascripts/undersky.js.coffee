@@ -131,8 +131,8 @@ class Undersky
     do ->
       $d.on 'click', '.media-grid.photos a', self.toggle
       $d.on 'click', '.modal.media-panel .close', self.close
-      $d.keydown self.action
-      $w.resize self.resize
+      $d.on 'keydown', self.action
+      $w.on 'resize', self.resize
 
   class Likes
     self = this
@@ -201,7 +201,7 @@ class Undersky
       $('.likes-button a').bindAjaxHandler self.likesStatusHandler
       $('.likes-button.like a').bindAjaxHandler self.likeHandler
       $('.likes-button.unlike a').bindAjaxHandler self.unlikeHandler
-      $d.keydown self.action
+      $d.on 'keydown', self.action
 
   class Comments
     self = this
@@ -346,13 +346,13 @@ class Undersky
         panel.find('.comments-button.create-comment a').click()
 
       do ->
-        $d.delegate '.comments-button.create-comment a', 'click', self.show
-        $d.delegate '.modal.create-comment .username a', 'click', self.reply
-        $d.delegate '.modal.create-comment a.tag', 'click', self.tag
-        $d.delegate '.modal.create-comment [name="text"]', 'keyup change', self.validate
-        $d.delegate '.modal.create-comment [name="cancel"]', 'click', self.hide
         $('.modal.create-comment form').bindAjaxHandler self.handler
-        $d.keydown self.action
+        $d.on 'click', '.comments-button.create-comment a', self.show
+        $d.on 'click', '.modal.create-comment .username a', self.reply
+        $d.on 'click', '.modal.create-comment a.tag', self.tag
+        $d.on 'keyup change', '.modal.create-comment [name="text"]', self.validate
+        $d.on 'click', '.modal.create-comment [name="cancel"]', self.hide
+        $d.on 'keydown', self.action
 
   class Relationships
     self = this
@@ -401,4 +401,4 @@ class Undersky
 
     do ->
       $('.page-button.next-page a').bindAjaxHandler self.nextPageHandler
-      $w.scroll self.loadNextPage
+      $w.on 'scroll', self.loadNextPage
