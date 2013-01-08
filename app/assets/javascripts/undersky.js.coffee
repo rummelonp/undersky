@@ -12,7 +12,7 @@ class Undersky
         type: level
         offset:
           from: 'top'
-          amount: 60
+          amount: 20
 
   class Spinner
     constructor: (element) ->
