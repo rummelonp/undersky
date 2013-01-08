@@ -4,14 +4,17 @@
       <div class="modal-header user">
         <a href="#" class="close">×</a>
         <%= image_tag p.user.profile_picture, class: "profile-picture" %>
-        <div class="username author">
-          <%= link_to p.user.username, recent_url(id: p.user.username) %>
-        </div>
-        <% if p.location && p.location.name.present? %>
-          <span class="location">
-            <%= p.location.name %>
+        <div class="description">
+          <span class="username author">
+            <%= link_to p.user.username, recent_url(id: p.user.username) %>
           </span>
-        <% end %>
+          <% if p.location && p.location.name.present? %>
+            <i class="icon-map-marker"></i>
+            <span class="location">
+              <%= p.location.name %>
+            </span>
+          <% end %>
+        </div>
       </div>
       <div class="modal-body photo">
         <%= link_to_external (photo_tag p, :low_resolution), p.link %>

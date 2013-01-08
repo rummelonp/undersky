@@ -1,6 +1,11 @@
 // Bootstrap
 @import "twitter/bootstrap/bootstrap";
 
+// Set the correct sprite paths
+@iconSpritePath: "twitter/bootstrap/glyphicons-halflings.png";
+@iconWhiteSpritePath: "twitter/bootstrap/glyphicons-halflings-white.png";
+@import "twitter/bootstrap/sprites.less";
+
 // Navbar
 body {
   padding-top: 40px;
@@ -63,6 +68,9 @@ body {
       height: 40px;
       padding-top: 6px;
       padding-bottom: 7px;
+      .description {
+        margin-top: 10px;
+      }
     }
     .modal-body.photo {
       img {
