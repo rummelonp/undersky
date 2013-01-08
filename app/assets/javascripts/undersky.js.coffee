@@ -271,7 +271,7 @@ class Undersky
         comments.find('.comments-button.delete-comment').remove()
         form.append(comments)
       container.append(form)
-      container.modal(show: true)
+      container.modal('show')
       container.bind('hidden', -> container.remove())
       container.find('textarea').focus()
 
@@ -301,7 +301,7 @@ class Undersky
 
     @hide: (e) ->
       e && e.preventDefault()
-      $(this).parents('.modal.create-comment').modal(show: false)
+      $(this).parents('.modal.create-comment').modal('hide')
 
     @handler:
       beforeSend: (e) ->
@@ -311,7 +311,7 @@ class Undersky
         self = $(this)
         panel = do ->
           container = self.parents('.modal.create-comment')
-          container.modal(show: false)
+          container.modal('hide')
           $('[data-id="' + container.data('id') + '"]')
         return if panel.size() == 0
         container = panel.find('.comments-data')
