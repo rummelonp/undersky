@@ -361,7 +361,7 @@ class Undersky
         $(this).disableElement()
       success: (e, data) ->
         status = $(this).parents('.outgoing-status')
-        status.removeClass().addClass('outgoing-status').addClass(data.outgoing_status)
+        status.removeClass().addClass('outgoing-status').addClass(data.outgoing_status.replace(/_/g, '-'))
       complete: (e, data) ->
         $(this).enableElement()
 
