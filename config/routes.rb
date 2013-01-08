@@ -1,4 +1,11 @@
 Undersky::Application.routes.draw do
+  get "users/:name"          => redirect("/%{name}")
+  get "users/search"         => redirect("/search")
+  get "users/search/:name"   => redirect("/search/%{name}")
+  get "tags/search"          => redirect("/search")
+  get "tags/search/:name"    => redirect("/search/%{name}")
+  get "tags/recent/:name"    => redirect("/tags/%{name}")
+
   root to: "media#popular", as: :index
 
   get "about" => "about#index", as: :about
@@ -13,16 +20,16 @@ Undersky::Application.routes.draw do
 
   get "tags/:name(/max_id/:max_id)" => "tags#recent", as: :tags
 
-  get "users/feed(/max_id/:max_id)"            => "users#feed",   as: :feed
-  get "users/liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
-  get "users/self"                             => "users#self",   as: :profile
-  get "users/:id(/max_id/:max_id)"             => "users#recent", as: :recent
+  get "feed(/max_id/:max_id)"            => "users#feed",   as: :feed
+  get "liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
+  get "self"                             => "users#self",   as: :profile
+  get ":id(/max_id/:max_id)"             => "users#recent", as: :recent
 
-  get "users/:id/follows(/cursor/:cursor)"     => "relationships#follows",     as: :follows
-  get "users/:id/followed_by(/cursor/:cursor)" => "relationships#followed_by", as: :followed_by
+  get ":id/follows(/cursor/:cursor)"     => "relationships#follows",     as: :follows
+  get ":id/followed_by(/cursor/:cursor)" => "relationships#followed_by", as: :followed_by
 
-  post   "users/:id/follow" => "relationships#follow",   as: :follow
-  delete "users/:id/follow" => "relationships#unfollow", as: :unfollow
+  post   ":id/follow" => "relationships#follow",   as: :follow
+  delete ":id/follow" => "relationships#unfollow", as: :unfollow
 
   get    "media/:id/likes" => "likes#likes",  as: :likes
   post   "media/:id/likes" => "likes#like",   as: :like
@@ -31,12 +38,6 @@ Undersky::Application.routes.draw do
   get    "media/:id/comments"             => "comments#comments",       as: :comments
   post   "media/:id/comments"             => "comments#create_comment", as: :create_comment
   delete "media/:id/comments/:comment_id" => "comments#delete_comment", as: :delete_comment
-
-  get "users/search"         => redirect("/search")
-  get "users/search(/:name)" => redirect("/search/%{name}")
-  get "tags/search"          => redirect("/search")
-  get "tags/search/:name"    => redirect("/search/%{name}")
-  get "tags/recent/:name"    => redirect("/tags/%{name}")
 
   match "*a" => "error#not_found", as: :not_found
 
