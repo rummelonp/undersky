@@ -4,11 +4,11 @@
     <h1><%= yield :title %></h1>
   </div>
   <div class="page-body row">
-    <div class="content span9">
+    <div class="content span7">
       <%= render partial: "layouts/media-grid-users", locals: {users: @users} %>
       <%= render partial: "layouts/page-status", locals: {pagination: @pagination, key: "cursor"} %>
     </div>
-    <div class="dashboard span6">
+    <div class="dashboard span4-5 offset0-5">
       <%= render partial: "layouts/user", locals: {user: @user, relationship: @relationship} %>
     </div>
   </div>

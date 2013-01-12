@@ -4,11 +4,11 @@
     <h1><%= yield :title %></h1>
   </div>
   <div class="page-body row">
-    <div class="content span9">
+    <div class="content span7">
       <%= render partial: "layouts/media-grid-photos", locals: {photos: @photos} %>
       <%= render partial: "layouts/page-status", locals: {pagination: @pagination, key: "max_id"} %>
     </div>
-    <div class="dashboard span6">
+    <div class="dashboard span4-5 offset0-5">
       <div class="tag">
         <div class="name">
           <h2><%= link_to "##{@tag.name}", tags_url(name: @tag.name) %></h2>

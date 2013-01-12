@@ -2,7 +2,5 @@
   <span class="count"><%= @comments.size %></span> comments
 </div>
 <div class="comments-data">
-  <% @comments.each do |c| %>
-  <%= render partial: "layouts/comment", locals: {photo: nil, comment: c} %>
-  <% end %>
+  <%= render partial: "layouts/comment", collection: @comments, locals: {photo: nil} %>
 </div>

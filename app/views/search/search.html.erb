@@ -1,29 +1,29 @@
 <% if params[:name]  %>
-<% content_for :title, "Search: #{params[:name]}" %>
+  <% content_for :title, "Search: #{params[:name]}" %>
 <% else %>
-<% content_for :title, "Search" %>
+  <% content_for :title, "Search" %>
 <% end %>
 <div class="container">
   <div class="page-header">
     <h1><%= yield :title %></h1>
   </div>
-  <%= form_tag :search, method: :get do %>
-  <%= text_field_tag :name, params[:name] %>
-  <%= submit_tag "Search", class: "btn primary" %>
+  <%= form_tag :search, method: :get, class: "form-search" do %>
+  <%= text_field_tag :name, params[:name], class: "search-query" %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
   <% if @tags && @users %>
-  <hr />
-  <div class="page-body row">
-    <div class="content span9">
-      <h2>User search result</h2>
-      <hr />
-      <%= render partial: "layouts/media-grid-users", locals: {users: @users} %>
+    <hr />
+    <div class="page-body row">
+      <div class="content span7">
+        <h2>User search result</h2>
+        <hr />
+        <%= render partial: "layouts/media-grid-users", locals: {users: @users} %>
+      </div>
+      <div class="content span5">
+        <h2>Tag search result</h2>
+        <hr />
+        <%= render partial: "layouts/tags", locals: {tags: @tags} %>
+      </div>
     </div>
-    <div class="content span6">
-      <h2>Tag search result</h2>
-      <hr />
-      <%= render partial: "layouts/tags", locals: {tags: @tags} %>
-    </div>
-  </div>
   <% end %>
 </div>

@@ -1,9 +1,9 @@
 <% if @pagination && @pagination["next_#{key}"] %>
-<div class="page-status">
-  <div class="page-button next-page">
-    <a href="<%= url_for params.merge(key => @pagination['next_' + key]) %>" class="btn" data-remote="true">
-      Load more...
-    </a>
+  <div class="page-status">
+    <div class="page-button next-page">
+      <a href="<%= url_for params.merge(key => @pagination['next_' + key]) %>" class="btn" data-remote="true">
+        Load more...
+      </a>
+    </div>
   </div>
-</div>
 <% end %>

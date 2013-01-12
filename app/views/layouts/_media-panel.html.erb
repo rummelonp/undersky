@@ -1,93 +1,89 @@
 <div class="modal-container">
   <% photos.each do |p| %>
-  <div class="modal media-panel hide" data-id="<%= p.id %>">
-    <div class="modal-header user">
-      <a href="#" class="close">×</a>
-      <div class="username author">
-        <%= link_to p.user.username, recent_url(id: p.user.username) %>
-      </div>
-    </div>
-    <div class="modal-body photo">
-      <%= link_to_external (photo_tag p, :low_resolution), p.link %>
-    </div>
-    <% if authenticated? %>
-    <div class="modal-footer status">
-      <div class="likes-status <%= p.user_has_liked ? 'like' : 'unlike' %>">
-        <div class="pull-left likes-button like">
-          <a href="<%= like_url(id: p.id) %>" class="btn small" data-remote="true" data-method="post">like</a>
-        </div>
-        <div class="pull-left likes-button unlike">
-          <a href="<%= unlike_url(id: p.id) %>" class="btn small primary" data-remote="true" data-method="delete">liked</a>
-        </div>
-      </div>
-      <div class="comments-status">
-        <div class="pull-left comments-button create-comment">
-          <a href="<%= create_comment_url(id: p.id, format: :html) %>" class="btn small">comment</a>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <% if caption_text p %>
-    <div class="modal-footer caption">
-      <%= image_tag p.user.profile_picture, class: "profile-picture" %>
-      <div class="username author">
-        <%= link_to p.user.username, recent_url(id: p.user.username) %>
-      </div>
-      <span class="text">
-        <%= emoji_tag tags_tag caption_text p %>
-        <span class="created-time">
-          <%= Time.at(p.created_time.to_i).to_pretty %>
-        </span>
-      </span>
-    </div>
-    <% end %>
-    <% if p.comments[:count] > 0 %>
-    <div class="modal-footer comments">
-      <% if authenticated? && p.comments[:count] > p.comments.data.size %>
-      <div class="comments-count comments-load-link">
-        <a href="<%= comments_url(id: p.id, format: :html) %>" data-remote="true">
-          view all <span class="count"><%= p.comments[:count] %></span> comments
-        </a>
-      </div>
-      <% else %>
-      <div class="comments-count">
-        <span class="count"><%= p.comments[:count] %></span> comments
-      </div>
-      <% end %>
-      <div class="comments-data">
-        <% p.comments.data.each do |c| %>
-        <%= render partial: "layouts/comment", locals: {photo: p, comment: c} %>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-    <% if p.likes[:count] > 0 %>
-    <div class="modal-footer likes">
-      <% if authenticated? && p.likes[:count] > p.likes.data.size %>
-      <div class="likes-count likes-load-link">
-        <a href="<%= likes_url(id: p.id) %>" data-remote="true">
-          view all <span class="count"><%= p.likes[:count] %></span> likes
-        </a>
-      </div>
-      <% else %>
-      <div class="likes-count">
-        <span class="count"><%= p.likes[:count] %></span> likes
-      </div>
-      <% end %>
-      <div class="likes-data">
-        <% p.likes.data.each do |l| %>
-        <span class="data-container" data-username="<%= l.username %>">
-          <div class="group">
-          <%= link_to recent_url(id: l.username) do %>
-            <%= image_tag l.profile_picture, class: "profile-picture"%>
-            <span class="username"><%= l.username %></span> 
+    <div class="modal media-panel hide" data-id="<%= p.id %>">
+      <div class="modal-header user">
+        <a href="#" class="close">×</a>
+        <%= image_tag p.user.profile_picture, class: "profile-picture" %>
+        <div class="description">
+          <span class="username author">
+            <%= link_to p.user.username, recent_url(id: p.user.username) %>
+          </span>
+          <% if p.location && p.location.name.present? %>
+            <i class="icon-map-marker"></i>
+            <span class="location">
+              <%= p.location.name %>
+            </span>
           <% end %>
         </div>
-        </span>
-        <% end %>
       </div>
+      <div class="modal-body photo">
+        <%= link_to_external (photo_tag p, :low_resolution), p.link %>
+      </div>
+      <% if authenticated? %>
+        <div class="modal-footer status">
+          <div class="likes-status <%= p.user_has_liked ? 'like' : 'unlike' %>">
+            <div class="pull-left likes-button like">
+              <a href="<%= like_url(id: p.id, format: :html) %>" class="btn btn-small" data-remote="true" data-method="post">like</a>
+            </div>
+            <div class="pull-left likes-button unlike">
+              <a href="<%= unlike_url(id: p.id) %>" class="btn btn-small btn-primary" data-remote="true" data-method="delete">liked</a>
+            </div>
+          </div>
+          <div class="comments-status">
+            <div class="pull-left comments-button create-comment">
+              <a href="<%= create_comment_url(id: p.id, format: :html) %>" class="btn btn-small">comment</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="modal-footer caption">
+        <%= image_tag p.user.profile_picture, class: "profile-picture" %>
+        <div class="username author">
+          <%= link_to p.user.username, recent_url(id: p.user.username) %>
+        </div>
+        <span class="text">
+          <%= emoji_tag tags_tag caption_text p %>
+          <span class="created-time">
+            <%= Time.at(p.created_time.to_i).to_pretty %>
+          </span>
+        </span>
+      </div>
+      <% if p.comments[:count] > 0 %>
+        <div class="modal-footer comments">
+          <% if authenticated? && p.comments[:count] > p.comments.data.size %>
+            <div class="comments-count comments-load-link">
+              <a href="<%= comments_url(id: p.id, format: :html) %>" data-remote="true">
+                view all <span class="count"><%= p.comments[:count] %></span> comments
+              </a>
+            </div>
+          <% else %>
+            <div class="comments-count">
+              <span class="count"><%= p.comments[:count] %></span> comments
+            </div>
+          <% end %>
+          <div class="comments-data">
+            <%= render partial: "layouts/comment", collection: p.comments.data, locals: {photo: p} %>
+          </div>
+        </div>
+      <% end %>
+      <% if p.likes[:count] > 0 %>
+        <div class="modal-footer likes">
+          <% if authenticated? && p.likes[:count] > p.likes.data.size %>
+            <div class="likes-count likes-load-link">
+              <a href="<%= likes_url(id: p.id, format: :html) %>" data-remote="true">
+                view all <span class="count"><%= p.likes[:count] %></span> likes
+              </a>
+            </div>
+          <% else %>
+            <div class="likes-count">
+              <span class="count"><%= p.likes[:count] %></span> likes
+            </div>
+          <% end %>
+          <div class="likes-data">
+            <%= render partial: "layouts/like", collection: p.likes.data %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <% end %>
-  </div>
   <% end %>
 </div>

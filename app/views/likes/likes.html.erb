@@ -1,0 +1,6 @@
+<div class="likes-count">
+  <span class="count"><%= @likes.size %></span> likes
+</div>
+<div class="likes-data">
+  <%= render partial: "layouts/like", collection: @likes %>
+</div>

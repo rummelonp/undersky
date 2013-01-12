@@ -2,13 +2,20 @@ class LikesController < ApplicationController
   before_filter :authenticate
 
   def likes
-    response = client.media_likes params[:id]
-    render json: response.to_json
+    @likes = client.media_likes params[:id]
+    respond_to do |format|
+      format.json { render json: @likes.to_json }
+      format.html { render layout: false }
+    end
   end
 
   def like
     client.like_media params[:id]
-    render text: ''
+    @like = session[:user]
+    respond_to do |format|
+      format.json { render json: @like.to_json }
+      format.html { render layout: false }
+    end
   end
 
   def unlike

@@ -1,15 +1,16 @@
 source :rubygems
 
 gem 'rails', '3.2.9'
-gem 'instagram', path: 'vendor/gems/instagram-0.8'
-gem 'twitter-bootstrap-rails', '1.4.3'
-gem 'jquery-rails', '2.0.3'
-gem 'redis-rails', '~> 3.2.3'
+gem 'instagram', '0.8.5'
+gem 'twitter-bootstrap-rails', '~> 2.2'
+gem 'jquery-rails', '~> 2.1'
+gem 'redis-rails', '~> 3.2'
 
 group :assets do
-  gem 'less-rails', '~> 2.1.8'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier', '~> 1.3.0'
+  gem 'less-rails', '~> 2.2'
+  gem 'therubyracer', '~> 0.11'
+  gem 'coffee-rails', '~> 3.2'
+  gem 'uglifier', '~> 1.3'
 end
 
 group :development do

@@ -1,27 +1,30 @@
 // Bootstrap
-@import "twitter/bootstrap";
+@import "twitter/bootstrap/bootstrap";
 
-// Baseline grid
-@basefont:          13px;
-@baseline:          18px;
+// Set the correct sprite paths
+@iconSpritePath: "twitter/bootstrap/glyphicons-halflings.png";
+@iconWhiteSpritePath: "twitter/bootstrap/glyphicons-halflings-white.png";
+@import "twitter/bootstrap/sprites.less";
 
-// Griditude
-@gridColumns:       15;
-
-// Topbar
-.topbar {
-  & + .page {
-    padding-top: 50px;
-  }
-  .dropdown-toggle {
-     vertical-align: top;
-  }
-  .dropdown-menu {
-    z-index: 9000;
-  }
+// Navbar
+body {
+  padding-top: 40px;
 }
 
-// Media Grid
+// Content
+.content {
+  min-height: 1px;
+}
+
+// Grid System
+.span4-5 {
+  width: 340px;
+}
+.offset0-5 {
+  margin-left: 60px;
+}
+
+// Thumbnails (previously .media-grid up until v1.4)
 .media-grid {
   a {
     &:focus {
@@ -32,27 +35,48 @@
       border-color: @orange;
     }
   }
+  p {
+    margin: 0;
+  }
 }
 
 // Modals
 .modal {
-  &.media-panel,
-  &.create-comment {
+  // Modal Mixins
+  .modal-base() {
     background-color: whiteSmoke;
     .modal-header,
     .modal-body {
       background-color: @white;
     }
+    .modal-footer {
+      text-align: left;
+    }
   }
 
+  // Media Panel Modal
   &.media-panel {
-    width: 340px;
+    .modal-base();
+    width: 360px;
     top: 65px;
     left: 50%;
     max-height: 100%;
     overflow-y: auto;
-    margin: 0 0 0 99px;
+    margin: 0 0 0 110px;
     z-index: 1000;
+    .modal-header.user {
+      height: 40px;
+      padding-top: 6px;
+      padding-bottom: 7px;
+      .description {
+        margin-top: 10px;
+      }
+    }
+    .modal-body.photo {
+      img {
+        padding: 0 10px;
+      }
+    }
     .close {
       margin-top: 0;
     }
@@ -74,6 +98,7 @@
     .profile-picture {
       float: left;
       .square(30px);
+      margin-top: 5px;
       margin-right: 8px;
       .border-radius(4px);
     }
@@ -86,7 +111,6 @@
       margin-top: 10px;
     }
     .likes-data .group {
-      position: relative;
       float: left;
       width: 50px;
       line-height: 16px;
@@ -101,7 +125,9 @@
     }
   }
 
+  // Create Comment Modal
   &.create-comment {
+    .modal-base();
     max-height: 100%;
     form {
       line-height: 18px;
@@ -119,13 +145,12 @@
   }
 }
 
-// Alert
-.alert-message {
-  &.growl {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 8000;
+// Page Status
+.page-status {
+  padding: 0 0 18px;
+  .page-button a {
+    display: block;
+    text-align: center;
   }
 }
 
@@ -139,24 +164,17 @@
   }
 }
 
-// Undersky
-.content {
-  min-height: 1px;
-  .page-status {
-    padding: 0 0 18px;
-    .page-button a {
-      display: block;
-      text-align: center;
-    }
-  }
-}
+// User Dashboard
 .user {
   font-size: 14px;
   h2 {
     font-size: 18px
   }
   .relationships-status {
+    .clearfix();
     .outgoing-status {
+      float: left;
+      margin-right: 15px;
       .relationships-button {
         display: none;
       }
@@ -165,17 +183,37 @@
         display: block;
       }
     }
+    .incoming-status {
+      padding: 3px 0 0;
+      .relationships-text {
+        display: none;
+      }
+      &.followed-by .relationships-text.followed-by {
+        display: block;
+      }
+    }
   }
-}
-.user,
-.tag {
   .count {
     font-weight: bold;
   }
 }
+
+// Tags Seaech List
+.tags {
+  td {
+    width: 50%;
+  }
+  .count {
+    font-weight: bold;
+  }
+}
+
+// Created Time
 .created-time {
   color: @gray;
 }
+
+// Delete Button
 .delete {
   color: gray;
   font-weight: bold;
