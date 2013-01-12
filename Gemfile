@@ -1,6 +1,7 @@
 source :rubygems
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
+
 gem 'instagram', '0.8.5'
 gem 'twitter-bootstrap-rails', '~> 2.2'
 gem 'jquery-rails', '~> 2.1'
