@@ -29,11 +29,6 @@
               <a href="<%= unlike_url(id: p.id) %>" class="btn btn-small btn-primary" data-remote="true" data-method="delete">liked</a>
             </div>
           </div>
-          <div class="comments-status">
-            <div class="pull-left comments-button create-comment">
-              <a href="<%= create_comment_url(id: p.id, format: :html) %>" class="btn btn-small">comment</a>
-            </div>
-          </div>
         </div>
       <% end %>
       <div class="modal-footer caption">
