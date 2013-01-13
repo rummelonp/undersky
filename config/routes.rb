@@ -20,6 +20,9 @@ Undersky::Application.routes.draw do
 
   get "tags/:name(/max_id/:max_id)" => "tags#recent", as: :tags
 
+  get "media/search"                  => "media#search",    as: :media_search
+  get "location/search"               => "location#search", as: :location_search
+  get "location/nearby"               => "location#nearby", as: :nearby
   get "location/:id(/max_id/:max_id)" => "location#recent", as: :location
 
   get "feed(/max_id/:max_id)"            => "users#feed",   as: :feed
