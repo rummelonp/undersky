@@ -1,4 +1,4 @@
-<% content_for :title, "Location: #{@location.name}" %>
+<% content_for :title, @location.name %>
 <% content_for :googlemaps do %>
   <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 <% end %>
@@ -14,18 +14,14 @@
     <div class="dashboard span4-5 offset0-5">
       <div class="location">
         <div class="name">
-          <h2><%= link_to @location.name, location_url(id: @location.id), data: @location %></h2>
+          <h2><%= link_to @location.name, location_url(id: @location.id) %></h2>
         </div>
         <hr />
-        <%= content_tag :div, nil, class: "map" %>
+        <%= content_tag :div, nil, class: "map", data: @location %>
         <hr />
         <h3>Nearby</h3>
         <div class="nearby">
-          <% @locations.each do |l| %>
-            <div class="name">
-              <%= link_to l.name, location_url(id: l.id), data: l %>
-            </div>
-          <% end %>
+          <%= render partial: "layouts/location", collection: @locations %>
         </div>
       </div>
     </div>

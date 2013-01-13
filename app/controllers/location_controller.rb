@@ -8,4 +8,18 @@ class LocationController < ApplicationController
     @locations = client.location_search @location.latitude, @location.longitude
     @locations.delete(@location)
   end
+
+  def nearby
+  end
+
+  def search
+    lat = params.delete :lat
+    lng = params.delete :lng
+    @locations = client.location_search lat, lng
+    respond_to do |format|
+      format.json { render json: @locations.to_json }
+      format.html { render layout: false }
+    end
+  end
+
 end

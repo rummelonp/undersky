@@ -360,9 +360,7 @@ class Undersky
 
     @show: ->
       map = $('.map')
-      return if map.size() == 0
-      place = $('.location h2 a')
-      data = place.data()
+      data = map.data()
       gmaps = new GMaps
         div: map.get(0)
         lat: data.latitude
@@ -373,7 +371,62 @@ class Undersky
         title: data.name
 
     do ->
-      $d.ready self.show
+      if location.pathname.match(/^\/location\/\d+/)
+        $d.ready self.show
+
+  class Nearby
+    self = this
+
+    @nearby: ->
+      map = $('.map')
+      gmaps = new GMaps
+        div: map.get(0)
+        lat: 35.685326
+        lng: 139.7531
+      GMaps.geolocate
+        success: (position) ->
+          lat = position.coords.latitude
+          lng = position.coords.longitude
+          gmaps.setCenter(lat, lng)
+          self.showMedia(lat, lng)
+          self.showLocation(lat, lng)
+        error: (error) ->
+          Growl.show('Geolocation failed: ' + error.message, 'error')
+        not_supported: ->
+          Growl.show("Your browser does not support geolocation", 'error')
+
+    @showLocation: (lat, lng) ->
+      $.ajax
+        url: '/location/search.html'
+        data:
+          lat: lat
+          lng: lng
+        beforeSend: ->
+          Growl.show('Load nearby places...', 'info')
+        success: (data) ->
+          $('.nearby').append(data)
+        error: ->
+          Growl.show('Failed to load nearby places', 'error')
+
+    @showMedia: (lat, lng) ->
+      $.ajax
+        url: '/media/search.html'
+        data:
+          lat: lat
+          lng: lng
+        beforeSend: ->
+          Growl.show('Load nearby media...', 'info')
+        success: (data) ->
+          window.data = data
+          data = $(data)
+          $('.media-grid').append(data.find('.media-grid > *'))
+          $('.modal-container').append(data.find('.modal-container > *'))
+        error: ->
+          Growl.show('Failed to load nearby media', 'error')
+
+    do ->
+      if location.pathname.match(/^\/location\/nearby$/)
+        $d.ready self.nearby
 
   class Relationships
     self = this
