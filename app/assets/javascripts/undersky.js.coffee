@@ -152,7 +152,7 @@ class Undersky
         self = $(this)
         spinner = self.data('spinner')
         spinner.hide()
-        Growl.show('likes load failed', 'error')
+        Growl.show('Failed to load likes, try again later', 'error')
 
     @likesStatusHandler:
       beforeSend: (e) ->
@@ -170,7 +170,7 @@ class Undersky
         panel.find('[data-likes-count]').attr('data-likes-count', count)
         panel.find('.likes-data').prepend(data)
       error: (e, data) ->
-        Growl.show('like failed', 'error')
+        Growl.show('Failed to like, try again later', 'error')
 
     @unlikeHandler:
       success: (e, data) ->
@@ -183,7 +183,7 @@ class Undersky
         panel.find('[data-likes-count]').attr('data-likes-count', count)
         panel.find('.likes-data [data-username="' + user.username + '"]').remove()
       error: (e, data) ->
-        Growl.show('unlike failed', 'error')
+        Growl.show('Failed to unlike, try again later', 'error')
 
     @action: (e) ->
       return if e.hasModifierKey()
@@ -223,7 +223,7 @@ class Undersky
         self = $(this)
         spinner = self.data('spinner')
         spinner.hide()
-        Growl.show('comments load failed', 'error')
+        Growl.show('Failed to load comments, try again later', 'error')
 
     @deleteCommentHandler:
       beforeSend: (e) ->
@@ -237,7 +237,7 @@ class Undersky
           self.parents('.comment').remove()
       error: (e, data) ->
         $(this).__show()
-        Growl.show('delete comment failed', 'error')
+        Growl.show('Failed to delete comment, try again later', 'error')
 
     do ->
       $('.comments-load-link a').bindAjaxHandler self.commentsHandler
@@ -332,7 +332,7 @@ class Undersky
           panel.find('.comments-count .count').incText()
         container.append(data)
       error: (e, ddata) ->
-        Growl.show('comment request failed', 'error')
+        Growl.show('Failed to create comment, try again later', 'error')
       complete: (e, data) ->
         self = $(this)
         self.find('input, textarea').each(-> $(this).enableElement())
@@ -389,11 +389,11 @@ class Undersky
 
     @followHandler:
       error: (e, data) ->
-        Growl.show('follow request failed', 'error')
+        Growl.show('Failed to follow, try again later', 'error')
 
     @unfollowHandler:
       error: (e, data) ->
-        Growl.show('unfollow request failed', 'error')
+        Growl.show('Failed to unfollow, try again later', 'error')
 
     do ->
       $('.relationships-button a').bindAjaxHandler self.outgoingStatusHandler
@@ -418,7 +418,7 @@ class Undersky
         self.replaceWith(data.find('.page-button.next-page a'))
       error: (e, data) ->
         $(this).enableElement()
-        Growl.show('next page request failed', 'error')
+        Growl.show('Failed to load next page, try again later', 'error')
 
     do ->
       $('.page-button.next-page a').bindAjaxHandler self.nextPageHandler
