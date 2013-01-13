@@ -46,6 +46,16 @@ describe :routes do
     it { should route_to(controller: 'tags', action: 'recent', name: 'query', max_id: '9578621') }
   end
 
+  describe 'GET "location/36935"' do
+    subject { {get: '/location/36935'} }
+    it { should route_to(controller: 'location', action: 'recent', id: '36935') }
+  end
+
+  describe 'GET "location/36935/max_id/354879231264417940_6097937"' do
+    subject { {get: '/location/36935/max_id/354879231264417940_6097937'} }
+    it { should route_to(controller: 'location', action: 'recent', id: '36935', max_id: '354879231264417940_6097937') }
+  end
+
   describe 'GET "feed"' do
     subject { {get: '/feed'} }
     it { should route_to(controller: 'users', action: 'feed') }

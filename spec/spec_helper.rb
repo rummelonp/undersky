@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -106,6 +107,15 @@ module SpecHelper
     @tag_response ||= Hashie::Mash.new({
       name: 'tag',
       media_count: 1
+    })
+  end
+
+  def location_response
+    @location_response ||= Hashie::Mash.new({
+      id: 36935,
+      name: "ラーメン二郎 目黒店",
+      latitude: 35.634137365,
+      longitude: 139.707142711
     })
   end
 end

@@ -20,6 +20,8 @@ Undersky::Application.routes.draw do
 
   get "tags/:name(/max_id/:max_id)" => "tags#recent", as: :tags
 
+  get "location/:id(/max_id/:max_id)" => "location#recent", as: :location
+
   get "feed(/max_id/:max_id)"            => "users#feed",   as: :feed
   get "liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
   get "self"                             => "users#self",   as: :profile

@@ -11,7 +11,7 @@
           <% if p.location && p.location.name.present? %>
             <i class="icon-map-marker"></i>
             <span class="location">
-              <%= p.location.name %>
+              <%= link_to p.location.name, location_url(id: p.location.id) %>
             </span>
           <% end %>
         </div>
