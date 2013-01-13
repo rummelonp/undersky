@@ -7,6 +7,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery.bootstrap-growl
-//= require jquery.extension
-//= require undersky
+//= require_tree .
