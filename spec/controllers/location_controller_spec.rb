@@ -10,6 +10,7 @@ describe LocationController do
     @data = Hashie::Mash.new(data: @photos)
 
     @location = location_response
+    @locations = [@location] * 10
   end
 
   describe "GET 'location'" do
@@ -17,6 +18,7 @@ describe LocationController do
       Instagram::Client.should_receive(:new).and_return(@client)
       @client.should_receive(:location_recent_media).and_return(@data)
       @client.should_receive(:location).and_return(@location)
+      @client.should_receive(:location_search).and_return(@locations)
       get :recent, id: 36935
     end
 
