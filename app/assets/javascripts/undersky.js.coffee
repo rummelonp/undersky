@@ -166,7 +166,8 @@ class Undersky
         status = $(this).parents('.likes-status')
         status.removeClass('unlike').addClass('like')
         panel = self.parents('.modal.media-panel')
-        panel.find('.likes-count .count').incText()
+        count = panel.find('.likes-count .count').incText().intText()
+        panel.find('[data-likes-count]').attr('data-likes-count', count)
         panel.find('.likes-data').prepend(data)
       error: (e, data) ->
         Growl.show('like failed', 'error')
@@ -178,7 +179,8 @@ class Undersky
         status = self.parents('.likes-status')
         status.removeClass('like').addClass('unlike')
         panel = self.parents('.modal.media-panel')
-        panel.find('.likes-count .count').decText()
+        count = panel.find('.likes-count .count').decText().intText()
+        panel.find('[data-likes-count]').attr('data-likes-count', count)
         panel.find('.likes-data [data-username="' + user.username + '"]').remove()
       error: (e, data) ->
         Growl.show('unlike failed', 'error')
