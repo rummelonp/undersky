@@ -353,6 +353,26 @@ class Undersky
       $d.on 'click', '.modal.create-comment [name="cancel"]', self.hide
       $d.on 'keydown', self.action
 
+  class Location
+    self = this
+
+    @show: ->
+      map = $('.map')
+      return if map.size() == 0
+      place = $('.location h2 a')
+      data = place.data()
+      gmaps = new GMaps
+        div: map.get(0)
+        lat: data.latitude
+        lng: data.longitude
+      gmaps.addMarker
+        lat: data.latitude
+        lng: data.longitude
+        title: data.name
+
+    do ->
+      $d.ready self.show
+
   class Relationships
     self = this
 

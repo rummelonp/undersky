@@ -1,4 +1,8 @@
 <% content_for :title, "Location: #{@location.name}" %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+  <%= javascript_include_tag "gmaps" %>
+<% end %>
 <div class="container">
   <div class="page-header">
     <h1><%= yield :title %></h1>
@@ -9,6 +13,22 @@
       <%= render partial: "layouts/page-status", locals: {pagination: @pagination, key: "max_id"} %>
     </div>
     <div class="dashboard span4-5 offset0-5">
+      <div class="location">
+        <div class="name">
+          <h2><%= link_to @location.name, location_url(id: @location.id), data: @location %></h2>
+        </div>
+        <hr />
+        <%= content_tag :div, nil, class: "map" %>
+        <hr />
+        <h3>Nearby</h3>
+        <div class="nearby">
+          <% @locations.each do |l| %>
+            <div class="name">
+              <%= link_to l.name, location_url(id: l.id), data: l %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
