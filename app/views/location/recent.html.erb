@@ -1,0 +1,15 @@
+<% content_for :title, "Location: #{@location.name}" %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= yield :title %></h1>
+  </div>
+  <div class="page-body row">
+    <div class="content span7">
+      <%= render partial: "layouts/media-grid-photos", locals: {photos: @photos} %>
+      <%= render partial: "layouts/page-status", locals: {pagination: @pagination, key: "max_id"} %>
+    </div>
+    <div class="dashboard span4-5 offset0-5">
+    </div>
+  </div>
+</div>
+<%= render partial: "layouts/media-panel", locals: {photos: @photos} %>
