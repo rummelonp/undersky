@@ -32,7 +32,7 @@
     });
 
     css = {
-      'position': 'absolute',
+      'position': 'fixed',
       'margin': 0,
       'z-index': '9999'
     };
