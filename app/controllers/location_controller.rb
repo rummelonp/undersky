@@ -5,5 +5,7 @@ class LocationController < ApplicationController
     @photos = response.data
     @pagination = response.pagination
     @location = client.location id
+    @locations = client.location_search @location.latitude, @location.longitude
+    @locations.delete(@location)
   end
 end
