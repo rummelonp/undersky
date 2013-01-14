@@ -14,6 +14,13 @@ class Undersky
           from: 'top'
           amount: 20
 
+  class Loading
+    @show: ->
+      $('.page').addClass('loading')
+
+    @hide: ->
+      $('.page').removeClass('loading')
+
   class Spinner
     constructor: (element) ->
       @element = element
@@ -388,14 +395,18 @@ class Undersky
           lat = position.coords.latitude
           lng = position.coords.longitude
           gmaps.setCenter(lat, lng)
-          self.showMedia(lat, lng)
-          self.showLocation(lat, lng)
+          self.load(lat, lng)
         error: (error) ->
           Growl.show('Geolocation failed: ' + error.message, 'error')
         not_supported: ->
           Growl.show("Your browser does not support geolocation", 'error')
 
-    @showLocation: (lat, lng) ->
+    @load: (lat, lng) ->
+      isLoadedLocation = false
+      isLoadedMedia = false
+      hideLoadingIfLoaded = ->
+        Loading.hide() if isLoadedLocation && isLoadedMedia
+      Loading.show()
       $.ajax
         url: '/location/search.html'
         data:
@@ -405,10 +416,10 @@ class Undersky
           Growl.show('Load nearby places...', 'info')
         success: (data) ->
           $('.nearby').append(data)
+          isLoadedLocation = true
+          hideLoadingIfLoaded()
         error: ->
-          Growl.show('Failed to load nearby places', 'error')
-
-    @showMedia: (lat, lng) ->
+          Growl.show('Failed to load nearby places, please reload', 'error')
       $.ajax
         url: '/media/search.html'
         data:
@@ -421,8 +432,10 @@ class Undersky
           data = $(data)
           $('.media-grid').append(data.find('.media-grid > *'))
           $('.modal-container').append(data.find('.modal-container > *'))
+          isLoadedMedia = true
+          hideLoadingIfLoaded()
         error: ->
-          Growl.show('Failed to load nearby media', 'error')
+          Growl.show('Failed to load nearby media, please reload', 'error')
 
     do ->
       if location.pathname.match(/^\/location\/nearby$/)
