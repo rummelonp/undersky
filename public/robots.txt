@@ -2,11 +2,17 @@
 #
 # To ban all spiders from the entire site uncomment the next two lines:
 User-Agent: *
+Allow: /$
+Allow: /about
+Disallow: /
+Disallow: /feed
+Disallow: /liked
+Disallow: /self
+Disallow: /users
+Disallow: /tags
+Disallow: /media
+Disallow: /location
+Disallow: /search
 Disallow: /authorize
 Disallow: /access_token
 Disallow: /logout
-Disallow: /users/
-Disallow: /tags/
-Disallow: /media/
-Disallow: /search
-Disallow: /search/
