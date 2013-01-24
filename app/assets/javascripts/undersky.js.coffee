@@ -263,17 +263,22 @@ class Undersky
       caption_data = panel.find('.caption').children()
       comments_data = panel.find('.comments-data').children()
       container = $('<div class="modal create-comment" data-id="' + panel.data('id') + '"></div>')
-      form = $('<form action="' + self.attr('href') + '" method="post" data-remote="true"></form>')
-      header = $('<div class="modal-header">comment</div>')
-      body = $('<div class="modal-body"><textarea name="text" rows="4" cols="50" required="required"></textarea></div>')
-      footer = $('<div class="modal-footer"></div>')
-      footer.append('<div class="pull-left"><input class="btn primary" name="commit" type="submit" value="comment" disabled="disabled" /></div>')
-      footer.append('<div class="pull-left"><input class="btn" name="cancel" type="reset" value="cancel" /></div>')
-      form.append(header, body, footer)
+      form = $([
+        '<form action="' + self.attr('href') + '" method="post" data-remote="true">',
+        '  <div class="modal-header">comment</div>',
+        '  <div class="modal-body">',
+        '    <textarea name="text" rows="4" cols="50" required="required"></textarea>',
+        '  </div>',
+        '  <div class="modal-footer">',
+        '    <div class="pull-left"><input class="btn primary" name="commit" type="submit" value="comment" disabled="disabled" /></div>',
+        '    <div class="pull-left"><input class="btn" name="cancel" type="reset" value="cancel" /></div>',
+        '  </div>',
+        '</form>',
+      ].join("\n"))
       if caption_data.size() > 0
         caption = $('<div class="modal-footer caption"></div>')
         caption.append(caption_data.clone())
-      form.append(caption)
+        form.append(caption)
       if comments_data.size() > 0
         comments = $('<div class="modal-footer comments"></div>')
         comments.append(comments_data.clone())
