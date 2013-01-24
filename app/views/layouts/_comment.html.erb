@@ -1,6 +1,6 @@
-<div class="comment">
+<div class="comment data-container" data-username="<%= comment.from.username %>">
   <%= image_tag comment.from.profile_picture, class: "profile-picture" %>
-  <span class="username" data-username="<%= comment.from.username %>">
+  <span class="username">
     <%= link_to comment.from.username, recent_url(id: comment.from.username) %>
   </span>
   <span class="text">
@@ -9,4 +9,9 @@
       <%= Time.at(comment.created_time.to_i).to_pretty %>
     </span>
   </span>
+  <% if authenticated? && (mine?(comment.from.id) || (photo && mine?(photo.user.id))) %>
+    <span class="comments-button delete-comment">
+      <a href="<%= delete_comment_url(id: comment.from.id, comment_id: comment.id) %>" class="delete" data-remote="true" data-method="delete" data-confirm="Are you sure want to delete this comment?">×</a>
+    </span>
+  <% end %>
 </div>

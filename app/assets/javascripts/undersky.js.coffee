@@ -237,11 +237,11 @@ class Undersky
         $(this).__hide()
       success: (e, data) ->
         self = $(this)
+        user = $d.data('user')
         panel = self.parents('.modal.media-panel')
-        if panel.find('.comments-count .count').decText().intText() == 0
-          panel.find('.comments').remove()
-        else
-          self.parents('.comment').remove()
+        count = panel.find('.comments-count .count').decText().intText()
+        panel.find('[data-comments-count]').attr('data-comments-count', count)
+        panel.find('.comments-data [data-username="' + user.username + '"]').remove()
       error: (e, data) ->
         $(this).__show()
         Growl.show('Failed to delete comment, try again later', 'error')
@@ -263,17 +263,22 @@ class Undersky
       caption_data = panel.find('.caption').children()
       comments_data = panel.find('.comments-data').children()
       container = $('<div class="modal create-comment" data-id="' + panel.data('id') + '"></div>')
-      form = $('<form action="' + self.attr('href') + '" method="post" data-remote="true"></form>')
-      header = $('<div class="modal-header">comment</div>')
-      body = $('<div class="modal-body"><textarea name="text" rows="4" cols="50" required="required"></textarea></div>')
-      footer = $('<div class="modal-footer"></div>')
-      footer.append('<div class="pull-left"><input class="btn primary" name="commit" type="submit" value="comment" disabled="disabled" /></div>')
-      footer.append('<div class="pull-left"><input class="btn" name="cancel" type="reset" value="cancel" /></div>')
-      form.append(header, body, footer)
+      form = $([
+        '<form action="' + self.attr('href') + '" method="post" data-remote="true">',
+        '  <div class="modal-header">comment</div>',
+        '  <div class="modal-body">',
+        '    <textarea name="text" rows="4" cols="50" required="required"></textarea>',
+        '  </div>',
+        '  <div class="modal-footer">',
+        '    <div class="pull-left"><input class="btn primary" name="commit" type="submit" value="comment" disabled="disabled" /></div>',
+        '    <div class="pull-left"><input class="btn" name="cancel" type="reset" value="cancel" /></div>',
+        '  </div>',
+        '</form>',
+      ].join("\n"))
       if caption_data.size() > 0
         caption = $('<div class="modal-footer caption"></div>')
         caption.append(caption_data.clone())
-      form.append(caption)
+        form.append(caption)
       if comments_data.size() > 0
         comments = $('<div class="modal-footer comments"></div>')
         comments.append(comments_data.clone())
@@ -318,26 +323,12 @@ class Undersky
         self.find('input, textarea').each(-> $(this).disableElement())
       success: (e, data) ->
         self = $(this)
-        panel = do ->
-          container = self.parents('.modal.create-comment')
-          container.modal('hide')
-          $('[data-id="' + container.data('id') + '"]')
-        return if panel.size() == 0
-        container = panel.find('.comments-data')
-        if container.size() == 0
-          comments = $('<div class="modal-footer comments"></div>')
-          count = $('<div class="comments-count"></div>')
-          count.append('<span class="count">1</span> comments</span>')
-          container = $('<div class="comments-data"></div>')
-          comments.append(count, container)
-          caption = panel.find('.caption')
-          if caption.size() > 0
-            caption.after(comments)
-          else
-            panel.find('.status').after(comments)
-        else
-          panel.find('.comments-count .count').incText()
-        container.append(data)
+        container = self.parents('.modal.create-comment')
+        container.modal('hide')
+        panel = $('[data-id="' + container.data('id') + '"]')
+        count = panel.find('.comments-count .count').incText().intText()
+        panel.find('[data-comments-count]').attr('data-comments-count', count)
+        panel.find('.comments-data').append(data)
       error: (e, ddata) ->
         Growl.show('Failed to create comment, try again later', 'error')
       complete: (e, data) ->
