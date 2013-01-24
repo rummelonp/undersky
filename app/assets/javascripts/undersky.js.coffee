@@ -323,26 +323,12 @@ class Undersky
         self.find('input, textarea').each(-> $(this).disableElement())
       success: (e, data) ->
         self = $(this)
-        panel = do ->
-          container = self.parents('.modal.create-comment')
-          container.modal('hide')
-          $('[data-id="' + container.data('id') + '"]')
-        return if panel.size() == 0
-        container = panel.find('.comments-data')
-        if container.size() == 0
-          comments = $('<div class="modal-footer comments"></div>')
-          count = $('<div class="comments-count"></div>')
-          count.append('<span class="count">1</span> comments</span>')
-          container = $('<div class="comments-data"></div>')
-          comments.append(count, container)
-          caption = panel.find('.caption')
-          if caption.size() > 0
-            caption.after(comments)
-          else
-            panel.find('.status').after(comments)
-        else
-          panel.find('.comments-count .count').incText()
-        container.append(data)
+        container = self.parents('.modal.create-comment')
+        container.modal('hide')
+        panel = $('[data-id="' + container.data('id') + '"]')
+        count = panel.find('.comments-count .count').incText().intText()
+        panel.find('[data-comments-count]').attr('data-comments-count', count)
+        panel.find('.comments-data').append(data)
       error: (e, ddata) ->
         Growl.show('Failed to create comment, try again later', 'error')
       complete: (e, data) ->
