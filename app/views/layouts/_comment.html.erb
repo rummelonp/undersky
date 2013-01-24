@@ -1,6 +1,6 @@
-<div class="comment">
+<div class="comment data-container" data-username="<%= comment.from.username %>">
   <%= image_tag comment.from.profile_picture, class: "profile-picture" %>
-  <span class="username" data-username="<%= comment.from.username %>">
+  <span class="username">
     <%= link_to comment.from.username, recent_url(id: comment.from.username) %>
   </span>
   <span class="text">
