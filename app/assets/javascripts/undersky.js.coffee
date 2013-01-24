@@ -237,11 +237,11 @@ class Undersky
         $(this).__hide()
       success: (e, data) ->
         self = $(this)
+        user = $d.data('user')
         panel = self.parents('.modal.media-panel')
-        if panel.find('.comments-count .count').decText().intText() == 0
-          panel.find('.comments').remove()
-        else
-          self.parents('.comment').remove()
+        count = panel.find('.comments-count .count').decText().intText()
+        panel.find('[data-comments-count]').attr('data-comments-count', count)
+        panel.find('.comments-data [data-username="' + user.username + '"]').remove()
       error: (e, data) ->
         $(this).__show()
         Growl.show('Failed to delete comment, try again later', 'error')
