@@ -206,10 +206,10 @@ class Undersky
         likes_status.find('.likes-button.like a').click()
 
     do ->
-      $('.likes-load-link a').bindAjaxHandler self.likesHandler
-      $('.likes-button a').bindAjaxHandler self.likesStatusHandler
-      $('.likes-button.like a').bindAjaxHandler self.likeHandler
-      $('.likes-button.unlike a').bindAjaxHandler self.unlikeHandler
+      $d.bindAjaxHandler '.likes-load-link a', self.likesHandler
+      $d.bindAjaxHandler '.likes-button a', self.likesStatusHandler
+      $d.bindAjaxHandler '.likes-button.like a', self.likeHandler
+      $d.bindAjaxHandler '.likes-button.unlike a', self.unlikeHandler
       $d.on 'keydown', self.action
 
   class Comments
@@ -247,8 +247,8 @@ class Undersky
         Growl.show('Failed to delete comment, try again later', 'error')
 
     do ->
-      $('.comments-load-link a').bindAjaxHandler self.commentsHandler
-      $('.comments-button.delete-comment a').bindAjaxHandler self.deleteCommentHandler
+      $d.bindAjaxHandler '.comments-load-link a', self.commentsHandler
+      $d.bindAjaxHandler '.comments-button.delete-comment a', self.deleteCommentHandler
 
   class CreateComment
     self = this
@@ -345,7 +345,7 @@ class Undersky
       panel.find('.comments-button.create-comment a').click()
 
     do ->
-      $('.modal.create-comment form').bindAjaxHandler self.handler
+      $d.bindAjaxHandler '.modal.create-comment form', self.handler
       $d.on 'click', '.comments-button.create-comment a', self.show
       $d.on 'click', '.modal.create-comment .username a', self.reply
       $d.on 'click', '.modal.create-comment a.tag', self.tag
@@ -453,9 +453,9 @@ class Undersky
         Growl.show('Failed to unfollow, try again later', 'error')
 
     do ->
-      $('.relationships-button a').bindAjaxHandler self.outgoingStatusHandler
-      $('.relationships-button.follow a').bindAjaxHandler self.followHandler
-      $('.relationships-button.unfollow a').bindAjaxHandler self.unfollowHandler
+      $d.bindAjaxHandler '.relationships-button a', self.outgoingStatusHandler
+      $d.bindAjaxHandler '.relationships-button.follow a', self.followHandler
+      $d.bindAjaxHandler '.relationships-button.unfollow a', self.unfollowHandler
 
   class Page
     self = this
@@ -478,5 +478,5 @@ class Undersky
         Growl.show('Failed to load next page, try again later', 'error')
 
     do ->
-      $('.page-button.next-page a').bindAjaxHandler self.nextPageHandler
+      $d.bindAjaxHandler '.page-button.next-page a', self.nextPageHandler
       $w.on 'scroll', self.loadNextPage

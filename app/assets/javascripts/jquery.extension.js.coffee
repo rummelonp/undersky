@@ -28,9 +28,9 @@ $.fn.extend
     this.attr('disabled', 'disabled')
     this.bind('click.railsDisable', (e) ->
       $.rails.stopEverything(e))
-  bindAjaxHandler: (handlers) ->
+  bindAjaxHandler: (selector, handlers) ->
     for eventName, handler of handlers
-      this.live 'ajax:' + eventName, handler
+      this.on 'ajax:' + eventName, selector, handler
     this
 
 # Add methods to Event
