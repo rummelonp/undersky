@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe ApplicationHelper do
@@ -123,8 +124,8 @@ describe ApplicationHelper do
 
   describe :tags_tag do
     context 'have tag' do
-      subject { tags_tag 'text #tag1 #tag2' }
-      it { should == 'text <a class="tag" href="http://test.host/tags/tag1">#tag1</a> <a class="tag" href="http://test.host/tags/tag2">#tag2</a>' }
+      subject { tags_tag 'text #tag #タグ' }
+      it { should == 'text <a class="tag" href="http://test.host/tags/tag">#tag</a> <a class="tag" href="http://test.host/tags/%E3%82%BF%E3%82%B0">#タグ</a>' }
       it { should be_html_safe }
     end
 

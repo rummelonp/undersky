@@ -51,7 +51,7 @@ module ApplicationHelper
 
     def tags_tag(text)
       return nil if text.blank?
-      tag_pattern = /(#[a-zA-Z0-9_]*)/
+      tag_pattern = /(#[^&; ]+)/
       quote = '#x27' # ' => &#x27;
       html_safe = text.html_safe?
       text.split(tag_pattern).map { |c|
