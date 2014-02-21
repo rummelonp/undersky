@@ -1,6 +1,6 @@
 # Undersky
 
-The Instagram Viewer Made with Ruby on Rails 3.2.11
+The Instagram Viewer Made with Ruby on Rails
 
 ## Copyright
 Copyright (c) 2011 [Kazuya Takeshima](mailto:mail@mitukiii.jp). See [LICENSE][] for details.
