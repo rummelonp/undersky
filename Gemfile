@@ -14,13 +14,13 @@ group :assets do
   gem 'uglifier', '~> 1.3'
 end
 
-group :development do
-  gem 'growl'
-  gem 'guard-livereload'
-  gem 'guard-rspec'
-  gem 'pry-rails'
-end
-
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails'
+
+  # Guard
+  gem 'guard-rspec'
+
+  # Notification
+  gem 'growl'
 end
