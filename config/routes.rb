@@ -1,9 +1,9 @@
 Undersky::Application.routes.draw do
-  get "users/:name"          => redirect("/%{name}")
+  get "users/:name"          => redirect("/%{name}"),        constraints: {name: /[\w\-\.]+/}
   get "users/search"         => redirect("/search")
-  get "users/search/:name"   => redirect("/search/%{name}")
+  get "users/search/:name"   => redirect("/search/%{name}"), constraints: {name: /[\w\-\.]+/}
   get "tags/search"          => redirect("/search")
-  get "tags/search/:name"    => redirect("/search/%{name}")
+  get "tags/search/:name"    => redirect("/search/%{name}"), constraints: {name: /[\w\-\.]+/}
   get "tags/recent/:name"    => redirect("/tags/%{name}")
 
   root to: "media#popular", as: :index
@@ -28,13 +28,13 @@ Undersky::Application.routes.draw do
   get "feed(/max_id/:max_id)"            => "users#feed",   as: :feed
   get "liked(/max_like_id/:max_like_id)" => "users#liked",  as: :liked
   get "self"                             => "users#self",   as: :profile
-  get ":id(/max_id/:max_id)"             => "users#recent", as: :recent
+  get ":id(/max_id/:max_id)"             => "users#recent", as: :recent, constraints: {id: /[\w\-\.]+/}
 
-  get ":id/follows(/cursor/:cursor)"     => "relationships#follows",     as: :follows
-  get ":id/followed_by(/cursor/:cursor)" => "relationships#followed_by", as: :followed_by
+  get ":id/follows(/cursor/:cursor)"     => "relationships#follows",     as: :follows,     constraints: {id: /[\w\-\.]+/}
+  get ":id/followed_by(/cursor/:cursor)" => "relationships#followed_by", as: :followed_by, constraints: {id: /[\w\-\.]+/}
 
-  post   ":id/follow" => "relationships#follow",   as: :follow
-  delete ":id/follow" => "relationships#unfollow", as: :unfollow
+  post   ":id/follow" => "relationships#follow",   as: :follow,   constraints: {id: /[\w\-\.]+/}
+  delete ":id/follow" => "relationships#unfollow", as: :unfollow, constraints: {id: /[\w\-\.]+/}
 
   get    "media/:id/likes" => "likes#likes",  as: :likes
   post   "media/:id/likes" => "likes#like",   as: :like
